@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<!-- xx · 习题详解：物理学教程 第12章 电磁感应 问题 12-1 至 12-8 -->
+<html lang="zh-CN" data-theme="book">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>物理学教程 第12章 电磁感应 · 问题 12-1～12-8 详解</title>
+<link rel="stylesheet" crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+      integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+">
+<script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+        integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"></script>
+<script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk"></script>
+<style>
+*{box-sizing:border-box}
+html[data-theme=book]{--bg:#f4f2ec;--card:#fdfcf8;--ink:#26241f;--mut:#6d685d;--line:#e0dbcf;--acc:#1f6f6b;--key:#c0392b;--kp:#a97142;--warn:#c0392b;--ans:#e8f0ee;--ansline:#cfe0dc;--sh:0 1px 2px rgba(38,36,31,.07),0 6px 18px rgba(38,36,31,.06)}
+html[data-theme=ink]{--bg:#14161a;--card:#1b1e24;--ink:#e8e6e1;--mut:#9aa0a8;--line:#2b2f37;--acc:#5ac8c0;--key:#ff8b6b;--kp:#c9a227;--warn:#ff8b6b;--ans:#172422;--ansline:#2e4b48;--sh:none}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;transition:background .2s}
+h1,h2,h3,.kicker{font-family:"Noto Serif SC",Georgia,serif}
+a{color:var(--acc)}
+#banner{display:none;background:var(--key);color:#fff;padding:10px 14px;font:14px sans-serif}
+.shell{display:grid;grid-template-columns:268px minmax(0,1fr)}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;padding:24px 16px;font-size:14px;border-right:1px solid var(--line);background:var(--card)}
+nav.toc h2{font:12px/1 sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:0 0 12px}
+nav.toc a{display:block;color:var(--mut);text-decoration:none;padding:4px 8px;border-left:3px solid transparent}
+nav.toc a.sub{padding-left:22px;font-size:13px}
+nav.toc a.on{color:var(--acc);font-weight:700;border-left-color:var(--acc);background:color-mix(in srgb,var(--acc) 10%,transparent)}
+nav.toc .tools{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+nav.toc .tools button{all:unset;cursor:pointer;font:12px/1 sans-serif;padding:6px 10px;border:1px solid var(--line);border-radius:8px;color:var(--mut)}
+nav.toc .tools button:hover{color:var(--acc);border-color:var(--acc)}
+.wrap{padding:26px clamp(20px,5vw,72px) 120px;max-width:1080px}
+.kicker{font:12px/1 sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 8px}
+h1.doc{font-size:clamp(24px,3.4vw,34px);line-height:1.3;margin:0 0 10px}
+.lead{font-size:15px;color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--card);margin:0 0 26px}
+section.mod{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:22px 24px;margin:0 0 26px;display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:18px}
+.gutter{grid-column:1;color:var(--acc);font:700 13px/1.4 Consolas,monospace}
+.gutter small{display:block;color:var(--mut);font:400 11px/1.4 sans-serif;letter-spacing:.02em}
+section.mod>h2{grid-column:2;margin:0 0 10px;font-size:22px;color:var(--acc);font-weight:600}
+section.mod>.in{grid-column:2;min-width:0}
+.blk{margin:14px 0;padding-left:16px;border-left:2px solid var(--line)}
+.blk>b:first-child{display:block;font-size:13px;letter-spacing:.03em;margin-bottom:4px}
+.blk.kp{border-left-color:var(--kp)} .blk.kp>b{color:var(--kp)}
+.blk.idea{border-left-color:var(--acc)} .blk.idea>b{color:var(--acc)}
+.blk.chk{border-left-color:var(--acc)} .blk.chk>b{color:var(--acc)}
+.blk.warn{border-left-color:var(--warn)} .blk.warn>b{color:var(--warn)}
+.blk.sol>b{color:var(--ink)}
+.blk.s0{border-left-color:var(--key);background:color-mix(in srgb,var(--key) 5%,transparent)} .blk.s0>b{color:var(--key)}
+.blk p{margin:.35em 0}
+.qsum{border:1px dashed var(--acc);border-radius:10px;padding:10px 14px;margin:12px 0;font-size:15px}
+.qsum>b:first-child{display:block;font-size:13px;letter-spacing:.03em;margin-bottom:4px;color:var(--acc)}
+.q{border:1px solid var(--line);border-left:4px solid var(--key);border-radius:12px;background:var(--card);box-shadow:var(--sh);padding:0 20px 18px;margin:18px 0}
+.q>h3{font-size:18px;margin:0;padding:14px 0;border-bottom:1px dashed var(--line);cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.q>h3::after{content:"收起";font:11px/1 sans-serif;color:var(--mut);border:1px solid var(--line);border-radius:6px;padding:3px 7px;flex:none}
+.q.fold>h3::after{content:"展开"}
+.q.fold>.in{display:none}
+.q .in{min-width:0}
+ol.steps{list-style:none;counter-reset:s;padding-left:0;margin:8px 0}
+ol.steps>li{counter-increment:s;position:relative;padding-left:44px;margin:0 0 10px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:12px/1 Consolas,monospace;font-weight:700;background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc)}
+.ans{background:var(--ans);border:1px solid var(--ansline);border-radius:10px;padding:10px 14px;margin:12px 0}
+.pit{background:color-mix(in srgb,var(--warn) 8%,transparent);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);border-radius:10px;padding:10px 14px;font-size:15px}
+.katex{color:var(--ink)}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{color:var(--acc);font-weight:600}
+.fig{max-width:100%;height:auto}
+.figwrap{position:relative;display:inline-block;max-width:100%}
+.figlab{position:absolute;transform:translate(-50%,-50%);font:13px/1.3 sans-serif;color:var(--ink);background:color-mix(in srgb,var(--card) 88%,transparent);padding:1px 4px;border-radius:4px;white-space:nowrap}
+.cap{font-size:12px;color:var(--mut);margin:4px 0 0}
+.stk{position:relative;display:inline}
+.stk>a{color:var(--acc);text-decoration:none;border-bottom:1px dashed var(--acc);cursor:pointer;font-weight:600}
+.pop{position:absolute;left:0;bottom:135%;width:min(340px,74vw);z-index:30;display:none;background:var(--card);border:1px solid var(--kp);border-radius:10px;box-shadow:0 8px 26px rgba(0,0,0,.18);padding:12px 14px;font:14px/1.75 sans-serif}
+.stk.r>.pop{left:auto;right:0}
+.stk>a:hover+.pop,.stk>a:focus-visible+.pop,.stk.open .pop{display:block}
+.pop u{display:block;font-style:normal;text-decoration:none;font:11px/1 sans-serif;letter-spacing:.1em;color:var(--kp);margin-bottom:5px}
+.pop i{display:block;margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-style:normal;color:var(--mut);font-size:13px}
+@media(max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  nav.toc{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+  nav.toc .lst{columns:2;column-gap:24px}
+  section.mod{grid-template-columns:minmax(0,1fr)}
+  .gutter{grid-column:1;margin-bottom:6px}
+  section.mod>h2,section.mod>.in{grid-column:1}
+}
+
+/* 窄屏：贴纸改成块级锚点并压窄弹层，否则 340px 气泡在 520px 栏里必然出界 */
+@media(max-width:640px){
+  .stk{display:inline-block}
+  .pop{position:fixed;left:8px;right:8px;top:auto;bottom:8px;width:auto;
+       max-height:52vh;overflow:auto;z-index:40}
+  .stk.r>.pop{left:8px;right:8px}
+}
+</style>
+</head>
+<body>
+<div id="banner">⚠ 公式未渲染：数学库加载失败，本文件需联网。下方保留 LaTeX 原文。</div>
+
+<div class="shell">
+<nav class="toc">
+  <h2>目录</h2>
+  <div class="lst">
+    <a href="#index">题号索引</a>
+    <a href="#m1">M1 楞次定律与磁通量</a>
+    <a href="#m1-meth" class="sub">M1 解题方法</a>
+    <a href="#q121a" class="sub">题 12-1(1)</a>
+    <a href="#q121b" class="sub">题 12-1(2)</a>
+    <a href="#q121c" class="sub">题 12-1(3)</a>
+    <a href="#q123" class="sub">题 12-3</a>
+    <a href="#m2">M2 法拉第定律的定量计算</a>
+    <a href="#m2-meth" class="sub">M2 解题方法</a>
+    <a href="#q124" class="sub">题 12-4</a>
+    <a href="#q125" class="sub">题 12-5</a>
+    <a href="#q128" class="sub">题 12-8</a>
+    <a href="#m3">M3 动生电动势与磁场边界</a>
+    <a href="#m3-meth" class="sub">M3 解题方法</a>
+    <a href="#q126" class="sub">题 12-6</a>
+    <a href="#m4">M4 感应电场与电动势的本质</a>
+    <a href="#m4-meth" class="sub">M4 解题方法</a>
+    <a href="#q122" class="sub">题 12-2</a>
+    <a href="#q127" class="sub">题 12-7</a>
+    <a href="#pitfalls" class="sub">附 · 易错点清单</a>
+    <a href="#cheatsheet" class="sub">附 · 公式速查表</a>
+    <a href="#answers" class="sub">附 · 答案总表</a>
+    <a href="#verify" class="sub">附 · 核对方法与结果</a>
+  </div>
+  <div class="tools">
+    <button id="fold" type="button">全部收起</button>
+    <button id="theme" type="button">切换暗色</button>
+  </div>
+</nav>
+
+<div class="wrap">
+  <p class="kicker">大学物理 · 第 12 章 电磁感应</p>
+  <h1 class="doc">《物理学教程》第 12 章 问题 12-1～12-8 详解</h1>
+  <div class="lead">
+    覆盖题目：12-1（三小题）· 12-2 · 12-3 · 12-4 · 12-5 · 12-6 · 12-7 · 12-8，共 10 张题卡。
+    建议顺序：先读各模块的知识点与解题方法，再按题卡查阅。带虚线下划线的词是知识贴纸，悬停或点击可复现该知识点。数学公式经 CDN 渲染，需联网。
+  </div>
+
+  <section class="mod" id="index">
+    <div class="gutter">索引<small>查题</small></div>
+    <h2>题号索引</h2>
+    <div class="in"><table>
+      <tr><th>题号</th><th>所在模块</th><th>方法标签</th><th>结果</th></tr>
+      <tr><td><a href="#q121a">12-1(1)</a></td><td><a href="#m1">M1</a></td><td>楞次定律：平移使磁通减少</td><td>顺时针 A→D→C→B→A</td></tr>
+      <tr><td><a href="#q121b">12-1(2)</a></td><td><a href="#m1">M1</a></td><td>楞次定律：绕 AD 转，Φ 单调减小</td><td>与 (1) 同向；θ=0、π 时为零</td></tr>
+      <tr><td><a href="#q121c">12-1(3)</a></td><td><a href="#m1">M1</a></td><td>磁通量不变（绕导线转）</td><td>ε=0，无电流</td></tr>
+      <tr><td><a href="#q123">12-3</a></td><td><a href="#m1">M1</a></td><td>楞次定律加等效磁极</td><td>两线圈面向磁铁的端面都是 N 极</td></tr>
+      <tr><td><a href="#q124">12-4</a></td><td><a href="#m2">M2</a></td><td>由 ε=-S cosθ dB/dt 求极值</td><td>θ=0 或 π 最大，θ=π/2 为零</td></tr>
+      <tr><td><a href="#q125">12-5</a></td><td><a href="#m2">M2</a></td><td>脉冲过零点对应通过线圈的时刻</td><td>v=r/Δt=5.0×10² m/s</td></tr>
+      <tr><td><a href="#q128">12-8</a></td><td><a href="#m2">M2</a></td><td>磁通量只算有磁场的面积</td><td>I=S<sub>内</sub>|dB/dt|/R</td></tr>
+      <tr><td><a href="#q126">12-6</a></td><td><a href="#m3">M3</a></td><td>分阶段 ε=Blv</td><td>进入 Blv、全在 0、穿出反向 Blv</td></tr>
+      <tr><td><a href="#q122">12-2</a></td><td><a href="#m4">M4</a></td><td>感生电场与涡流分开判断</td><td>铜：电场加电流；塑料：只有电场</td></tr>
+      <tr><td><a href="#q127">12-7</a></td><td><a href="#m4">M4</a></td><td>电动势的定义 ε=∮F<sub>非</sub>/q·dl</td><td>共同：非静电力做功；不同：来源与场的性质</td></tr>
+    </table></div>
+  </section>
+
+  <section class="mod" id="m1">
+    <div class="gutter">M1<small>楞次</small></div>
+    <h2>M1 · 磁通量与楞次定律：判定感应电动势的方向</h2>
+    <div class="in">
+      <div class="blk kp"><b>知识点</b>
+        <p>① <b>磁通量</b>：按代数计算的磁感线条数，可正可负。</p>
+        <div id="eq-1-1">\[ \Phi=\int_S \mathbf{B}\cdot d\mathbf{S}, \qquad \Phi=BS\cos\theta\ (\text{匀强磁场、平面回路}) \tag{1-1} \]</div>
+        <p>θ 是 B 与回路正法线 e_n 的夹角。正法线一旦选定，Φ 的正负随之确定。改变 Φ 只有三种途径：B 变、S 变、θ 变。</p>
+        <p>② <b>长直电流的磁场</b>：</p>
+        <div id="eq-1-2">\[ B=\frac{\mu_0 I}{2\pi r} \tag{1-2} \]</div>
+        <p>方向用右手螺旋定则：右手握住导线、拇指指向电流方向，四指弯曲的方向就是 B 的绕行方向。本题电流向上，线圈在导线右侧，该处 B 垂直纸面向里，且离导线越远越弱。</p>
+        <p>③ <b>楞次定律</b>：感应电流的磁场总要阻碍原磁通量的变化。Φ 增加时感应磁场与原磁场反向（“增反”），Φ 减少时同向（“减同”）。得到感应磁场方向后，再用右手螺旋定则把“磁场方向”换成“电流绕行方向”。</p>
+        <p>④ <b>等效判据</b>：感应电流的效果总要使回路与外界的相对运动受到阻碍（靠近相斥、远离相吸），用来快速核对方向。</p>
+      </div>
+      <div class="blk idea" id="m1-meth"><b>解题方法</b>
+        <ol class="steps">
+          <li>定正方向：选正法线 e_n，并写出与它配套的回路的正绕行方向（右手螺旋）。</li>
+          <li>判原磁场方向：长直导线用 (1-2) 的右手螺旋；条形磁铁用“外部磁感线从 N 极出发、回到 S 极”。</li>
+          <li>判磁通量增减：看 B、S、θ 三者中谁在变，写出 Φ 的增减。</li>
+          <li>定感应磁场：Φ 增则与原磁场反向，Φ 减则与原磁场同向。</li>
+          <li>定电流方向：右手拇指指向感应磁场，四指为电流方向；用字母序列（如 A→D→C→B→A）记录结论，避免“顺时针”在图上产生歧义。</li>
+        </ol>
+        适用条件：闭合回路；只求方向、不求大小。
+        本模块易错点：跳过“定正方向”直接判方向；把导线两侧的 B 方向当成相同。
+      </div>
+
+      <div class="q" id="q121a">
+        <h3>题 12-1(1)　线圈在纸面内向右移动</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>
+            <p>如图所示，在一长直导线 L 中通有电流 I，ABCD 为一矩形线圈。试确定在下列情况下，ABCD 上的感应电动势的方向：(1) 矩形线圈在纸面内向右移动。</p>
+            <div class="figwrap">
+              <svg class="fig" width="300" height="210" viewBox="0 0 300 210" role="img" aria-label="问题 12-1 示意图：长直导线 L 通电流 I，矩形线圈 ABCD 在其右侧">
+                <line x1="70" y1="18" x2="70" y2="172" style="stroke:var(--mut);stroke-width:1.4;stroke-dasharray:5 4"/>
+                <polygon points="70,78 64,96 76,96" style="fill:var(--acc)"/>
+                <rect x="140" y="50" width="112" height="96" style="fill:none;stroke:var(--acc);stroke-width:1.8"/>
+              </svg>
+              <span class="figlab" style="left:70px;top:190px">L</span>
+              <span class="figlab" style="left:88px;top:92px">I</span>
+              <span class="figlab" style="left:132px;top:40px">A</span>
+              <span class="figlab" style="left:264px;top:40px">D</span>
+              <span class="figlab" style="left:132px;top:158px">B</span>
+              <span class="figlab" style="left:264px;top:158px">C</span>
+            </div>
+            <div class="cap">图 12-1 示意：电流 I 向上，线圈在导线右侧，A、D 为上边两端，B、C 为下边两端。</div>
+          </div>
+          <div class="blk s0"><b>第0步 · 三类检查</b>
+            <p>(i) 存在性与模型前提：导线足够长，可用无限长直导线的磁场；线圈刚性、整体平动；回路始终闭合，面积不变。</p>
+            <p>(ii) 多值与分支：电流方向有顺、逆两种可能，必须先约定回路的正绕行方向。本文把正法线取为垂直纸面向里，与 B 同向。</p>
+            <p>(iii) 取值范围：线圈始终在导线右侧（r 大于 0），B 的方向不变（始终向里），只有 B 的大小随 r 变化。</p>
+          </div>
+          <div class="blk idea"><b>思路</b>
+            <p>路线甲：磁通量法。判断 Φ 的增减，用楞次定律定感应磁场，再用右手螺旋定则换成电流方向。</p>
+            <p>路线乙：动生电动势法。用洛伦兹力 F=qv×B 分别算 AB、DC 两边的电动势，再比较。</p>
+            <p><b>选甲</b>：一次判断即得方向；乙要比较两条边，正好留作验证。</p>
+          </div>
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>判 B 的方向：导线中电流向上，由右手螺旋定则，线圈所在的右侧空间磁场垂直纸面向里。（依据：(1-2)）</li>
+              <li>定正方向：取正法线 e_n 垂直纸面向里，与 B 同向，于是 Φ 大于 0。（依据：(1-1)）</li>
+              <li>判 Φ 的增减：线圈向右移动，各点到导线的距离 r 增大，B 按 (1-2) 减小；线圈面积 S 不变，所以 Φ 减小。（依据：(1-2)、(1-1)）</li>
+              <li>定感应磁场：Φ 减小，按“减同”，感应电流的磁场与原 B 同向，即垂直纸面向里。依据：<span class="stk r"><a href="#p-lenz" tabindex="0" role="button" aria-describedby="p-lenz">楞次定律（增反减同）</a><span class="pop" id="p-lenz"><u>旁注 · 楞次定律的完整表述</u>感应电流的磁场总要阻碍引起感应电流的磁通量的变化：Φ 增加时，感应磁场与原磁场反向；Φ 减少时，两者同向。它阻碍的是“变化”，不是“磁场本身”，所以原磁场很大但不变化时没有感应电流。<i>本题用法：Φ 减小，所以取“同向”，感应磁场仍向里；下一步用右手螺旋把它换算成电流方向。</i></span></span>。</li>
+              <li>定电流方向：右手拇指指向纸面内，四指绕行方向为顺时针，即 A→D→C→B→A。（依据：右手螺旋定则）</li>
+              <li>写成结论：感应电动势沿回路 A→D→C→B→A 方向（顺时针）。</li>
+            </ol>
+          </div>
+          <div class="ans"><b>答案</b>\[ \boxed{\text{顺时针，即 } A\to D\to C\to B\to A} \]</div>
+          <div class="blk chk"><b>验证</b>
+            <p>独立路径（洛伦兹力）：线圈速度 v 向右，B 向里，正电荷受力 F=qv×B 向上。AB 边（近导线）中电动势由 B 指向 A，DC 边（远导线）中由 C 指向 D，两边反向；AB 处 B 更大，故净电动势沿 B→A→D→C→B 的顺时针方向：
+              \[ \varepsilon_{\text{净}}=vh\left[B(x_1)-B(x_2)\right] \gt 0 \]
+              其中 h 为线圈高度，x1、x2 为 AB、DC 两边到导线的距离。这与第 5 步的结论一致。</p>
+            <p>合理性检查：线圈向右是在“逃离”导线，感应电流使 AB 边受到指向导线的安培力（电流向上、B 向里，安培力向左），恰好阻碍这一运动，符合能量守恒。</p>
+          </div>
+          <div class="blk warn"><b>常见坑</b><div class="pit">① 把导线右侧的 B 判成“垂直纸面向外”，全部方向反向。核对方法：右手握导线、拇指向上，右侧四指弯向纸内。<br>② 以为“只有靠近导线的 AB 边切割，DC 边没有电动势”。DC 边同样切割，两侧电动势方向相反，净电动势是两者之差。<br>③ 凭“向右移动离磁场更远，磁通应该更大”的直觉。长直导线的 B 随距离减小，磁通量是减小的。</div></div>
+        </div>
+      </div>
+
+      <div class="q" id="q121b">
+        <h3>题 12-1(2)　线圈绕 AD 轴旋转</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>
+            <p>条件同 12-1：长直导线 L 中通有电流 I，ABCD 为导线右侧的矩形线圈（A、D 为上边两端）。试确定：(2) 矩形线圈绕 AD 轴旋转时，ABCD 上的感应电动势的方向。</p>
+          </div>
+          <div class="blk s0"><b>第0步 · 三类检查</b>
+            <p>(i) 存在性与模型前提：线圈绕纸面内的 AD 边转动（AD 垂直于导线），角速度记为 ω；导线足够长。线圈有宽度，B 在宽度方向不完全均匀，推导中会写明所用的近似。</p>
+            <p>(ii) 多值与分支：θ 取线圈平面与纸面的夹角，θ=0 为初始位置。正法线必须随线圈连续转动，因为 θ 越过 90° 时磁通量变号，符号要连续跟踪，不能中途重新定义。</p>
+            <p>(iii) 取值范围：讨论 θ 从 0 到 π 的半圈。θ=0 时线圈在纸面内；θ=π/2 时线圈平面垂直于纸面；θ=π 时回到纸面内，但正反面互换。</p>
+          </div>
+          <div class="blk idea"><b>思路</b>
+            <p>路线甲：磁通量法。写出 Φ(θ)，看 dΦ/dt 的符号，再定方向。</p>
+            <p>路线乙：动生电动势法。判断转动中哪条边在切割磁感线。</p>
+            <p><b>选甲</b>：与 (1) 用同一判据，结论可以直接比较；乙放在验证里，用来核对“方向不反转”这一结论。</p>
+          </div>
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>定角：令 θ 为线圈平面与纸面的夹角，初始 θ=0。</li>
+              <li>写磁通量：把线圈范围内的 B 视为近似均匀（线圈尺寸远小于它到导线的距离时成立），穿过线圈的磁通量只由投影面积决定：
+                \[ \Phi(\theta)=\Phi_0\cos\theta \]
+                Φ0 为 θ=0 时的磁通量，取向里为正。（依据：(1-1)）</li>
+              <li>判第一段（θ 从 0 增到 π/2）：cosθ 减小，Φ 减小。（依据：cosθ 在 0 到 π/2 上单调减）</li>
+              <li>定方向：按“减同”，感应磁场向里，电流顺时针，与 (1) 相同。（依据：楞次定律，见 <span class="stk r"><a href="#p-proj" tabindex="0" role="button" aria-describedby="p-proj">投影面积</a><span class="pop" id="p-proj"><u>旁注 · 为什么用投影面积</u>磁通量只认“穿过回路的场”，回路倾斜 θ 时，它在垂直于 B 的平面上的投影面积变为原来的 cosθ 倍，所以 Φ=Φ0cosθ。θ=90° 时投影面积为零，磁通量为零。<i>本题用法：转动过程中 cosθ 单调减小，磁通量从最大值降到零；越过 90° 后取负值，表示磁通方向反过来，但代数值仍在减小。</i></span></span>。</li>
+              <li>判第二段（θ 从 π/2 增到 π）：cosθ 为负，Φ 变成“指向纸外”，且代数值继续减小（更负），也就是向外的磁通在增大。按“增反”，感应磁场仍向里，电流方向不变。</li>
+              <li>写大小：在上述均匀近似下，ε=-dΦ/dt≈Φ0ωsinθ，在 θ=0 与 θ=π 处为零，在 θ=π/2 附近最大。（依据：(2-1)）</li>
+            </ol>
+          </div>
+          <div class="ans"><b>答案</b>\[ \boxed{\text{方向与 (1) 相同，沿 } A\to D\to C\to B\to A;\quad \varepsilon\approx\Phi_0\omega\sin\theta\ \text{（均匀近似）}} \]</div>
+          <div class="blk chk"><b>验证</b>
+            <p>独立路径（三维磁场下的严格磁通量，不依赖均匀近似）：倾斜后线圈上一点到导线的距离满足 r²=x²+d²sin²θ，其中 x 为该点到导线的距离，d 为该点到 AD 的距离。该点磁场 B=(μ0I/2π)(z,0,-x)/r²，其中 z=-dsinθ；面积元法线 dS=(0,sinθ,-cosθ)dx dd。点乘后只有 B 的 z 分量留下：
+              \[ d\Phi=\frac{\mu_0 I}{2\pi}\cdot\frac{x\cos\theta}{x^2+d^2\sin^2\theta}\,dx\,dd \]
+              对 x、d 积分得 Φ(θ)=cosθ·J(θ)，其中
+              \[ J(\theta)=\frac{\mu_0 I}{2\pi}\iint\frac{x}{x^2+d^2\sin^2\theta}\,dx\,dd \gt 0 \]
+              θ 从 0 到 π/2 时 cosθ 减小、sin²θ 增大使 J 减小；θ 从 π/2 到 π 时 cosθ 为负且绝对值增大、sin²θ 减小使 J 增大，两项都使 Φ 继续减小。所以 dΦ/dθ 在 (0,π) 内恒为负，ε=-dΦ/dt 的符号不变，方向与 (1) 相同。J 只依赖 sin²θ，在 θ=0 与 θ=π 处导数为零，所以这两点 dΦ/dθ=0、电动势为零。</p>
+            <p>合理性检查：半圈内 Φ 从 +Φ0 单调降到 -Φ0，中途没有“由减变增”的时刻，所以方向不会反转；θ=π/2 是 Φ 的零点，不是极值点，恰好也是电动势最大的位置，两者不矛盾。</p>
+          </div>
+          <div class="blk warn"><b>常见坑</b><div class="pit">① 只判到 90° 就收笔，认定“转过垂直位置后方向反转”。越过 90° 后是“向外的磁通在增大”，按“增反”判，方向与前一阶段相同。<br>② 把 θ 定义成“B 与线圈平面的夹角”，于是写成 sinθ：cos 与 sin 互换，最大、零点全部错位。<br>③ 认为“刚一转就有最大电动势”。θ=0 时 dΦ/dθ=0，电动势为零，随后才增大。</div></div>
+        </div>
+      </div>
+
+      <div class="q" id="q121c">
+        <h3>题 12-1(3)　线圈以直导线为轴旋转</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>
+            <p>条件同 12-1：长直导线 L 中通有电流 I，ABCD 为导线右侧的矩形线圈。试确定：(3) 矩形线圈以直导线为轴旋转时，ABCD 上的感应电动势的方向。</p>
+          </div>
+          <div class="blk s0"><b>第0步 · 三类检查</b>
+            <p>(i) 存在性与模型前提：导线为转轴，线圈平面始终包含导线；线圈绕轴转动时，它与导线的相对位置关系按对称性保持。</p>
+            <p>(ii) 多值与分支：结论是“无电动势”，没有方向分支；但要分清“有速度”与“有切割”是两件事。</p>
+            <p>(iii) 取值范围：旋转角可取 0 到 2π，线圈不越过导线（r 保持正）。</p>
+          </div>
+          <div class="blk idea"><b>思路</b>
+            <p>路线甲：对称性。转动前后线圈相对磁场的位置关系不变，磁通量不变。</p>
+            <p>路线乙：洛伦兹力。看每一点的速度与 B 是否平行。</p>
+            <p><b>选甲</b>给出结论，<b>乙</b>解释为什么每一段都不产生电动势。</p>
+          </div>
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>看几何关系：线圈绕导线转动时，线圈平面始终包含导线。</li>
+              <li>看磁场：长直导线的 B 在每一点都垂直于“过该点与导线的平面”，也就是垂直于线圈平面；B 的大小只由该点到导线的距离决定。（依据：(1-2) 的方向与大小）</li>
+              <li>判磁通量：转动中线圈上各点到导线的距离不变，线圈形状不变，所以 Φ 不变。（依据：(1-1)）</li>
+              <li>得结论：Φ 不变，由 (2-1)，ε=-dΦ/dt=0，回路中无感应电流。</li>
+            </ol>
+          </div>
+          <div class="ans"><b>答案</b>\[ \boxed{\varepsilon=0,\ \text{无感应电流}} \]</div>
+          <div class="blk chk"><b>验证</b>
+            <p>独立路径（洛伦兹力）：线圈上任一点的速度沿“绕导线的圆”的切向，B 也沿同一圆的切向，两者平行，所以 v×B=0。每一段的动生电动势都为零，与磁通量结论一致。</p>
+            <p>合理性检查：绕导线转动是磁场关于导线的对称操作，转动前后物理情形完全相同，磁通量没有理由变化。</p>
+          </div>
+          <div class="blk warn"><b>常见坑</b><div class="pit">① “线圈在磁场中转动就一定有电动势”。发电机线圈绕自身轴转，边在切割磁感线；本题绕导线转，速度与 B 平行，v×B=0。<br>② 把“绕导线转”与“绕线圈自己的一条边转”混淆：后者的轴不在导线上，各点到导线的距离会变，一般不出现零电动势。<br>③ 只看到“线圈每一刻都在移动”，没有检查速度与 B 的夹角。有没有电动势由 v×B 决定，不由“有没有速度”决定。</div></div>
+        </div>
+      </div>
+
+      <div class="q" id="q123">
+        <h3>题 12-3　磁铁在两线圈之间向右运动</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>
+            <p>如图所示，有两个平行静止放置的线圈 A 和 B。若有一条形磁铁向右运动（磁铁的 S 极朝左、N 极朝右，两线圈与磁铁同轴，A 在左、B 在右），则两线圈中感应电动势和感应电流的方向各如何？</p>
+          </div>
+          <div class="blk s0"><b>第0步 · 三类检查</b>
+            <p>(i) 存在性与模型前提：磁铁沿两线圈的公共轴线平移，两线圈静止；把两个线圈各自独立处理（先不计它们之间的互感）。</p>
+            <p>(ii) 多值与分支：每个线圈都要单独给出方向，而且必须写明“从哪一侧看”的顺、逆时针，否则同一个电流可以有两种叫法。</p>
+            <p>(iii) 取值范围：磁铁在两线圈之间向右运动，同时靠近 B、远离 A；两个过程同时发生，但要分别判断。</p>
+          </div>
+          <div class="blk idea"><b>思路</b>
+            <p>路线甲：楞次定律，逐线圈判断磁通量增减。</p>
+            <p>路线乙：“来拒去留”的等效磁极判据。</p>
+            <p><b>选甲</b>：需要先判断磁场方向，能顺带把“A 处磁场朝哪边”这个易错点讲清楚；乙放在验证里。</p>
+          </div>
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>判磁铁的磁场：磁感线在外部从 N 极出发、回到 S 极。在轴线上，磁铁左右两侧的 B 都指向右：左侧的场线进入 S 极，右侧的场线离开 N 极。（依据：磁感线闭合 + 外部从 N 到 S）</li>
+              <li>看线圈 B：磁铁向右靠近，B 处磁场增强，穿过 B 的向右磁通量增加。</li>
+              <li>定感应磁场：按“增反”，B 中感应磁场向左。（依据：楞次定律）</li>
+              <li>定磁极：感应磁场从 B 的左端面穿出，所以左端面相当于 N 极。</li>
+              <li>定电流方向：从磁铁一侧（B 的左侧）向右看，感应磁场指向观察者，电流为逆时针。（依据：右手螺旋定则）</li>
+              <li>看线圈 A：磁铁向右远离，A 处向右的磁通量减少。</li>
+              <li>定感应磁场：按“减同”，A 中感应磁场向右。（依据：楞次定律）</li>
+              <li>定磁极：感应磁场从 A 的右端面穿出，所以右端面相当于 N 极。</li>
+              <li>定电流方向：从磁铁一侧（A 的右侧）向左看，感应磁场指向观察者，电流为逆时针。（依据：右手螺旋定则）</li>
+            </ol>
+          </div>
+          <div class="ans"><b>答案</b>\[ \boxed{\text{两线圈面向磁铁的端面都是 N 极：}A\text{ 吸引、}B\text{ 排斥};\ \text{从磁铁处看，两线圈电流都逆时针}} \]</div>
+          <div class="blk chk"><b>验证</b>
+            <p>换列式复核（等效磁极）：B 需阻碍磁铁靠近，面向磁铁的一端与磁铁的 N 极同名，即 N 极；A 需阻碍磁铁远离，面向磁铁的一端与磁铁该端的 S 极异名，也是 N 极。这与第 4、8 步的磁极结论一致。</p>
+            <p>合理性检查：两个线圈都在“拖住”磁铁，磁铁的动能转化为线圈的焦耳热，能量守恒。</p>
+          </div>
+          <div class="blk warn"><b>常见坑</b><div class="pit">① 以为“A 在 S 极旁边，A 处磁场指向左边”。轴线外侧的场线要回到 S 极，方向指向磁铁（向右）；判反会让 A 的电流整体反向。<br>② 只说顺时针或逆时针，不写观察方向。从磁铁一侧看与从外侧看，结论相反。<br>③ 用“靠近 N 极就感应出 N 极”的死记法套到 A。A 面向的是 S 极，正确判据是“阻碍相对运动”，不是“同极相斥”。</div></div>
+        </div>
+      </div>
+
+      <div class="qsum"><b>小结卡</b>方向类题的三步闭环：先定 B 的方向，再判 Φ 的增减，最后用右手螺旋把感应磁场换成电流。核对用“增反减同”与“来拒去留”。长直导线两侧 B 方向相反，这是本模块所有错误的源头。</div>
+    </div>
+  </section>
+
+  <section class="mod" id="m2">
+    <div class="gutter">M2<small>定量</small></div>
+    <h2>M2 · 法拉第定律的定量计算</h2>
+    <div class="in">
+      <div class="blk kp"><b>知识点</b>
+        <p>① <b>法拉第电磁感应定律</b>（单匝回路；N 匝时右边乘 N）：</p>
+        <div id="eq-2-1">\[ \varepsilon=-\frac{d\Phi}{dt} \tag{2-1} \]</div>
+        <p>负号是楞次定律的数学表述，只负责方向；求大小时取绝对值。平均电动势为 ε=-ΔΦ/Δt，瞬时电动势取极限。</p>
+        <p>② <b>B 变化而 S、θ 不变</b>时，把 (1-1) 代入 (2-1) 求导：</p>
+        <div id="eq-2-2">\[ \varepsilon=-S\cos\theta\,\frac{dB}{dt} \tag{2-2} \]</div>
+        <p>③ <b>感生电场的环路定理</b>：变化磁场在空间激发涡旋电场，绕任意闭合回路的线积分等于该回路磁通量的变化率：</p>
+        <div id="eq-2-3">\[ \oint_L \mathbf{E}\cdot d\mathbf{l}=-\frac{d\Phi}{dt} \tag{2-3} \]</div>
+        <p>④ <b>磁通量只算有磁场的面积</b>。磁场被限制在某个区域内时，穿过回路的磁通量等于“回路所围面积中落在磁场内的那部分”乘以 B。回路电阻为 R 时：</p>
+        <div id="eq-2-4">\[ I=\frac{S_{\text{内}}}{R}\left|\frac{dB}{dt}\right| \tag{2-4} \]</div>
+      </div>
+      <div class="blk idea" id="m2-meth"><b>解题方法</b>
+        <ol class="steps">
+          <li>圈出回路的“有效面积”：回路所围面积中真正有磁场的部分，记作 S内。</li>
+          <li>写出 Φ 的表达式并定符号（先选正法线）。</li>
+          <li>求导得 ε（或求 ΔΦ/Δt 得平均电动势）。</li>
+          <li>求电流：I=|ε|/R回路；题目未给电阻时，用符号 R 表示，或说明题目实际只可求电动势。</li>
+          <li>方向：另用楞次定律判断，符号只作核对。</li>
+        </ol>
+        适用条件：回路刚性、形状简单，能写出 Φ(t)。
+        本模块易错点：θ 是与法线的夹角；把没有磁场的区域也算进磁通量；B 很大但不变时误判有电动势。
+      </div>
+
+      <div class="q" id="q124">
+        <h3>题 12-4　θ 取何值时 ε 最大、最小</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>
+            <p>有一面积为 S 的导电回路，其正法线 e_n 的方向与均匀磁场 B 的方向之间的夹角为 θ，且 B 的大小随时间的变化率为 dB/dt。试问 θ 角为何值时，回路中 ε 的值最大；θ 角为何值时，ε 的值又最小？请解释之。</p>
+          </div>
+          <div class="blk s0"><b>第0步 · 三类检查</b>
+            <p>(i) 存在性与模型前提：磁场均匀；回路为平面、面积 S 固定；θ 固定，只有 B 的大小随时间变化。</p>
+            <p>(ii) 多值与分支：θ 的定义域为 0 到 π。|cosθ| 在 θ=0 与 θ=π 同时取 1，两处的 ε 符号相反、绝对值相同。题目问“值最大、最小”，按绝对值回答，并注明代数值的区别。</p>
+            <p>(iii) 取值范围：cosθ 在 -1 到 1 之间，所以 |ε| 在 0 到 S|dB/dt| 之间。</p>
+          </div>
+          <div class="blk idea"><b>思路</b>
+            <p>路线甲：由 (2-1) 完整求导。</p>
+            <p>路线乙：只看“有效面积”S cosθ 的变化。</p>
+            <p>两条路线是同一件事。选甲写出完整式子，乙用于核对。</p>
+          </div>
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>写磁通量：Φ=BScosθ。（依据：(1-1)）</li>
+              <li>求导：S 与 θ 不随时间变，只有 B 变，所以 dΦ/dt=Scosθ·dB/dt。（依据：乘积求导，S cosθ 为常数因子）</li>
+              <li>写电动势：ε=-dΦ/dt=-Scosθ·dB/dt。（依据：(2-1)）</li>
+              <li>取大小：|ε|=S|cosθ|·|dB/dt|。（依据：(2-2)）</li>
+              <li>找最大值：|cosθ|=1 即 θ=0 或 θ=π 时，|ε|=S|dB/dt|，为最大。</li>
+              <li>找最小值：|cosθ|=0 即 θ=π/2 时，|ε|=0，为最小。</li>
+              <li>解释：只有垂直于回路平面的 B 分量 Bcosθ 才提供磁通量；θ=π/2 时 B 与回路平面平行，磁感线不穿过回路，Φ 恒为零，B 变化也不产生磁通量变化。（依据：(1-1) 中的 cosθ 因子）</li>
+            </ol>
+          </div>
+          <div class="ans"><b>答案</b>\[ \boxed{\theta=0\ \text{或}\ \pi:\ |\varepsilon|_{\max}=S\left|\frac{dB}{dt}\right|;\qquad \theta=\frac{\pi}{2}:\ \varepsilon=0} \]</div>
+          <div class="blk chk"><b>验证</b>
+            <p>换记号复核（投影面积）：把 S cosθ 看作回路在垂直于 B 的平面上的投影面积 S⊥，则 ε=-S⊥·dB/dt，与第 3 步一致；θ=π/2 时 S⊥=0，ε=0。</p>
+            <p>合理性检查：电动势取决于磁通量的变化率，与 B 本身的大小无关。若 dB/dt=0，任何 θ 都没有电动势，这与公式中的乘积结构一致。</p>
+          </div>
+          <div class="blk warn"><b>常见坑</b><div class="pit">① 把 θ 当成“B 与回路平面的夹角”，写成 sinθ：最大值点被搬到 θ=π/2，与正确答案正好互换。<br>② 认为 θ=π 时“ε 最小”。代数值确实最小（负得最多），但题目问“值”的大小；回答时应同时说明 |ε| 与符号。<br>③ 丢掉“B 均匀”的前提。非均匀磁场不能直接写 BScosθ，要回到积分。</div></div>
+        </div>
+      </div>
+
+      <div class="q" id="q125">
+        <h3>题 12-5　用两个电流脉冲测炮弹速度</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>
+            <p>有人认为可以采用下述方法来测量炮弹的速度。在炮弹的尖端插一根细小的永久磁针，那么，炮弹在飞行中连续通过相距为 r 的两个线圈后，由于电磁感应，线圈中会产生时间间隔为 Δt 的两个电流脉冲。您能据此测出炮弹速度的大小吗？若 r=0.1 m，Δt=2×10⁻⁴ s，则炮弹速度的大小为多少？</p>
+          </div>
+          <div class="blk s0"><b>第0步 · 三类检查</b>
+            <p>(i) 存在性与模型前提：磁针随炮弹一起平动；两个线圈同轴、静止、相距 r；磁针尺寸远小于 r；飞行中速度近似不变。</p>
+            <p>(ii) 多值与分支：单个线圈的磁通量先增后减，所以电动势先正后负，形成一个双极性脉冲。取时间间隔时必须取同类特征点（例如两个过零点之间，或两个同号峰之间），否则结果偏大或偏小。</p>
+            <p>(iii) 取值范围：r 固定、Δt 很小，算得的速度在数百米每秒的量级，与常规弹速相符。</p>
+          </div>
+          <div class="blk idea"><b>思路</b>
+            <p>路线甲：从“脉冲的过零点出现在磁针经过线圈平面的时刻”直接得 v=r/Δt。</p>
+            <p>路线乙：由 ε=-dΦ/dt 分析磁通量的极值，说明过零时刻确实对应磁针经过线圈平面。</p>
+            <p><b>选乙</b>：先把依据讲清，甲作为结论。</p>
+          </div>
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>看单个线圈的磁通量：磁针靠近时增大，经过线圈平面时取最大值，离开时减小。</li>
+              <li>看电动势：ε=-dΦ/dt。磁针经过线圈平面时 Φ 最大、ε=0；在此之前与之后，ε 的符号相反。所以一个线圈中出现的是一个正负交替的脉冲，脉冲的过零时刻对应磁针经过线圈平面的时刻。（依据：(2-1)）</li>
+              <li>取对应特征：两个线圈与磁针的条件相同，两个脉冲的形状相同。取同一特征（两个过零点之间，或两个同号峰之间）量出的间隔，就是磁针从第一个线圈平面走到第二个线圈平面所用的时间。</li>
+              <li>看两个脉冲的间隔：Δt 就是磁针从第一个线圈平面走到第二个线圈平面所用的时间。</li>
+              <li>写位移与速度：这段位移约为两线圈间距 r，故 v=r/Δt。（依据：匀速近似）</li>
+              <li>代入数值：v=0.1/(2×10⁻⁴)=5.0×10² m/s。</li>
+            </ol>
+          </div>
+          <div class="ans"><b>答案</b>\[ \boxed{v=\frac{r}{\Delta t}=5.0\times10^{2}\ \text{m/s}} \]</div>
+          <div class="blk chk"><b>验证</b>
+            <p>量纲与数量级检查：r/Δt 的单位是 m/s。数值 500 m/s 落在手枪弹（约 300～400 m/s）与步枪弹（约 700～900 m/s）之间，量级合理。</p>
+            <p>灵敏度检查：v 与 Δt 成反比，Δt 测得偏大 1%，v 就偏小 1%，相对误差直接传递。合理性检查：速度越大，同样距离用时越短，两个脉冲靠得越近，与 v=r/Δt 一致。</p>
+          </div>
+          <div class="blk warn"><b>常见坑</b><div class="pit">① 把“脉冲的宽度”当成 Δt。那是磁针穿过一个线圈所用的时间，与 r 无关，算出来的不是弹速。<br>② 取一个脉冲的正峰与另一个脉冲的负峰。Δt 不是同类特征点的间隔，速度会系统性偏大或偏小。<br>③ 忘记“磁针与线圈同轴”这一前提。磁针倾斜时脉冲形状改变，过零时刻偏离线圈平面。</div></div>
+        </div>
+      </div>
+
+      <div class="q" id="q128">
+        <h3>题 12-8　柱形磁场中三个回路的电流</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>
+            <p>如图所示，均匀磁场被限制在半径为 R 的圆柱体内，且磁感强度大小随时间的变化率为 dB/dt=常量。试问：回路 L1、L2 和 L3 上的感应电流各为多少？</p>
+            <p>说明：原题图在截图里被下方工具栏遮住。按标准图形处理：L1 与圆柱同轴、整个在磁场区内（半径 r1 小于 R）；L2 与圆柱同轴、整个在磁场区外（半径 r2 大于 R）；L3 与磁场区边界相交，一部分面积在区内。若手上的图与此不同，只需把 S内 换成相应的“区内面积”，方法完全相同。</p>
+            <div class="figwrap">
+              <svg class="fig" width="320" height="300" viewBox="0 0 320 300" role="img" aria-label="问题 12-8 示意图：柱形磁场区内外的三个回路">
+                <circle cx="160" cy="150" r="85" style="fill:none;stroke:var(--mut);stroke-width:1.2;stroke-dasharray:6 4"/>
+                <circle cx="160" cy="150" r="120" style="fill:none;stroke:var(--acc);stroke-width:1.6"/>
+                <circle cx="160" cy="150" r="40" style="fill:none;stroke:var(--acc);stroke-width:1.6"/>
+                <circle cx="215" cy="150" r="52" style="fill:none;stroke:var(--key);stroke-width:1.6"/>
+                <text x="145" y="140" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="160" y="140" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="175" y="140" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="145" y="155" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="160" y="155" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="175" y="155" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="145" y="170" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="160" y="170" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="175" y="170" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+              </svg>
+              <span class="figlab" style="left:160px;top:68px">R</span>
+              <span class="figlab" style="left:160px;top:208px">L<sub>1</sub></span>
+              <span class="figlab" style="left:278px;top:210px">L<sub>3</sub></span>
+              <span class="figlab" style="left:160px;top:286px">L<sub>2</sub></span>
+            </div>
+            <div class="cap">图 12-8 示意（按标准图形重绘）：大圆为磁场区边界（半径 R），×表示 B 垂直纸面向里；L1 在区内，L2 在区外，L3 跨边界。</div>
+          </div>
+          <div class="blk s0"><b>第0步 · 三类检查</b>
+            <p>(i) 存在性与模型前提：柱形区域内有均匀 B（垂直纸面向里），区域外 B=0；三个回路都是平面回路，位于垂直于柱轴的平面内。</p>
+            <p>(ii) 多值与分支：磁通量只算柱体内那部分面积；电流方向分“B 增大”与“B 减小”两种情形，两种都要给出。</p>
+            <p>(iii) 取值范围：S1内=πr1²；S2内=πR²（与 r2 无关）；S3内 由 L3 的形状决定，介于 0 与 πR² 之间。</p>
+          </div>
+          <div class="blk idea"><b>思路</b>
+            <p>路线甲：磁通量法，逐个回路算“区内面积”，再用 (2-1) 求电动势。</p>
+            <p>路线乙：感应电场的环路定理 (2-3)。</p>
+            <p><b>选甲</b>求电动势与电流；乙放在验证里，顺便解释 L2 为什么与半径无关。</p>
+          </div>
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>写各回路的磁通量：磁场只在柱体内，所以 Φk=B·S内，S内 是回路所围面积中落在柱体内的部分。（依据：<span class="stk"><a href="#p-area" tabindex="0" role="button" aria-describedby="p-area">磁通量只算有磁场的部分</a><span class="pop" id="p-area"><u>旁注 · 有效面积</u>磁通量是“穿过回路的场”，回路里没有场的那部分面积贡献为零。柱形磁场限制在半径 R 内时，穿过大回路的磁通量只等于 B 乘以半径 R 的圆面积，与回路自身多大无关。<i>本题用法：L2 的 S内=πR²，不是 πr2²；L3 的 S内 是它与圆 R 相交的那块面积。</i></span></span>）</li>
+              <li>算 L1：整个回路在区内，S1内=πr1²，Φ1=Bπr1²。</li>
+              <li>算 L2：回路把整个柱体包住，柱体外没有磁场，S2内=πR²，Φ2=BπR²。它与 r2 无关。</li>
+              <li>算 L3：只有落在柱体内的那部分面积贡献磁通量，Φ3=B·S3内。</li>
+              <li>求电动势：εk=-dΦk/dt=-S内·dB/dt。（依据：(2-1)）</li>
+              <li>求电流：Ik=|εk|/Rk=S内|dB/dt|/Rk，R1、R2、R3 为各回路的电阻。（依据：(2-4)）</li>
+              <li>定方向：若 B 向里且增大（dB/dt 为正），感应磁场向外，三个回路中的电流都沿逆时针（从纸面这一侧看）；B 减小时都沿顺时针。（依据：楞次定律）</li>
+            </ol>
+          </div>
+          <div class="ans"><b>答案</b>\[ \boxed{I_1=\frac{\pi r_1^2}{R_1}\left|\frac{dB}{dt}\right|,\quad I_2=\frac{\pi R^2}{R_2}\left|\frac{dB}{dt}\right|,\quad I_3=\frac{S_{3\text{内}}}{R_3}\left|\frac{dB}{dt}\right|} \]</div>
+          <div class="blk chk"><b>验证</b>
+            <p>独立路径（感应电场环路定理 (2-3)）：柱内电场 E(r)=(r/2)|dB/dt|，沿同心圆。对 L1：∮E·dl=E(r1)·2πr1=πr1²|dB/dt|，与第 5 步一致。柱外电场 E(r)=(R²/2r)|dB/dt|，对 L2：∮E·dl=E(r2)·2πr2=πR²|dB/dt|，也与 r2 无关——周长按 r 增长、场强按 1/r 衰减，两者正好抵消。</p>
+            <p>合理性检查：L2 处于“没有磁场”的区域却仍有电动势，原因是感生电场存在于柱外；若 L2 的电动势随 r2 增大，远处的回路就能“白得”电动势，与能量守恒矛盾。</p>
+          </div>
+          <div class="blk warn"><b>常见坑</b><div class="pit">① 认为“L2 处没有磁场，所以没有电动势”。磁通量变化通过感生电场起作用，柱外同样有涡旋电场。<br>② 把 L2 的磁通量算成 πr2²B，把无磁场区域也算进去。正确值是 πR²B。<br>③ 题目问电流，却直接把电动势当答案。电流必须除以各回路的电阻；未给电阻时只能用 Rk 表示，或说明实际只能求电动势。</div></div>
+        </div>
+      </div>
+
+      <div class="qsum"><b>小结卡</b>定量题只有两件事：算对“区内面积”，再对时间求导。磁通量只认有磁场的部分；|ε| 只与变化率有关，与 B 本身大小无关；电流还要除以回路电阻。</div>
+    </div>
+  </section>
+
+  <section class="mod" id="m3">
+    <div class="gutter">M3<small>动生</small></div>
+    <h2>M3 · 动生电动势与磁场的边界</h2>
+    <div class="in">
+      <div class="blk kp"><b>知识点</b>
+        <p>① <b>动生电动势</b>：导体在磁场中运动，正电荷受洛伦兹力 qv×B，沿导线的分量把电荷“泵”起来。直段、v 与 B 垂直且三者互相垂直时：</p>
+        <div id="eq-3-1">\[ \varepsilon=Blv \tag{3-1} \]</div>
+        <p>② <b>只有切割的段贡献</b>：ε=∫(v×B)·dl，v×B 垂直于导线的部分不产生电动势。与 v、B 都平行的段贡献为零。</p>
+        <p>③ <b>边界效应</b>：回路全部浸没在均匀磁场中平动时，Φ 不变，ε=0；只有部分进入或部分穿出时才有净电动势，因为这时 Φ 在变。</p>
+        <p>④ <b>自由下落</b>：v=gt（按题意忽略安培力对速度的影响），所以 |ε| 随时间增大。</p>
+      </div>
+      <div class="blk idea" id="m3-meth"><b>解题方法</b>
+        <ol class="steps">
+          <li>标 B、v，找出每个阶段的“有效切割边”（在磁场内、且 v×B 沿导线的边）。</li>
+          <li>分阶段：进入前、进入中、全在磁场内、穿出中、穿出后。</li>
+          <li>每段写 Φ(t) 或直接用 (3-1)，两种算法互检。</li>
+          <li>方向用楞次定律或 v×B 判断，注意进入与穿出方向相反。</li>
+          <li>速度变化时，把 v(t) 代入，说明大小的变化趋势。</li>
+        </ol>
+        适用条件：刚性线框、匀强有界磁场、平动（不转动）。
+        本模块易错点：以为“在磁场中运动就有电动势”；漏掉“全在磁场内 ε=0”这一段。
+      </div>
+
+      <div class="q" id="q126">
+        <h3>题 12-6　线框自由下落穿过有界磁场</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>
+            <p>如图所示，在磁感强度 B 垂直纸面向里的均匀磁场的上方，有一矩形导线框自由下落。在矩形导线框从进入磁场到离开磁场的过程中，该导线框的感应电动势是怎样变化的呢？</p>
+            <div class="figwrap">
+              <svg class="fig" width="300" height="270" viewBox="0 0 300 270" role="img" aria-label="问题 12-6 示意图：线框从上方进入有界均匀磁场">
+                <rect x="95" y="12" width="110" height="60" style="fill:none;stroke:var(--acc);stroke-width:1.8"/>
+                <line x1="150" y1="80" x2="150" y2="118" style="stroke:var(--acc);stroke-width:1.6"/>
+                <polygon points="150,126 145,112 155,112" style="fill:var(--acc)"/>
+                <text x="85" y="155" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="115" y="155" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="145" y="155" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="175" y="155" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="205" y="155" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="85" y="185" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="115" y="185" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="145" y="185" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="175" y="185" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="205" y="185" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="85" y="215" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="115" y="215" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="145" y="215" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="175" y="215" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="205" y="215" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="85" y="245" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="115" y="245" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="145" y="245" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="175" y="245" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+                <text x="205" y="245" text-anchor="middle" style="fill:var(--mut);font-size:15px">×</text>
+              </svg>
+              <span class="figlab" style="left:172px;top:100px">v<sub>0</sub></span>
+              <span class="figlab" style="left:236px;top:238px">B</span>
+            </div>
+            <div class="cap">图 12-6 示意：线框以 v0 下落，进入 × 表示的有界均匀磁场（B 垂直纸面向里）。</div>
+          </div>
+          <div class="blk s0"><b>第0步 · 三类检查</b>
+            <p>(i) 存在性与模型前提：磁场是有界的均匀区（有水平上边界与下边界），线框刚性、平动不转动；按题意把下落视为自由落体，忽略安培力对速度的影响。</p>
+            <p>(ii) 多值与分支：进入与穿出两个阶段方向相反，必须分段给出；“怎样变化”包括大小与方向两件事。</p>
+            <p>(iii) 取值范围：按位置分五段：未进入（ε=0）、进入中（部分在磁场内）、全在磁场内（ε=0）、穿出中（部分在磁场外）、穿出后回到 0。</p>
+          </div>
+          <div class="blk idea"><b>思路</b>
+            <p>路线甲：ε=-dΦ/dt，写出各阶段 Φ(t)。</p>
+            <p>路线乙：ε=Blv，找出各阶段的切割边。</p>
+            <p><b>选甲</b>定大小，<b>乙</b>定方向，并解释“为什么只有一条边贡献”。</p>
+          </div>
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>看进入阶段：下边已进入、上边还在磁场外。只有下边切割磁感线：左右两边的运动方向与自身平行，v×B 垂直于导线，不产生电动势；上边在磁场外，B=0。（依据：(3-1) 的适用条件）</li>
+              <li>写磁通量：设水平边长为 l，下边进入磁场的深度为 x=v t，则
+                \[ \Phi=Blx=Blvt \]</li>
+              <li>求电动势：ε=-dΦ/dt=-Blv，大小 |ε|=Blv。（依据：(2-1)）</li>
+              <li>定进入阶段的方向：向里的磁通增加，感应磁场向外，电流逆时针。等价地：下边中正电荷受 qv×B（v 向下、B 向里），受力向右，下边电流向右，回路电流逆时针。</li>
+              <li>看完全进入阶段：上、下边都在磁场内，Φ=Blh（h 为线框高度）不变，ε=0。上、下两边都切割磁感线，但两边电动势大小相等、方向相反，沿回路互相抵消。</li>
+              <li>看穿出阶段：下边已出磁场（B=0），上边仍在磁场内切割磁感线。Φ 随下落减小，感应磁场向里，电流顺时针。</li>
+              <li>写大小：两个阶段都有 |ε|=Blv；自由下落 v=gt，所以 |ε| 随时间增大。</li>
+              <li>完整体：全部穿出后 B=0，ε 回到 0。</li>
+            </ol>
+          </div>
+          <div class="ans"><b>答案</b>\[ \boxed{\text{进入：}|\varepsilon|=Blv\ \text{逆时针};\quad \text{全在：}\varepsilon=0;\quad \text{穿出：}|\varepsilon|=Blv\ \text{顺时针};\quad \text{穿出后：}0} \]</div>
+          <div class="blk chk"><b>验证</b>
+            <p>独立路径（洛伦兹力与磁通量互检）：进入时用下边的 v×B 得 Blv 与逆时针，与磁通量法一致；穿出时用上边的 v×B 得顺时针，与“磁通减少”一致。</p>
+            <p>合理性检查：完全进入后磁通量不变，ε=0；进入与穿出时感应电流都产生焦耳热，能量来自线框减少的重力势能（安培力向上，阻碍下落），符合能量守恒。</p>
+          </div>
+          <div class="blk warn"><b>常见坑</b><div class="pit">① 认为“线框在磁场中运动就有电动势”。完全进入后 ε=0，这是本题最容易丢分的一句。<br>② 认为电动势在“完全进入”时最大。那一时刻恰好为零；最大出现在部分进入或部分穿出的过程里。<br>③ 把进入、穿出两个阶段的方向判成相同。两个阶段的电流都使安培力向上，但磁通变化方向相反，电流方向也相反。<br>④ 忘了 v 在增大，答成“恒为 Blv”。</div></div>
+        </div>
+      </div>
+
+      <div class="qsum"><b>小结卡</b>动生题先分段，再找切割边。进入与穿出的电动势大小相同、方向相反；完全浸没时磁通量不变，电动势为零。速度变化时，电动势随之变化。</div>
+    </div>
+  </section>
+
+  <section class="mod" id="m4">
+    <div class="gutter">M4<small>本质</small></div>
+    <h2>M4 · 感应电场、涡流与电动势的本质</h2>
+    <div class="in">
+      <div class="blk kp"><b>知识点</b>
+        <p>① <b>感生电场（涡旋电场）</b>：变化磁场在空间激发电场，它的场线闭合、不是保守场，绕回路的线积分等于磁通变化率，见 (2-3)。它与是否存在导体、是什么材料都无关。</p>
+        <p>② <b>涡流</b>：导体内部的感生电流。有导体时有涡流，会产生焦耳热，并产生阻碍磁通变化的磁场。</p>
+        <p>③ <b>电动势的定义</b>：把单位正电荷沿回路移动一周时，非静电力所做的功：</p>
+        <div id="eq-4-1">\[ \varepsilon=\oint \frac{\mathbf{F}_{\text{非}}}{q}\cdot d\mathbf{l} \tag{4-1} \]</div>
+        <p>电池的非静电力是化学作用；感应电动势的非静电力是感生电场力。电动势不是静电场做的功。</p>
+      </div>
+      <div class="blk idea" id="m4-meth"><b>解题方法</b>
+        <ol class="steps">
+          <li>先答“是否存在”：电场看 dΦ/dt 是否为零；电流还要看有没有自由电荷。</li>
+          <li>再答“为什么”：给出判据（(2-3)、欧姆定律的微观形式）。</li>
+          <li>最后答“边界情形”：无导体、磁场不变、完全插入之后。</li>
+          <li>比较两类电动势时，从定义式 (4-1) 出发：共同点来自同一个定义，不同点来自 F非 的来源与分布。</li>
+        </ol>
+        适用条件：概念题，重判据不重计算。
+        本模块易错点：把“场”与“电流”混为一谈；把静电场当成电动势的来源。
+      </div>
+
+      <div class="q" id="q122">
+        <h3>题 12-2　铜环与塑料环中的电场和电流</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>
+            <p>当我们把条形磁铁沿铜质圆环的轴线插入铜环中时，铜环中有感应电流和感应电场吗？若用塑料圆环替代铜质圆环，则环中仍有感应电流和感应电场吗？</p>
+          </div>
+          <div class="blk s0"><b>第0步 · 三类检查</b>
+            <p>(i) 存在性与模型前提：磁铁沿环轴插入，穿过环的磁通量在变化；环是铜（导体）或塑料（绝缘体）。</p>
+            <p>(ii) 多值与分支：分“插入过程中”与“完全插入后”两个时段；分铜、塑料两种材料；每种都要分别回答“电场”与“电流”。</p>
+            <p>(iii) 取值范围：插入过程中 dΦ/dt 不为零；完全插入后磁铁静止，dΦ/dt=0。</p>
+          </div>
+          <div class="blk idea"><b>思路</b>
+            <p>路线甲：从感生电场的产生条件出发（只与 dΦ/dt 有关），再判电流（需要自由电荷）。</p>
+            <p>路线乙：从欧姆定律 I=ε/R 出发，看电阻的差别。</p>
+            <p><b>选甲</b>：它能把“场”与“电流”两件事分开，乙只解释电流的差别。</p>
+          </div>
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>看磁通量：插入过程中，穿过圆环的磁通量随时间变化，dΦ/dt 不为零。</li>
+              <li>定电场：由 (2-3)，变化磁场在周围空间激发感生电场；这一步与环的材料无关，所以铜环、塑料环中都有感生电场。依据：<span class="stk"><a href="#p-field" tabindex="0" role="button" aria-describedby="p-field">感生电场</a><span class="pop" id="p-field"><u>旁注 · 感生电场是什么</u>它是变化磁场在空间激发出的涡旋电场：场线闭合，沿闭合回路积分等于磁通量变化率。它由磁场的变化决定，不需要导体来“承载”，也不需要回路闭合。<i>本题用法：先判“有没有场”，再判“有没有电流”；第二步才用材料（自由电荷多少）。</i></span></span>。</li>
+              <li>判铜环：铜是导体，环内有大量自由电子；感生电场对电子施力，电子定向移动，形成感应电流（涡流）。（依据：欧姆定律的微观形式）</li>
+              <li>判塑料环：塑料是绝缘体，几乎没有自由电荷；感生电场只能使束缚电荷发生微小位移，不能形成宏观电流，所以塑料环中无感应电流。</li>
+              <li>补边界情形：完全插入后磁铁静止，磁通量不再变化，dΦ/dt=0，感生电场与电流都消失。</li>
+            </ol>
+          </div>
+          <div class="ans"><b>答案</b>\[ \boxed{\text{铜环：有感应电场，也有感应电流};\qquad \text{塑料环：有感应电场，无感应电流}} \]</div>
+          <div class="blk chk"><b>验证</b>
+            <p>换列式复核（I=ε/R）：两种材料的 ε 相同，铜的电阻很小，电流明显；塑料的电阻极大，电流趋于零。结论与上面一致。</p>
+            <p>合理性检查：电动势是场的属性，电流还要载流子。若把塑料环视为理想绝缘体，R 趋于无穷，I=0 而 ε 不变。</p>
+          </div>
+          <div class="blk warn"><b>常见坑</b><div class="pit">① 认为“没有导体就没有感生电场”。把电场当成了电流的伴生现象；电场由 dΦ/dt 决定，与材料无关。<br>② 认为“塑料环里没有电流，所以没有电动势”。电动势 ε=∮E·dl 与材料无关，只是 I=ε/R 中的 R 极大。<br>③ 忘了“完全插入后”这一阶段，把“有电流”当成永久状态。</div></div>
+        </div>
+      </div>
+
+      <div class="q" id="q127">
+        <h3>题 12-7　感应电动势与电池电动势的异同</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>
+            <p>在一闭合回路中，由变化磁场激起的感应电动势与由回路电池产生的电动势有哪些共同之处？又有哪些不同呢？</p>
+          </div>
+          <div class="blk s0"><b>第0步 · 三类检查</b>
+            <p>(i) 存在性与模型前提：两者都满足电动势的一般定义 (4-1)；比较的对象是“稳恒电池”与“随时间变化的磁场引起的感应电动势”。</p>
+            <p>(ii) 多值与分支：比较题必须分“共同点”与“不同点”两条线作答，不能混在一起。</p>
+            <p>(iii) 取值范围：电池近似稳恒；感应电动势的大小与方向随 dB/dt 改变。</p>
+          </div>
+          <div class="blk idea"><b>思路</b>
+            <p>路线甲：从统一的定义式 (4-1) 出发：共同点来自同一个定义，不同点来自 F非 的来源与分布。</p>
+            <p>路线乙：按“起源、场、分布、能量、方向”逐项列表。</p>
+            <p><b>选甲</b>作主干，乙负责展开细目。</p>
+          </div>
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>写定义：两者都等于把单位正电荷沿闭合回路移动一周时非静电力做的功，ε=∮(F非/q)·dl。（依据：(4-1)）</li>
+              <li>比作用：两者都能在闭合回路中维持电流，并在回路两端维持电势差——都把正电荷从低电位“泵”到高电位。（依据：电动势的功能定义）</li>
+              <li>比能量：两者都把非电能转换为电能。电池把化学能转换为电能；感应电动势把磁场能量（或维持磁场的机械功、电源能量）转换为电能。</li>
+              <li>比电路规律：两者都服从 I=ε/(R+r) 形式的欧姆定律，R 为外电阻，r 为内阻。</li>
+              <li>比来源：电池的非静电力是化学作用（电极与电解质的电化学过程）；感应电动势的非静电力是变化磁场激发的感生电场力。</li>
+              <li>比场的性质：感生电场是涡旋场、非保守场，∮E感·dl=-dΦ/dt 不为零；电池内部的非静电力不是静电场，电池两极间的静电场是保守场，∮E静·dl=0，静电场本身不能提供电动势。（依据：(2-3)）</li>
+              <li>比空间分布：感生电场充满空间，感应电动势分布在回路各处；电池的非静电力只存在于电池内部（电极与电解质界面）。</li>
+              <li>比存在条件与方向：只要有变化磁场，感生电场就存在，不需要导体、不需要回路；电池电动势必须有电池装置。感应电动势的方向随 dΦ/dt 的符号改变，电池的极性固定。</li>
+            </ol>
+          </div>
+          <div class="ans"><b>答案</b>\[ \boxed{\text{共同：都等于单位正电荷绕回路一周非静电力做的功，都能维持电流与电势差、转换能量};\ \text{不同：非静电力来源、场的性质、空间分布、存在条件、方向}} \]</div>
+          <div class="blk chk"><b>验证</b>
+            <p>换列式复核（统一公式）：把 F非=F化学 与 F非=qE感 分别代入 (4-1)，共同点全部来自这个定义式，不同点全部来自两种 F非 的来源与分布。</p>
+            <p>合理性检查：若没有“非静电力”这个共同本质，就无法解释两件事——副线圈里没有电池却有电动势；电池内部静电场的方向与电动势的方向相反。</p>
+          </div>
+          <div class="blk warn"><b>常见坑</b><div class="pit">① 把感应电动势说成“静电场做的功”。静电场是保守场，∮E静·dl=0，不可能提供电动势。<br>② 只答“都有电动势、都能产生电流”，没有指出“非静电力”这个共同本质。<br>③ 认为“感应电动势只存在于导体回路中”。感生电场不需要导体，回路只是用来“测量”它。</div></div>
+        </div>
+      </div>
+
+      <div class="qsum"><b>小结卡</b>场与电流分开看：ε 由 dΦ/dt 决定，I=ε/R 还取决于材料。两类电动势的共同本质是“非静电力做功”；差别全部来自非静电力的来源与分布。</div>
+    </div>
+  </section>
+
+  <section class="mod" id="pitfalls"><div class="gutter">附<small>易错</small></div><h2>易错点清单</h2>
+    <div class="in"><table><tr><th>模块</th><th>坑</th><th>触发条件</th></tr>
+      <tr><td>M1</td><td>长直导线两侧的 B 方向判反</td><td>线圈在导线右侧，用右手螺旋核对</td></tr>
+      <tr><td>M1</td><td>绕 AD 转动只判到 90°，认定方向反转</td><td>θ 越过 π/2，磁通变号但继续减小</td></tr>
+      <tr><td>M1</td><td>绕导线转动仍判“有电动势”</td><td>速度与 B 平行，v×B=0</td></tr>
+      <tr><td>M1</td><td>12-3 把 A 处磁场判成向左</td><td>磁铁 S 极外侧的轴线，场线回到 S 极</td></tr>
+      <tr><td>M2</td><td>θ 与“B 和线圈平面的夹角”混用</td><td>求极值、写 cos 与 sin 时</td></tr>
+      <tr><td>M2</td><td>L2 的磁通量写成 πr2²B</td><td>柱外无磁场，只算 πR²</td></tr>
+      <tr><td>M2</td><td>把脉冲宽度当成 Δt</td><td>12-5 取同类特征点</td></tr>
+      <tr><td>M3</td><td>完全进入后仍判有电动势</td><td>磁通量不变，ε=0</td></tr>
+      <tr><td>M3</td><td>进入与穿出的方向判成相同</td><td>两段磁通变化方向相反</td></tr>
+      <tr><td>M4</td><td>无导体就认为没有感生电场</td><td>把场与电流混为一谈</td></tr>
+      <tr><td>M4</td><td>把感应电动势说成静电场做功</td><td>静电场保守，线积分为零</td></tr>
+    </table></div></section>
+
+  <section class="mod" id="cheatsheet"><div class="gutter">附<small>速查</small></div><h2>公式速查表</h2>
+    <div class="in"><table><tr><th>编号</th><th>内容</th><th>适用条件</th></tr>
+      <tr><td><a href="#eq-1-1">(1-1)</a></td><td>Φ=∫B·dS；匀强磁场平面回路 Φ=BScosθ</td><td>θ 为 B 与正法线的夹角</td></tr>
+      <tr><td><a href="#eq-1-2">(1-2)</a></td><td>B=μ0I/(2πr)</td><td>无限长直电流；方向用右手螺旋</td></tr>
+      <tr><td><a href="#eq-2-1">(2-1)</a></td><td>ε=-dΦ/dt</td><td>单匝；N 匝乘 N；符号只定方向</td></tr>
+      <tr><td><a href="#eq-2-2">(2-2)</a></td><td>ε=-Scosθ·dB/dt</td><td>S、θ 不变，只有 B 变</td></tr>
+      <tr><td><a href="#eq-2-3">(2-3)</a></td><td>∮E·dl=-dΦ/dt</td><td>感生电场的环路定理，与材料无关</td></tr>
+      <tr><td><a href="#eq-2-4">(2-4)</a></td><td>I=S内|dB/dt|/R</td><td>柱形磁场；只算有磁场的面积</td></tr>
+      <tr><td><a href="#eq-3-1">(3-1)</a></td><td>ε=Blv</td><td>直段、v 与 B 垂直、三者互相垂直</td></tr>
+      <tr><td><a href="#eq-4-1">(4-1)</a></td><td>ε=∮(F非/q)·dl</td><td>电动势的一般定义</td></tr>
+    </table></div></section>
+
+  <section class="mod" id="answers"><div class="gutter">附<small>答案</small></div><h2>答案总表</h2>
+    <div class="in"><table><tr><th>题号</th><th>答案</th></tr>
+      <tr><td>12-1(1)</td><td>顺时针，沿 A→D→C→B→A</td></tr>
+      <tr><td>12-1(2)</td><td>方向与 (1) 相同；ε≈Φ0ωsinθ（均匀近似），θ=0、π 时为零，θ=π/2 附近最大</td></tr>
+      <tr><td>12-1(3)</td><td>ε=0，无感应电流</td></tr>
+      <tr><td>12-2</td><td>铜环：有感应电场、有感应电流；塑料环：有感应电场、无感应电流</td></tr>
+      <tr><td>12-3</td><td>A 的右端面、B 的左端面都相当 N 极；A 吸引、B 排斥；从磁铁处看两线圈电流都逆时针</td></tr>
+      <tr><td>12-4</td><td>θ=0 或 π 时 |ε| 最大，为 S|dB/dt|；θ=π/2 时 ε=0</td></tr>
+      <tr><td>12-5</td><td>v=r/Δt=5.0×10² m/s</td></tr>
+      <tr><td>12-6</td><td>进入 |ε|=Blv 逆时针；全在磁场内 ε=0；穿出 |ε|=Blv 顺时针；穿出后为 0</td></tr>
+      <tr><td>12-7</td><td>共同：非静电力做功、维持电流与电势差、能量转换；不同：来源、场的性质、分布、存在条件、方向</td></tr>
+      <tr><td>12-8</td><td>I1=πr1²|dB/dt|/R1，I2=πR²|dB/dt|/R2，I3=S3内|dB/dt|/R3；方向相同</td></tr>
+    </table></div></section>
+
+  <section class="mod" id="verify"><div class="gutter">附<small>核对</small></div><h2>核对方法与结果</h2>
+    <div class="in">
+      <p>方向类题目用两条互相独立的判据互检：楞次定律（磁通量增减）与洛伦兹力（v×B 的分段计算）；12-3 另用“等效磁极”复核。定量题用磁通量法求值，再用感应电场的环路定理复核，其中 12-8 的 L2 专门核对了“场强按 1/r 衰减、周长按 r 增长”的补偿关系。数值题做量纲与数量级检查，500 m/s 与枪弹速度范围相符。</p>
+      <p>12-1(2) 的严格性单独处理：正文用投影面积（要求线圈范围内的 B 近似均匀），验证段用三维磁场的精确积分证明“磁通量随转角单调减小”，从而不依赖均匀近似。</p>
+      <p>页面本身经两道检查：机械脚本核对分隔符配对、数学内的裸尖括号、贴纸结构、题卡要素与步骤引用；无头浏览器核对公式渲染节点、失败横幅与贴纸在两档宽度下的几何位置。</p>
+    </div></section>
+</div>
+</div>
+
+<script>
+/* ---- KaTeX 启动：按序换源，全失败出横幅。版本/URL/SRI 是原子资产，改一处必改三处 ---- */
+var SRC=['https://cdn.jsdelivr.net/npm/katex@0.16.11/dist',
+         'https://unpkg.com/katex@0.16.11/dist',
+         'https://registry.npmmirror.com/katex/0.16.11/files/dist',
+         'https://fastly.jsdelivr.net/npm/katex@0.16.11/dist'];
+var SRI={'katex.min.css':'sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+',
+         'katex.min.js':'sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg',
+         'auto-render.min.js':'sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk'};
+function tag(el,base,file,done,fail){
+  var u=base+'/'+file, s=el==='link'?document.createElement('link'):document.createElement('script');
+  if(el==='link'){s.rel='stylesheet';s.href=u;}else{s.src=u;}
+  s.integrity=SRI[file];s.crossOrigin='anonymous';s.onload=done;s.onerror=fail;document.head.appendChild(s);
+}
+function boot(i){
+  if(i>=SRC.length){document.getElementById('banner').style.display='block';return;}
+  var b=SRC[i];
+  tag('link',b,'katex.min.css',function(){
+    tag('script',b,'katex.min.js',function(){
+      tag('script',b,'contrib/auto-render.min.js',render,function(){boot(i+1)});
+    },function(){boot(i+1)});
+  },function(){boot(i+1)});
+}
+function render(){
+  if(typeof renderMathInElement!=='function'){return;}
+  renderMathInElement(document.body,{
+    delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],
+    throwOnError:false,
+    ignoredTags:['script','noscript','style','textarea','pre','code'],
+    macros:{'\\ch':'\\cosh','\\sh':'\\sinh','\\cis':'\\mathop{\\rm cis}\\nolimits','\\Res':'\\mathop{\\rm Res}\\nolimits','\\i':'\\mathrm{i}'}
+  });
+}
+/* ---- 交互：折叠、贴纸、scrollspy、主题 ---- */
+document.querySelectorAll('.q>h3').forEach(function(h){h.addEventListener('click',function(){h.parentNode.classList.toggle('fold')})});
+document.getElementById('fold').addEventListener('click',function(){
+  /* 只要还有一张没折起来，这次点击就是"收起"（用 !!，用 ! 会让首次点击空转）*/
+  var fold=!!document.querySelector('.q:not(.fold)');
+  document.querySelectorAll('.q').forEach(function(q){q.classList.toggle('fold',fold)});
+  this.textContent=fold?'全部展开':'全部收起';
+});
+document.querySelectorAll('.stk>a').forEach(function(a){
+  a.addEventListener('click',function(e){e.preventDefault();a.closest('.stk').classList.toggle('open')});
+});
+document.getElementById('theme').addEventListener('click',function(){
+  var ink=document.documentElement.dataset.theme==='ink';
+  document.documentElement.dataset.theme=ink?'book':'ink';
+  this.textContent=ink?'切换暗色':'切换浅色';
+});
+var links=[].slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+addEventListener('scroll',function(){
+  var y=scrollY+120,best=null;
+  links.forEach(function(a){var el=document.querySelector(a.getAttribute('href'));if(el&&el.offsetTop<=y)best=a});
+  links.forEach(function(a){a.classList.remove('on')});if(best)best.classList.add('on');
+},{passive:true});
+window.addEventListener('load',function(){if(typeof renderMathInElement==='function'){render()}else{boot(0)}});
+</script>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<title>釜底抽薪</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="《三十六计》第十九计“釜底抽薪”课堂展示：网页版演示，沿用自适应规范系统 v4 的设计语言。">
+<style>
+/* 版式：16:9 舞台逐页翻动（桌面），手机端改为纵向长卷；配色与组件沿用 v4 设计蓝图，绿色=治本/成功，赭色=火与薪 */
+:root{
+  --bg:#f4f5f3;--panel:#fff;--ink:#182321;--muted:#65736e;--line:#d8dfda;
+  --accent:#156f61;--accent2:#dceddf;--warm:#a75a20;--warmbg:#f8eadc;--code:#edf1ed;
+  --shadow:0 12px 32px #1028200b;
+  --sans:system-ui,-apple-system,"Microsoft YaHei","PingFang SC",sans-serif;
+  --kai:"KaiTi","STKaiti","Kaiti SC","BiauKai",serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#101816;--panel:#18221f;--ink:#edf5f0;--muted:#a2b3aa;--line:#2e3c36;
+  --accent:#78d5bb;--accent2:#203b32;--warm:#efb57d;--warmbg:#38291e;--code:#121b18;--shadow:0 12px 32px #0003;color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#101816;--panel:#18221f;--ink:#edf5f0;--muted:#a2b3aa;--line:#2e3c36;
+  --accent:#78d5bb;--accent2:#203b32;--warm:#efb57d;--warmbg:#38291e;--code:#121b18;--shadow:0 12px 32px #0003;color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 var(--sans);
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,p{margin:0}
+a{color:var(--accent);text-underline-offset:3px}
+button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* ---------- 舞台 ---------- */
+.app{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding-block:10px;container-type:size}
+.stage{position:relative;width:min(100cqw,calc((100cqh - 64px) * 16 / 9));aspect-ratio:16/9;container-type:inline-size;
+  background:var(--bg);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;padding:2em 2.8em 2.4em;font-size:1.75cqi;line-height:1.6}
+.slide.active{display:flex;animation:enter .35s ease-out}
+@keyframes enter{from{opacity:.4;transform:translateY(.4em)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.slide.active{animation:none}}
+.foot{position:absolute;left:3em;right:3em;bottom:1em;display:flex;justify-content:space-between;font-size:.72em;color:var(--muted);font-variant-numeric:tabular-nums}
+.slide details.mnotes{display:none}
+
+/* ---------- 文字 ---------- */
+.eyebrow{color:var(--accent);font-size:.74em;letter-spacing:.1em;font-weight:800}
+.kicker{font-size:.8em;letter-spacing:.13em;color:var(--accent);font-weight:800}
+h1{font-size:4.2em;line-height:1.1;letter-spacing:-.03em;margin:.25em 0 .2em}
+h2{font-size:1.9em;line-height:1.25;letter-spacing:-.02em;margin:.25em 0 .75em;text-wrap:balance}
+h3{font-size:1.06em;margin:0 0 .3em}
+.lead{font-size:1.2em;color:var(--muted)}
+.muted{color:var(--muted)}
+.small{font-size:.84em}
+.src{font-size:.74em;color:var(--muted);margin-top:auto;padding-top:.6em}
+.kai{font-family:var(--kai)}
+.body{flex:1;min-height:0;display:flex;flex-direction:column}
+
+/* ---------- 组件（沿用 v4） ---------- */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:.85em;padding:.95em 1.15em;box-shadow:var(--shadow)}
+.num{color:var(--accent);font-weight:800;font-size:.78em;letter-spacing:.07em}
+.pill{display:inline-block;background:var(--accent2);color:var(--accent);font-size:.74em;padding:.15em .6em;border-radius:99px;font-weight:750;white-space:nowrap}
+.pill.warm{background:var(--warmbg);color:var(--warm)}
+.pill.plain{background:var(--code);color:var(--muted)}
+.notice{padding:.8em 1.05em;border-left:.22em solid var(--accent);background:var(--accent2);border-radius:0 .75em .75em 0}
+.callout{background:var(--warmbg);border-radius:.75em;padding:.8em 1.05em}
+.callout b{color:var(--warm)}
+.tag{display:inline-flex;padding:.25em .65em;border:1px solid var(--line);border-radius:99px;font-size:.78em;color:var(--muted)}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:1.3em;flex:1;min-height:0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.9em}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:.9em}
+.stack{display:flex;flex-direction:column;gap:.9em}
+.split>*,.grid2>*,.grid3>*,.stack>*,.vflow>*,.step>*,.body>*{min-width:0}
+.step .t,.card,.callout,.notice{overflow-wrap:anywhere}
+
+/* 竖向流程：编号 + 卡片，箭头向下 */
+.vflow{display:flex;flex-direction:column;gap:1em}
+.step{position:relative;display:grid;grid-template-columns:2.2em 1fr;gap:.75em;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:.75em;padding:.55em .95em}
+.step .n{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;font-size:.95em}
+.step.warm .n{color:var(--warm)}
+.step.dim{background:var(--code)}
+.step.dim .t{color:var(--muted)}
+.step.hit{background:var(--accent2);border-color:transparent}
+.step:not(:last-child)::after{content:"↓";position:absolute;left:1.35em;bottom:-1.28em;color:var(--accent);font-weight:900;font-size:.9em}
+.step .t small{display:block;color:var(--muted);font-size:.84em;line-height:1.45}
+
+/* 表格（v4 的 policy 表） */
+.policy{width:100%;border-collapse:collapse;border:1px solid var(--line);background:var(--panel);font-size:.92em}
+.policy th,.policy td{text-align:left;padding:.55em .9em;border-bottom:1px solid var(--line)}
+.policy th{font-size:.84em;color:var(--muted);font-weight:750;background:var(--code)}
+.policy tr:last-child td{border-bottom:0}
+.ok{color:var(--accent);font-weight:750}.bad{color:var(--warm);font-weight:750}
+
+/* 釜的三层 */
+.layers{display:flex;flex-direction:column;gap:.35em;align-items:stretch}
+.layer{border-radius:.75em;padding:.65em 1em;text-align:center;border:1px solid var(--line)}
+.layer b{display:block;font-size:1.15em}
+.layer small{color:var(--muted)}
+.layer.water{background:var(--panel)}
+.layer.fire{background:var(--warmbg)}
+.layer.wood{background:var(--warm);border-color:transparent;color:var(--panel)}
+.layer.wood small{color:var(--panel);opacity:.85}
+.up{text-align:center;color:var(--muted);font-weight:900;line-height:1}
+
+/* 时间线 */
+.timeline{position:relative;display:flex;flex-direction:column;gap:1.1em;padding-left:1.4em}
+.timeline::before{content:"";position:absolute;left:.38em;top:.5em;bottom:.5em;width:2px;background:var(--line)}
+.tl{position:relative}
+.tl::before{content:"";position:absolute;left:-1.3em;top:.45em;width:.7em;height:.7em;border-radius:50%;background:var(--warm)}
+.tl .q{font-family:var(--kai);font-size:1.15em;color:var(--warm)}
+
+.bignum{font-size:3.6em;font-weight:800;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.versus{display:grid;grid-template-columns:auto 1fr;gap:.2em 1em;align-items:center}
+.side{display:grid;grid-template-columns:2.6em 1fr;gap:.9em;align-items:center;border-radius:.85em;padding:.9em 1.1em}
+.side .who{font-family:var(--kai);font-size:1.8em;font-weight:800;text-align:center}
+.side .what{font-family:var(--kai);font-size:2em;font-weight:800;letter-spacing:.08em}
+.side.win{background:var(--accent2);color:var(--accent)}
+.side.lose{background:var(--code);color:var(--muted)}
+
+.diagram svg{width:100%;height:auto;display:block}
+.svg-mount{fill:var(--muted)}
+.svg-on{fill:var(--panel)}
+.svg-water{fill:var(--accent)}
+.svg-path{stroke:var(--accent);stroke-width:3;stroke-dasharray:7 6;fill:none}
+.svg-seal{fill:var(--warm)}
+.svg-warmtext{fill:var(--warm)}
+
+.why{background:var(--panel);border:1px solid var(--line);border-radius:.7em;padding:.45em .9em;position:relative}
+.why b{color:var(--warm);margin-right:.6em}
+.why.root{background:var(--accent2);border-color:transparent}
+.why.root b{color:var(--accent)}
+.why:not(:last-child)::after{content:"↓";position:absolute;left:1em;bottom:-1.25em;color:var(--muted);font-weight:900;font-size:.85em}
+
+.reflist{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:.35em}
+.reflist code{font:.9em/1 ui-monospace,Consolas,monospace;color:var(--muted)}
+
+/* ---------- 控制条与讲稿抽屉 ---------- */
+.controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;width:min(100cqw,calc((100cqh - 64px) * 16 / 9))}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:10px;padding:6px 12px;font-weight:650;font-size:14px}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--panel)}
+.btn[aria-pressed="true"]{background:var(--accent2);border-color:var(--accent);color:var(--accent)}
+.count{font-variant-numeric:tabular-nums;color:var(--muted);font-size:14px;min-width:4.5em;text-align:center}
+.progress{flex:1;min-width:80px;height:4px;background:var(--line);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.timer{font-variant-numeric:tabular-nums;font-size:14px;color:var(--muted)}
+.notes{position:fixed;top:0;right:0;bottom:0;width:min(440px,92vw);background:var(--panel);border-left:1px solid var(--line);box-shadow:var(--shadow);
+  padding:calc(20px + env(safe-area-inset-top,0px)) calc(22px + env(safe-area-inset-right,0px)) calc(20px + env(safe-area-inset-bottom,0px)) 22px;overflow:auto;z-index:5}
+.notes p{margin:0 0 .9em;line-height:1.85}
+.notes .head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.keys{font-size:12px;color:var(--muted)}
+
+/* ---------- 手机：纵向长卷 ---------- */
+@media (max-width:760px),(max-height:420px){
+  .app{display:block;height:auto;container-type:normal;padding-block:16px}
+  .stage{width:100%;aspect-ratio:auto;border:0;box-shadow:none;background:transparent;overflow:visible;container-type:normal}
+  .slide{position:static;display:flex;font-size:15px;padding:22px 18px 40px;margin-bottom:16px;background:var(--panel);border:1px solid var(--line);border-radius:16px;position:relative}
+  .slide.active{animation:none}
+  .card,.step,.why{box-shadow:none}
+  .card,.step,.why,.layer.water{background:var(--bg)}
+  .foot{left:18px;right:18px;bottom:12px}
+  .split,.grid2,.grid3{grid-template-columns:1fr !important}
+  h1{font-size:3em}
+  h2{font-size:1.45em}
+  .bignum{font-size:2.8em}
+  .controls,.notes,.keys{display:none !important}
+  .slide details.mnotes{display:block;margin-top:14px;border-top:1px dashed var(--line);padding-top:10px}
+  .mnotes summary{color:var(--accent);font-weight:700;cursor:pointer}
+  .mnotes p{margin:.6em 0;line-height:1.85}
+  .why{margin-left:0 !important}
+}
+</style>
+
+<div class="app">
+<div class="stage" id="stage">
+
+<!-- 1 封面 -->
+<section class="slide">
+  <div style="display:flex;justify-content:space-between;align-items:center;gap:1em;color:var(--muted);font-size:.84em"><span>课堂展示 · 10–15 分钟</span><span class="tag">主讲人：____________</span></div>
+  <div class="body" style="justify-content:center">
+    <div class="kicker">《三十六计》第十九计 · 混战计</div>
+    <h1>釜底抽薪</h1>
+    <p class="lead kai" style="font-size:1.7em;color:var(--warm)">不敌其力，而消其势。</p>
+    <div class="notice" style="margin-top:1.4em;max-width:44em"><strong>核心观点：</strong>不和对方最强的力量正面硬拼，而是找到支撑这股力量的来源，把它切断。</div>
+  </div>
+</section>
+
+<!-- 2 结构 -->
+<section class="slide">
+  <div class="eyebrow">全篇结构</div>
+  <h2>四个部分，自上而下层层深入</h2>
+  <div class="body" style="max-width:46em;margin:0 auto;width:100%">
+    <div class="vflow">
+      <div class="step"><span class="n">01</span><div class="t" style="display:flex;justify-content:space-between;gap:1em;align-items:center"><span><b>原理</b> · 什么是釜底抽薪<small>出处 · 按语 · 三步机制</small></span><span class="pill">约 3 分钟</span></div></div>
+      <div class="step"><span class="n">02</span><div class="t" style="display:flex;justify-content:space-between;gap:1em;align-items:center"><span><b>战例</b> · 两个正例，两个反例<small>官渡、楚汉 ／ 街亭、大陆封锁</small></span><span class="pill">约 5 分钟</span></div></div>
+      <div class="step"><span class="n">03</span><div class="t" style="display:flex;justify-content:space-between;gap:1em;align-items:center"><span><b>哲理</b> · 联系马克思主义基本原理<small>矛盾 · 本质 · 质变 · 物质</small></span><span class="pill">约 1.5 分钟</span></div></div>
+      <div class="step"><span class="n">04</span><div class="t" style="display:flex;justify-content:space-between;gap:1em;align-items:center"><span><b>应用</b> · 回到学习与工作<small>找薪 · 抽薪 · 守薪</small></span><span class="pill">约 2.5 分钟</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 出处 -->
+<section class="slide">
+  <div class="eyebrow">01 / 原理 · 出处</div>
+  <h2>十四个字的计文</h2>
+  <div class="split" style="grid-template-columns:1.15fr 1fr">
+    <div class="stack">
+      <div class="card" style="padding:1.1em 1.3em"><p class="kai" style="font-size:1.75em;line-height:1.5">不敌其力，而消其势，<br>兑下乾上之象。</p></div>
+      <div class="grid3">
+        <div class="card"><span class="num">不敌其力</span><p class="small">不与对方最强的力量正面硬拼</p></div>
+        <div class="card"><span class="num">而消其势</span><p class="small">消解支撑这股力量的“势”</p></div>
+        <div class="card"><span class="num">兑下乾上</span><p class="small">《周易》履卦：下柔上刚，以柔克刚</p></div>
+      </div>
+    </div>
+    <div>
+      <h3>典故源流</h3>
+      <div class="timeline" style="margin-top:.6em">
+        <div class="tl"><b>战国末</b> <span class="muted small">《吕氏春秋·尽数》</span><div class="q">夫以汤止沸，沸愈不止，去其火则止矣</div></div>
+        <div class="tl"><b>公元 547 年</b> <span class="muted small">北齐·魏收《为侯景叛移梁朝文》</span><div class="q">抽薪止沸，剪草除根</div></div>
+        <div class="tl"><b>明清之际</b> <span class="muted small">《三十六计》第十九计</span><div class="q">釜底抽薪</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 理论依据 -->
+<section class="slide">
+  <div class="eyebrow">01 / 原理 · 理论依据</div>
+  <h2>力不可当，势犹可消</h2>
+  <div class="split" style="grid-template-columns:.85fr 1.15fr">
+    <div class="layers">
+      <div class="layer water"><b>沸水 ＝ 力</b><small>锋芒正盛，锐不可当</small></div>
+      <div class="up">↑</div>
+      <div class="layer fire"><b>火 ＝ 力之源</b><small>推动沸腾的能量</small></div>
+      <div class="up">↑</div>
+      <div class="layer wood"><b>薪 ＝ 势</b><small>火之魄，近而无害</small></div>
+      <p class="small muted" style="text-align:center;margin-top:.3em">下层支撑上层：抽掉最底层，上面自然停下</p>
+    </div>
+    <div class="stack">
+      <div class="card"><span class="pill plain">✗ 治标</span><h3 style="margin-top:.4em">扬汤止沸</h3><p class="muted small">往锅里加冷水：水暂时不沸，柴还在烧，很快又沸。</p></div>
+      <div class="card"><span class="pill">✓ 治本</span><h3 style="margin-top:.4em">釜底抽薪</h3><p class="muted small">把柴抽走：火灭了，沸腾自然停止。</p></div>
+      <div class="callout"><b>按语：</b><span class="kai" style="font-size:1.08em">“水沸者，力也……薪者，火之魄也……故力不可当而势犹可消。”</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 机制 -->
+<section class="slide">
+  <div class="eyebrow">01 / 原理 · 运作机制</div>
+  <h2>找薪 → 抽薪 → 待沸止</h2>
+  <div class="split" style="grid-template-columns:1.3fr 1fr">
+    <div class="vflow">
+      <div class="step warm"><span class="n">找</span><div class="t"><b>找薪</b><small>对方的力量靠什么撑着？粮草、水源、补给线、士气人心</small></div></div>
+      <div class="step warm"><span class="n">抽</span><div class="t"><b>抽薪</b><small>避开正面锋芒，集中力量切断这个来源</small></div></div>
+      <div class="step warm"><span class="n">待</span><div class="t"><b>待沸止</b><small>火势自衰，敌由强转弱，再寻求决战</small></div></div>
+    </div>
+    <div class="card" style="align-self:start">
+      <span class="pill warm">按语例证 · 攻心夺气</span>
+      <p style="margin-top:.6em">东汉吴汉夜遇偷袭，全军惊乱。他“坚卧不动”，军心随之安定，再选精兵反击，大破敌军。</p>
+      <p class="kai muted" style="margin-top:.6em;font-size:1.08em">抽掉的不是兵马，而是敌人想制造的“混乱之势”。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 官渡 -->
+<section class="slide">
+  <div class="eyebrow">02 / 战例 · 正例一</div>
+  <h2>官渡之战（公元 200 年）：火烧乌巢</h2>
+  <div class="split" style="grid-template-columns:.8fr 1.2fr">
+    <div class="card stack" style="justify-content:center">
+      <div><div class="bignum" style="color:var(--accent)">5000</div><p class="muted small">曹操亲率步骑夜袭</p></div>
+      <div><div class="bignum" style="color:var(--muted);font-size:2.6em">十余万</div><p class="muted small">袁绍大军，正面难敌</p></div>
+      <div><span class="pill warm">薪 ＝ 乌巢粮草</span></div>
+    </div>
+    <div class="vflow">
+      <div class="step"><span class="n">1</span><div class="t">许攸投曹，献策袭击淳于琼押运的粮车</div></div>
+      <div class="step"><span class="n">2</span><div class="t">曹操“留曹洪守，自将步骑五千人夜往”</div></div>
+      <div class="step"><span class="n">3</span><div class="t">大破淳于琼，焚毁袁军粮草</div></div>
+      <div class="step hit"><span class="n">4</span><div class="t">张郃、高览来降，“绍众大溃”</div></div>
+    </div>
+  </div>
+  <p class="src">出处：《三国志·魏书·武帝纪》</p>
+</section>
+
+<!-- 7 楚汉 -->
+<section class="slide">
+  <div class="eyebrow">02 / 战例 · 正例二</div>
+  <h2>楚汉相争：彭越断楚粮道</h2>
+  <div class="split" style="grid-template-columns:1.1fr 1fr">
+    <div class="vflow">
+      <div class="step"><span class="n">1</span><div class="t">彭越“数反梁地，绝楚粮食”</div></div>
+      <div class="step"><span class="n">2</span><div class="t">刘贾佐彭越，“烧楚积聚”</div></div>
+      <div class="step"><span class="n">3</span><div class="t">项羽往返救火，顾此失彼</div></div>
+      <div class="step hit"><span class="n">4</span><div class="t">鸿沟议和，垓下兵败</div></div>
+    </div>
+    <div class="stack" style="justify-content:center">
+      <div class="side win"><span class="who">汉</span><span class="what">兵盛食多</span></div>
+      <div class="side lose"><span class="who">楚</span><span class="what">兵罢食绝</span></div>
+      <p class="small muted" style="text-align:center">“罢”同“疲”：楚军疲惫，粮食断绝</p>
+    </div>
+  </div>
+  <p class="src">出处：《史记·项羽本纪》</p>
+</section>
+
+<!-- 8 街亭 -->
+<section class="slide">
+  <div class="eyebrow">02 / 战例 · 反例一</div>
+  <h2>街亭之战（公元 228 年）：自己的薪被人抽走</h2>
+  <div class="split" style="grid-template-columns:.85fr 1.15fr">
+    <div class="diagram" role="img" aria-label="示意图：马谡军舍水上山，张郃切断上山取水的汲道，水源在山下">
+      <svg viewBox="0 0 300 270">
+        <polygon class="svg-mount" points="150,8 292,150 8,150"/>
+        <text class="svg-on" x="150" y="112" text-anchor="middle" font-size="17" font-weight="700">马谡军</text>
+        <text class="svg-on" x="150" y="136" text-anchor="middle" font-size="15">舍水上山</text>
+        <line class="svg-path" x1="150" y1="152" x2="150" y2="218"/>
+        <rect class="svg-seal" x="132" y="166" width="36" height="36" rx="5"/>
+        <text class="svg-on" x="150" y="191" text-anchor="middle" font-size="20" font-weight="700" font-family="KaiTi,STKaiti,serif">绝</text>
+        <text class="svg-warmtext" x="178" y="190" font-size="14" font-weight="700">汲道被断</text>
+        <rect class="svg-water" x="70" y="220" width="160" height="40" rx="8"/>
+        <text class="svg-on" x="150" y="246" text-anchor="middle" font-size="16" font-weight="700">水源</text>
+      </svg>
+    </div>
+    <div class="stack">
+      <div class="vflow">
+        <div class="step"><span class="n">1</span><div class="t">马谡违亮节度，“舍水上山”，王平屡谏不听</div></div>
+        <div class="step"><span class="n">2</span><div class="t">张郃“绝其汲道，击，大破之”</div></div>
+        <div class="step"><span class="n">3</span><div class="t">街亭失守，诸葛亮“进无所据”，退还汉中</div></div>
+      </div>
+      <div class="callout"><b>教训：</b>看不清、守不住自己的“薪”，就会被对手釜底抽薪。</div>
+    </div>
+  </div>
+  <p class="src">出处：《三国志》王平传、张郃传；《资治通鉴》卷七十一</p>
+</section>
+
+<!-- 9 大陆封锁 -->
+<section class="slide">
+  <div class="eyebrow">02 / 战例 · 反例二</div>
+  <h2>大陆封锁（1806—1812）：抽错了薪</h2>
+  <div class="split" style="grid-template-columns:1.15fr 1fr">
+    <div class="stack">
+      <div class="grid2" style="align-items:stretch">
+        <div class="card"><span class="pill plain">拿破仑以为的薪</span><p class="kai" style="font-size:1.35em;margin-top:.5em">欧洲大陆市场</p></div>
+        <div class="card"><span class="pill">英国真正的薪</span><p class="kai" style="font-size:1.35em;margin-top:.5em">海上霸权<br>殖民地贸易<br>走私渠道</p></div>
+      </div>
+      <p class="small muted">1806 年 11 月《柏林敕令》：法国控制下的欧洲大陆断绝与英国的贸易往来。</p>
+      <div class="callout"><b>教训：</b>薪没找准，代价又超过对手的损失，釜底抽薪就变成了“抽薪自焚”。</div>
+    </div>
+    <div class="vflow">
+      <div class="step"><span class="n">1</span><div class="t">封锁难以执行，走私屡禁不止</div></div>
+      <div class="step"><span class="n">2</span><div class="t">欧洲大陆经济受损，盟友不满</div></div>
+      <div class="step"><span class="n">3</span><div class="t">1810 年底，俄国事实上脱离封锁</div></div>
+      <div class="step"><span class="n">4</span><div class="t">1812 年远征俄国，惨败而归</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 对比 -->
+<section class="slide">
+  <div class="eyebrow">02 / 战例 · 正反对比</div>
+  <h2>成败的分水岭</h2>
+  <div class="body" style="gap:1.1em">
+    <div style="overflow-x:auto">
+    <table class="policy">
+      <thead><tr><th>战例</th><th>抽了谁的薪</th><th>薪是什么</th><th>结果</th></tr></thead>
+      <tbody>
+        <tr><td>官渡之战</td><td>袁绍</td><td>乌巢粮草</td><td class="ok">✓ 曹操以少胜多</td></tr>
+        <tr><td>楚汉相争</td><td>项羽</td><td>梁地粮道</td><td class="ok">✓ 汉胜楚败</td></tr>
+        <tr><td>街亭之战</td><td>马谡（自己的薪被抽）</td><td>水源汲道</td><td class="bad">✗ 蜀军溃败</td></tr>
+        <tr><td>大陆封锁</td><td>英国（判断失误）</td><td>误判为欧陆市场</td><td class="bad">✗ 法国反受其害</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="grid3">
+      <div class="card"><span class="num">条件一</span><h3>找得准</h3><p class="small muted">看清对方真正依赖什么</p></div>
+      <div class="card"><span class="num">条件二</span><h3>抽得动</h3><p class="small muted">有能力切断，代价可承受</p></div>
+      <div class="card"><span class="num">条件三</span><h3>守得住</h3><p class="small muted">同时保护好自己的薪</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 马哲 -->
+<section class="slide">
+  <div class="eyebrow">03 / 哲理</div>
+  <h2>联系马克思主义基本原理</h2>
+  <div class="body" style="gap:.9em">
+    <div class="grid2">
+      <div class="card"><span class="pill">矛盾分析法</span><p style="margin-top:.4em">找薪 ＝ 找主要矛盾和矛盾的主要方面</p><p class="small muted">曹操抓住粮草这一要害</p></div>
+      <div class="card"><span class="pill">现象与本质</span><p style="margin-top:.4em">水沸是现象，薪才是本质原因</p><p class="small muted">透过现象看本质</p></div>
+      <div class="card"><span class="pill">量变与质变</span><p style="margin-top:.4em">粮草渐尽是量变，全军溃散是质变</p><p class="small muted">抽薪推动对方走向关节点</p></div>
+      <div class="card"><span class="pill">物质的决定作用</span><p style="margin-top:.4em">战斗力离不开物质条件</p><p class="small muted">经济基础决定上层建筑</p></div>
+    </div>
+    <div class="notice"><strong>贯穿四条：</strong>一切从实际出发，具体问题具体分析。拿破仑的失败，正在于脱离了英国的实际。</div>
+  </div>
+</section>
+
+<!-- 12 学习 -->
+<section class="slide">
+  <div class="eyebrow">04 / 应用 · 学习</div>
+  <h2>别再扬汤止沸</h2>
+  <div class="split" style="grid-template-columns:1.35fr 1fr">
+    <div class="vflow">
+      <div class="step"><span class="n">象</span><div class="t"><b>现象</b>　上课走神，作业拖延</div></div>
+      <div class="step dim"><span class="n" style="color:var(--muted)">✗</span><div class="t"><b>扬汤止沸</b>　喝咖啡提神，熬夜赶作业</div></div>
+      <div class="step warm"><span class="n">薪</span><div class="t"><b>找薪</b>　睡前刷手机，基础知识有漏洞</div></div>
+      <div class="step hit"><span class="n">✓</span><div class="t"><b>抽薪</b>　手机放远，固定作息，补前置知识</div></div>
+    </div>
+    <div class="card" style="align-self:start">
+      <span class="num">例二 · 错题</span>
+      <p class="small muted" style="margin:.3em 0 .7em">同一类题反复做错</p>
+      <p><span class="pill plain">✗</span>　答案抄十遍</p>
+      <p style="margin-top:.4em"><span class="pill">✓</span>　找到没弄懂的那个知识点</p>
+      <p class="kai" style="font-size:1.25em;color:var(--warm);margin-top:.8em">抄的是“汤”，补的才是“薪”。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13 工作 -->
+<section class="slide">
+  <div class="eyebrow">04 / 应用 · 工作</div>
+  <h2>用“五个为什么”找薪</h2>
+  <div class="split" style="grid-template-columns:1.35fr 1fr">
+    <div class="stack" style="gap:1em">
+      <div class="why"><b>问题</b>小组报告总是交晚</div>
+      <div class="why" style="margin-left:1.3em"><b>为什么</b>最后一天才开始写</div>
+      <div class="why" style="margin-left:2.6em"><b>为什么</b>资料收集太慢</div>
+      <div class="why" style="margin-left:3.9em"><b>为什么</b>数据散落在多个表格</div>
+      <div class="why root" style="margin-left:5.2em"><b>根源</b>没有统一模板 → 建立模板</div>
+    </div>
+    <div class="callout" style="align-self:start">
+      <b>底线</b>
+      <p class="kai" style="font-size:1.2em;margin:.4em 0 .6em">釜底抽薪是解决问题的智慧，不是损人利己的手段。</p>
+      <p class="small">先用它解决自己的问题；竞争中守住规则与底线。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 14 总结 -->
+<section class="slide">
+  <div class="eyebrow">结语</div>
+  <div class="body" style="justify-content:center;gap:1.2em">
+    <p class="kai" style="font-size:2.5em;font-weight:800;line-height:1.3;text-wrap:balance">不与其力硬碰，<span style="color:var(--warm)">而消其势之源。</span></p>
+    <div class="grid3">
+      <div class="card"><span class="num">找薪</span><p>遇到问题先找根源，不急着扬汤止沸</p></div>
+      <div class="card"><span class="num">抓本</span><p>抓住主要矛盾，从根上解决问题</p></div>
+      <div class="card"><span class="num">守薪</span><p>看清并守住自己的“薪”</p></div>
+    </div>
+    <div class="notice"><strong>思考题：</strong>你最近遇到的哪个问题，其实是在“扬汤止沸”？它的“薪”是什么？</div>
+  </div>
+</section>
+
+<!-- 15 参考 -->
+<section class="slide">
+  <div class="eyebrow">参考</div>
+  <h2>史料与参考视频</h2>
+  <div class="split">
+    <div>
+      <h3>史料与文献</h3>
+      <ul class="reflist small">
+        <li>《三十六计》第十九计“釜底抽薪”及按语</li>
+        <li>《吕氏春秋·季春纪·尽数》</li>
+        <li>魏收《为侯景叛移梁朝文》</li>
+        <li>《三国志》武帝纪、王平传、张郃传</li>
+        <li>《史记·项羽本纪》</li>
+        <li>《资治通鉴》卷七十一</li>
+        <li>毛泽东《矛盾论》</li>
+      </ul>
+    </div>
+    <div>
+      <h3>B 站参考视频</h3>
+      <ul class="reflist small">
+        <li><a href="https://www.bilibili.com/video/BV1ZLTwzvEPH/" target="_blank" rel="noopener">讲给孩子的三十六计·釜底抽薪</a> <code>BV1ZLTwzvEPH</code></li>
+        <li><a href="https://www.bilibili.com/video/BV1JNtkemEtp/" target="_blank" rel="noopener">官渡之战正史详解（下）</a> <code>BV1JNtkemEtp</code></li>
+        <li><a href="https://www.bilibili.com/video/BV1FJ411d7Cv/" target="_blank" rel="noopener">彭越扰楚：最早的游击战</a> <code>BV1FJ411d7Cv</code></li>
+        <li><a href="https://www.bilibili.com/video/BV16a411j7i9/" target="_blank" rel="noopener">街亭之战，马谡错在哪</a> <code>BV16a411j7i9</code></li>
+        <li><a href="https://www.bilibili.com/video/BV1qy4y1H7S7/" target="_blank" rel="noopener">拿破仑大陆封锁·反面教材</a> <code>BV1qy4y1H7S7</code></li>
+        <li><a href="https://www.bilibili.com/video/BV1nR4y1Q74U/" target="_blank" rel="noopener">主次矛盾和主次方面</a> <code>BV1nR4y1Q74U</code></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</div>
+
+<div class="controls" id="controls">
+  <button class="btn" id="prev" aria-label="上一页">←</button>
+  <span class="count" id="count">1 / 15</span>
+  <button class="btn primary" id="next" aria-label="下一页">→</button>
+  <div class="progress" aria-hidden="true"><i id="bar"></i></div>
+  <button class="btn" id="timerBtn" aria-pressed="false">开始计时</button>
+  <span class="timer" id="timer">00:00</span>
+  <button class="btn" id="notesBtn" aria-pressed="false">讲稿</button>
+</div>
+<div class="keys">← → 或空格翻页 · N 打开讲稿 · T 开始/暂停计时</div>
+</div>
+
+<aside class="notes" id="notes" hidden aria-label="当前页讲稿">
+  <div class="head"><h3 id="notesTitle">讲稿</h3><button class="btn" id="notesClose">关闭</button></div>
+  <div id="notesBody"></div>
+</aside>
+
+<script>
+const SCRIPT = [{"title":"封面：釜底抽薪","seconds":35,"paras":["各位老师、同学，大家好！今天我和大家分享的主题是——釜底抽薪。","先请大家想象一个画面：灶上一口锅，水烧得咕嘟咕嘟直冒泡。想让它不沸，有人往锅里加凉水，有人把开水舀起来再倒回去。可只要锅底下的柴还在烧，水很快又会沸起来。真正管用的办法只有一个：把锅底下的柴抽掉。","这就是“釜底抽薪”。它是《三十六计》的第十九计，也是“混战计”的第一计。"]},{"title":"一图看懂：四个部分","seconds":25,"paras":["我的分享分四个部分，自上而下、层层递进。","第一，讲清这条计谋的原理和理论依据；第二，用两个正例、两个反例，看它在历史上怎样成功、又怎样失败；第三，把它和马克思主义基本原理联系起来，看看背后的哲学道理；最后，落到我们自己的学习和工作中，看看能怎么用。"]},{"title":"出处：十四个字的计文","seconds":65,"paras":["先看出处。《三十六计》第十九计的原文只有十四个字：“不敌其力，而消其势，兑下乾上之象。”","前两句是核心。“不敌其力”，就是不和对方最强的力量正面硬拼；“而消其势”，就是去削弱、消解支撑这股力量的势头。第三句“兑下乾上之象”，借用的是《周易》里的履卦：上卦是乾，代表天、代表刚；下卦是兑，代表泽、代表柔。意思是以柔克刚、以弱胜强。","这个比喻并不是《三十六计》首创。早在战国末年的《吕氏春秋·尽数》里就有一句：“夫以汤止沸，沸愈不止，去其火则止矣。”到了北齐，魏收在公元547年写的《为侯景叛移梁朝文》中，又提出了“抽薪止沸，剪草除根”。后人从这里提炼出了“釜底抽薪”这个成语。"]},{"title":"理论依据：力不可当，势犹可消","seconds":60,"paras":["那么，它的理论依据是什么？《三十六计》在这一计后面有一段按语，讲得非常透彻：“水沸者，力也，火之力也，阳中之阳也，锐不可当；薪者，火之魄也，即力之势也，阴中之阴也，近而无害；故力不可当而势犹可消。”","翻译成大白话：锅里沸腾的水，代表敌人正处在顶峰的力量，锋芒正盛，你挡不住；而锅底的柴，是这股力量的根源，它安静、不显眼，你靠近它反而没有危险。所以，力量本身挡不住，但力量背后的“势”是可以消除的。","请看屏幕上的对比：往锅里加冷水，叫“扬汤止沸”，治的是标，水还会再沸；把柴抽走，叫“釜底抽薪”，治的是本，水自然就凉了。一句话概括：不硬碰对方的锋芒，而是切断它的来源。"]},{"title":"运作机制：找薪、抽薪、待沸止","seconds":50,"paras":["具体怎么做？我把它归纳为自上而下的三步。","第一步，找薪。先弄清楚对方的力量靠什么撑着：是粮草、是水源、是补给线，还是士气和人心。第二步，抽薪。避开对方的正面锋芒，集中力量去切断这个来源。第三步，等沸止。柴一抽，火势自然衰减，对方由强转弱，这时再寻求决战。","按语里还特别提到，夺取对方的士气也是抽薪，叫“攻心夺气”。东汉大将吴汉有一次夜里遭到偷袭，全军惊乱，他却坚卧不动，军心随之安定下来，然后挑选精兵反击，大败敌军。他抽掉的，正是敌人想制造的那股混乱之势。"]},{"title":"正例一：官渡之战","seconds":60,"paras":["下面进入战例。第一个正例，是大家熟悉的官渡之战。","公元200年，袁绍率领十余万大军南下，与曹操在官渡对峙。曹操兵力不满一万，粮草也很紧张，正面硬拼几乎没有胜算。","转机出现在这年冬天。袁绍派淳于琼等人带一万多兵马押运粮车，驻扎在大营以北四十里。袁绍的谋士许攸投奔曹操，建议偷袭这支运粮部队。据《三国志·武帝纪》记载，曹操“留曹洪守，自将步骑五千人夜往”，大破淳于琼，烧掉了袁军的粮草。消息传回，袁军大将张郃、高览前来投降，史书写道：“绍众大溃。”","这一仗，曹操没有去碰袁绍的主力，而是直奔那堆“薪”——粮草。五千人，抽掉了十余万大军的底火。"]},{"title":"正例二：楚汉相争","seconds":50,"paras":["第二个正例，来自楚汉相争。","项羽的楚军以勇猛著称，正面交锋，刘邦屡战屡败。但刘邦看到了项羽的软肋：楚军远离后方，粮食要靠梁地一带的道路运送。","于是，彭越在梁地反复出击。《史记·项羽本纪》记载：“彭越数反梁地，绝楚粮食。”刘邦还派刘贾带兵协助彭越，“烧楚积聚”，也就是烧掉楚军囤积的粮草。项羽只能来回奔波救火，顾此失彼。","结果，《史记》用十个字概括了双方的处境：“汉兵盛食多，项王兵罢食绝。”不久，楚汉在鸿沟议和，随后项羽兵败垓下。彭越的袭扰，就是一次持续的、成体系的釜底抽薪。"]},{"title":"反例一：街亭之战","seconds":60,"paras":["看完成功，再看失败。第一个反例是街亭之战，它告诉我们：自己的“薪”，也可能被别人抽走。","公元228年，诸葛亮第一次北伐，派马谡做先锋，在街亭迎战魏将张郃。马谡违背了诸葛亮的部署。《三国志·王平传》记载，他“舍水上山”，放弃了靠近水源的地方，把军队拉到了山上；副将王平多次劝阻，他都不听。","张郃抓住了这个破绽。《三国志·张郃传》记载：“郃绝其汲道，击，大破之。”也就是切断了蜀军取水的道路，再发起进攻。没有了水，军心大乱，蜀军一触即溃。街亭一失，诸葛亮进无所据，只能退回汉中。","马谡的问题，就在于没有看清、也没有守住自己的“薪”，结果被对手釜底抽薪。"]},{"title":"反例二：大陆封锁","seconds":65,"paras":["第二个反例，我们把目光转向近代欧洲，看看“抽错了薪”会怎样。","1806年11月，拿破仑颁布《柏林敕令》，命令法国控制下的欧洲大陆断绝与英国的贸易往来，这就是“大陆封锁”。他的想法很明确：英国靠贸易立国，切断贸易，就能抽掉英国的薪。","可是，英国掌握着海上霸权，拥有广阔的殖民地市场，欧洲大陆的走私也屡禁不止，英国的“薪”并没有被真正抽掉。反过来，封锁严重伤害了欧洲大陆各国自己的经济。俄国因为粮食出口受阻，在1810年底事实上脱离了封锁体系。为了逼俄国就范，拿破仑在1812年远征俄国，最终惨败而归。","这说明：如果找错了薪，付出的代价又超过了对手的损失，釜底抽薪就会变成“抽薪自焚”。"]},{"title":"正反对比：成败的分水岭","seconds":30,"paras":["把四个战例放在一起，就能看出成败的分水岭。","曹操和刘邦之所以成功，是因为找准了对方的薪——粮草，并且有能力把它抽走。马谡之所以失败，是因为守不住自己的薪——水源。拿破仑之所以失败，是因为找错了对方的薪，还把火烧到了自己身上。","所以，用好这一计要满足三个条件：一要找得准，二要抽得动，三要守得住。"]},{"title":"联系马克思主义基本原理","seconds":80,"paras":["那么，这条古老的计谋和马克思主义基本原理有什么联系呢？我总结了四点。","第一，矛盾分析法。毛泽东同志在《矛盾论》中指出：“研究任何过程，如果是存在着两个以上矛盾的复杂过程的话，就要用全力找出它的主要矛盾。捉住了这个主要矛盾，一切问题就迎刃而解了。”找“薪”，就是找主要矛盾和矛盾的主要方面。","第二，现象和本质。水沸是现象，柴火才是本质原因。认识事物不能停留在表面，要透过现象抓住本质。","第三，量变和质变。粮草一天天减少，是量变；到了某个关节点，军心崩溃、全线溃败，就是质变。抽薪，就是推动对方的量变走向质变。","第四，物质的决定作用。军队的战斗力离不开粮草、水源这些物质条件；放到更大的范围看，经济基础决定上层建筑。抽薪，抽的正是物质基础。","而四个战例的成败也提醒我们：一切要从实际出发，具体问题具体分析。拿破仑的失败，恰恰就在于脱离了英国的实际情况。"]},{"title":"应用一：学习中别再扬汤止沸","seconds":50,"paras":["最后，回到我们自己身上。先说学习。","很多同学都有这样的经历：上课容易走神，作业总是拖延。常见的做法是“扬汤止沸”：靠喝咖啡提神，靠熬夜赶作业。可是第二天更困，问题反而更严重。","不妨用釜底抽薪的思路找一找“薪”：走神，可能是因为前一晚刷手机睡得太晚；拖延，可能是因为前面的知识没掌握，题目做不下去。找到了薪，办法就清楚了：手机放远一点，作息固定下来；回过头把基础漏洞补上。","再比如错题。同一类题反复做错，把答案抄十遍是扬汤止沸；找到背后没弄懂的那个知识点，才是釜底抽薪。"]},{"title":"应用二：工作中用“五个为什么”找薪","seconds":50,"paras":["再说工作和日常生活。这里推荐一个实用工具，叫“五个为什么”：遇到问题，连问几次“为什么”，一层一层往下挖，直到找到根源。","举个例子：小组报告总是交得晚。为什么？因为最后一天才开始写。为什么？因为资料收集太慢。为什么？因为数据散落在好几个表格里。为什么？因为没有统一的模板。挖到这里，薪就找到了：建一个统一模板，问题从根上解决。","还要强调一点：釜底抽薪是解决问题的智慧，不是损人利己的手段。在学习和工作中，我们首先要用它解决自己的问题；在竞争中，也要守住规则和底线。"]},{"title":"总结与思考","seconds":30,"paras":["最后做个总结。釜底抽薪的精髓就是一句话：不与其力硬碰，而消其势之源。","它教给我们三件事：遇到问题，先找薪，不急着扬汤止沸；解决问题，抓根本，抓住主要矛盾；保护自己，守住自己的薪。","最后留给大家一个思考题：你最近遇到的哪一个问题，其实是在“扬汤止沸”？它的“薪”又是什么？"]},{"title":"参考资料与视频","seconds":15,"paras":["这一页是本次分享参考的史料和视频，大家课后感兴趣可以继续看。我的分享到此结束，谢谢大家！"]}];
+const slides = [...document.querySelectorAll('.slide')];
+const N = slides.length;
+let cur = 0;
+
+// 页脚与手机端讲稿
+slides.forEach((s, i) => {
+  const f = document.createElement('div');
+  f.className = 'foot';
+  f.innerHTML = '<span>釜底抽薪 · 《三十六计》第十九计</span><span>' + String(i + 1).padStart(2, '0') + ' / ' + N + '</span>';
+  s.appendChild(f);
+  const sc = SCRIPT[i];
+  if (sc) {
+    const d = document.createElement('details');
+    d.className = 'mnotes';
+    d.innerHTML = '<summary>讲稿 · 建议约 ' + sc.seconds + ' 秒</summary>' + sc.paras.map(p => '<p>' + p + '</p>').join('');
+    s.insertBefore(d, f);
+  }
+});
+
+const $ = id => document.getElementById(id);
+function renderNotes() {
+  const sc = SCRIPT[cur];
+  $('notesTitle').textContent = '第 ' + (cur + 1) + ' 页讲稿 · 约 ' + sc.seconds + ' 秒';
+  $('notesBody').innerHTML = sc.paras.map(p => '<p>' + p + '</p>').join('');
+}
+function go(i) {
+  cur = Math.max(0, Math.min(N - 1, i));
+  slides.forEach((s, k) => s.classList.toggle('active', k === cur));
+  $('count').textContent = (cur + 1) + ' / ' + N;
+  $('bar').style.width = ((cur + 1) / N * 100) + '%';
+  $('prev').disabled = cur === 0;
+  $('next').disabled = cur === N - 1;
+  renderNotes();
+  try { history.replaceState(null, '', '#' + (cur + 1)); } catch (e) {}
+}
+function toggleNotes(force) {
+  const open = force ?? $('notes').hidden;
+  $('notes').hidden = !open;
+  $('notesBtn').setAttribute('aria-pressed', String(open));
+}
+
+// 计时器
+let t0 = null, acc = 0, tick = null;
+function fmt(ms) { const s = Math.floor(ms / 1000); return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0'); }
+function toggleTimer() {
+  if (t0 === null) {
+    t0 = Date.now();
+    tick = setInterval(() => { $('timer').textContent = fmt(acc + Date.now() - t0); }, 500);
+    $('timerBtn').textContent = '暂停计时'; $('timerBtn').setAttribute('aria-pressed', 'true');
+  } else {
+    acc += Date.now() - t0; t0 = null; clearInterval(tick);
+    $('timerBtn').textContent = '继续计时'; $('timerBtn').setAttribute('aria-pressed', 'false');
+  }
+}
+
+$('prev').onclick = () => go(cur - 1);
+$('next').onclick = () => go(cur + 1);
+$('notesBtn').onclick = () => toggleNotes();
+$('notesClose').onclick = () => toggleNotes(false);
+$('timerBtn').onclick = toggleTimer;
+document.addEventListener('keydown', e => {
+  if (e.target.closest && e.target.closest('input,textarea')) return;
+  if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(cur + 1); }
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); go(cur - 1); }
+  else if (e.key === 'Home') go(0);
+  else if (e.key === 'End') go(N - 1);
+  else if (e.key === 'n' || e.key === 'N') toggleNotes();
+  else if (e.key === 't' || e.key === 'T') toggleTimer();
+  else if (e.key === 'Escape') toggleNotes(false);
+});
+const h = parseInt((location.hash || '').slice(1), 10);
+go(Number.isFinite(h) ? h - 1 : 0);
+</script>

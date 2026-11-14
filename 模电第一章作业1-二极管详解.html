@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<!-- xx 知识讲解 · 模式 A 产物 · 模电第一章作业 1（二极管与稳压管） -->
+<html lang="zh-CN" data-theme="book">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>模电第一章作业 1 · 二极管与稳压管电路详解</title>
+<link rel="stylesheet" crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+      integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+">
+<script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+        integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"></script>
+<script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk"></script>
+<style>
+*{box-sizing:border-box}
+html[data-theme=book]{--bg:#f4f2ec;--card:#fdfcf8;--ink:#26241f;--mut:#6d685d;--line:#e0dbcf;--acc:#1f6f6b;--key:#c0392b;--kp:#a97142;--warn:#c0392b;--ans:#e8f0ee;--ansline:#cfe0dc;--sh:0 1px 2px rgba(38,36,31,.07),0 6px 18px rgba(38,36,31,.06)}
+html[data-theme=ink]{--bg:#14161a;--card:#1b1e24;--ink:#e8e6e1;--mut:#9aa0a8;--line:#2b2f37;--acc:#5ac8c0;--key:#ff8b6b;--kp:#c9a227;--warn:#ff8b6b;--ans:#172422;--ansline:#2e4b48;--sh:none}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;transition:background .2s}
+h1,h2,h3,.kicker{font-family:"Noto Serif SC",Georgia,serif}
+a{color:var(--acc)}
+#banner{display:none;background:var(--key);color:#fff;padding:10px 14px;font:14px sans-serif}
+.shell{display:grid;grid-template-columns:268px minmax(0,1fr)}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;padding:24px 16px;font-size:14px;border-right:1px solid var(--line);background:var(--card)}
+nav.toc h2{font:12px/1 sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:0 0 12px}
+nav.toc a{display:block;color:var(--mut);text-decoration:none;padding:4px 8px;border-left:3px solid transparent}
+nav.toc a.sub{padding-left:22px;font-size:13px}
+nav.toc a.on{color:var(--acc);font-weight:700;border-left-color:var(--acc);background:color-mix(in srgb,var(--acc) 10%,transparent)}
+nav.toc .tools{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+nav.toc .tools button{all:unset;cursor:pointer;font:12px/1 sans-serif;padding:6px 10px;border:1px solid var(--line);border-radius:8px;color:var(--mut)}
+nav.toc .tools button:hover{color:var(--acc);border-color:var(--acc)}
+.wrap{padding:26px clamp(20px,5vw,72px) 120px;max-width:1080px}
+.kicker{font:12px/1 sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 8px}
+h1.doc{font-size:clamp(24px,3.4vw,34px);line-height:1.3;margin:0 0 10px}
+.lead{font-size:15px;color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--card);margin:0 0 26px}
+section.mod{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:22px 24px;margin:0 0 26px;display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:18px}
+.gutter{grid-column:1;color:var(--acc);font:700 13px/1.4 Consolas,monospace}
+.gutter small{display:block;color:var(--mut);font:400 11px/1.4 sans-serif;letter-spacing:.02em}
+section.mod>h2{grid-column:2;margin:0 0 10px;font-size:22px;color:var(--acc);font-weight:600}
+section.mod>.in{grid-column:2;min-width:0}
+.blk{margin:14px 0;padding-left:16px;border-left:2px solid var(--line)}
+.blk>b:first-child{display:block;font-size:13px;letter-spacing:.03em;margin-bottom:4px}
+.blk.kp{border-left-color:var(--kp)} .blk.kp>b{color:var(--kp)}
+.blk.idea{border-left-color:var(--acc)} .blk.idea>b{color:var(--acc)}
+.blk.chk{border-left-color:var(--acc)} .blk.chk>b{color:var(--acc)}
+.blk.warn{border-left-color:var(--warn)} .blk.warn>b{color:var(--warn)}
+.blk.sol>b{color:var(--ink)}
+.blk.s0{border-left-color:var(--key);background:color-mix(in srgb,var(--key) 5%,transparent)} .blk.s0>b{color:var(--key)}
+.blk p{margin:.35em 0}
+.qsum{border:1px dashed var(--acc);border-radius:10px;padding:10px 14px;margin:12px 0;font-size:15px}
+.qsum>b:first-child{display:block;font-size:13px;letter-spacing:.03em;margin-bottom:4px;color:var(--acc)}
+.q{border:1px solid var(--line);border-left:4px solid var(--key);border-radius:12px;background:var(--card);box-shadow:var(--sh);padding:0 20px 18px;margin:18px 0}
+.q>h3{font-size:18px;margin:0;padding:14px 0;border-bottom:1px dashed var(--line);cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.q>h3::after{content:"收起";font:11px/1 sans-serif;color:var(--mut);border:1px solid var(--line);border-radius:6px;padding:3px 7px;flex:none}
+.q.fold>h3::after{content:"展开"}
+.q.fold>.in{display:none}
+.q .in{min-width:0}
+ol.steps{list-style:none;counter-reset:s;padding-left:0;margin:8px 0}
+ol.steps>li{counter-increment:s;position:relative;padding-left:44px;margin:0 0 10px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:12px/1 Consolas,monospace;font-weight:700;background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc)}
+.ans{background:var(--ans);border:1px solid var(--ansline);border-radius:10px;padding:10px 14px;margin:12px 0}
+.pit{background:color-mix(in srgb,var(--warn) 8%,transparent);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);border-radius:10px;padding:10px 14px;font-size:15px}
+.katex{color:var(--ink)}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{color:var(--acc);font-weight:600}
+.fig{max-width:100%;height:auto}
+.figwrap{position:relative;display:inline-block;max-width:100%}
+.figlab{position:absolute;transform:translate(-50%,-50%);font:13px/1.3 sans-serif;color:var(--ink);background:color-mix(in srgb,var(--card) 88%,transparent);padding:1px 4px;border-radius:4px;white-space:nowrap}
+.stk{position:relative;display:inline}
+.stk>a{color:var(--acc);text-decoration:none;border-bottom:1px dashed var(--acc);cursor:pointer;font-weight:600}
+.pop{position:absolute;left:0;bottom:135%;width:min(340px,74vw);z-index:30;display:none;background:var(--card);border:1px solid var(--kp);border-radius:10px;box-shadow:0 8px 26px rgba(0,0,0,.18);padding:12px 14px;font:14px/1.75 sans-serif}
+.stk.r>.pop{left:auto;right:0}
+.stk>a:hover+.pop,.stk>a:focus-visible+.pop,.stk.open .pop{display:block}
+.pop u{display:block;font-style:normal;text-decoration:none;font:11px/1 sans-serif;letter-spacing:.1em;color:var(--kp);margin-bottom:5px}
+.pop i{display:block;margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-style:normal;color:var(--mut);font-size:13px}
+@media(max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  nav.toc{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+  nav.toc .lst{columns:2;column-gap:24px}
+  section.mod{grid-template-columns:minmax(0,1fr)}
+  .gutter{grid-column:1;margin-bottom:6px}
+  section.mod>h2,section.mod>.in{grid-column:1}
+}
+
+/* 窄屏：贴纸改成块级锚点并压窄弹层，否则 340px 气泡在 520px 栏里必然出界 */
+@media(max-width:640px){
+  .stk{display:inline-block}
+  /* 窄屏下把气泡锚在行内，无论左对齐还是右翻都可能越出视口（实测 520px 栏宽、
+     某右翻贴纸 left=305 宽 300 ⇒ 右界 605）。改成贴在视口底部的浮层：
+     位置由视口决定，永不出界，也不会盖住它自己的触发词，再点一次即可关闭。 */
+  .pop{position:fixed;left:8px;right:8px;top:auto;bottom:8px;width:auto;
+       max-height:52vh;overflow:auto;z-index:40}
+  .stk.r>.pop{left:8px;right:8px}
+}
+</style>
+</head>
+<body>
+<div id="banner">⚠ 公式未渲染：数学库加载失败，本文件需联网。下方保留 LaTeX 原文。</div>
+
+<div class="shell">
+<nav class="toc">
+  <h2>目录</h2>
+  <div class="lst">
+    <a href="#index">题号索引</a>
+    <a href="#m1">M1 模型与通断判据</a>
+    <a href="#m1-meth" class="sub">解题方法</a>
+    <a href="#q11a" class="sub">作业 4 · 习题 1.1(a)</a>
+    <a href="#m2">M2 多管共阴极</a>
+    <a href="#m2-meth" class="sub">解题方法</a>
+    <a href="#q12a" class="sub">作业 3 · 习题 1.2(a)</a>
+    <a href="#m3">M3 二极管门电路</a>
+    <a href="#m3-meth" class="sub">解题方法</a>
+    <a href="#q16a" class="sub">作业 1(1) · 习题 1.6</a>
+    <a href="#q16b" class="sub">作业 1(2) · 习题 1.6</a>
+    <a href="#q16c" class="sub">作业 1(3) · 习题 1.6</a>
+    <a href="#q17a" class="sub">作业 2(1) · 习题 1.7</a>
+    <a href="#q17b" class="sub">作业 2(2) · 习题 1.7</a>
+    <a href="#m4">M4 稳压管三态</a>
+    <a href="#m4-meth" class="sub">解题方法</a>
+    <a href="#q18a" class="sub">作业 5 · 习题 1.8(a)</a>
+    <a href="#q18b" class="sub">作业 6 · 习题 1.8(b)</a>
+    <a href="#m5">M5 限幅与波形</a>
+    <a href="#m5-meth" class="sub">解题方法</a>
+    <a href="#q14a" class="sub">作业 7 · 习题 1.4(a)</a>
+    <a href="#pitfalls" class="sub">附 · 易错点清单</a>
+    <a href="#cheatsheet" class="sub">附 · 公式速查表</a>
+    <a href="#answers" class="sub">附 · 答案总表</a>
+    <a href="#verify" class="sub">附 · 校验说明</a>
+  </div>
+  <div class="tools">
+    <button id="fold" type="button">全部收起</button>
+    <button id="theme" type="button">切换暗色</button>
+  </div>
+</nav>
+
+<div class="wrap">
+  <p class="kicker">模拟电子技术基础 · 第一章 常用半导体器件</p>
+  <h1 class="doc">二极管与稳压管电路详解 · 第一章作业 1</h1>
+  <div class="lead">
+    覆盖题目：作业 1（教材 1.6）、作业 2（1.7）、作业 3（1.2(a)）、作业 4（1.1(a)）、作业 5 与 6（1.8 两方向）、作业 7（1.4(a)），共 10 张题卡。
+    建议阅读顺序：先读各模块的<b>知识点</b>与<b>解题方法</b>，再进题卡。带虚线下划线的词是<b>知识贴纸</b>，悬停或点击可复现该知识点。数学公式经 CDN 渲染，需联网。
+  </div>
+
+  <section class="mod" id="index">
+    <div class="gutter">索引<small>查题</small></div>
+    <h2>题号索引</h2>
+    <div class="in"><table>
+      <tr><th>题号</th><th>所在模块</th><th>方法标签</th><th>结果</th></tr>
+      <tr><td>作业 4 · 1.1(a)</td><td><a href="#m1">M1</a></td><td>单管假设法 · 双模型对比</td><td>导通；理想 \(-6\,\text{V}\)，恒压 \(-6.7\,\text{V}\)</td></tr>
+      <tr><td>作业 3 · 1.2(a)</td><td><a href="#m2">M2</a></td><td>多管共阴 · 钳位竞争</td><td>VD₁ 通、VD₂ 断；\(U_{AO}=0\,\text{V}\)</td></tr>
+      <tr><td>作业 1(1) · 1.6</td><td><a href="#m3">M3</a></td><td>共阳上拉（与门 / min）</td><td>\(U_F=5\,\text{V}\)</td></tr>
+      <tr><td>作业 1(2) · 1.6</td><td><a href="#m3">M3</a></td><td>共阳上拉（与门 / min）</td><td>\(U_F=0\,\text{V}\)</td></tr>
+      <tr><td>作业 1(3) · 1.6</td><td><a href="#m3">M3</a></td><td>共阳上拉 + 对称分流</td><td>\(U_F=0\,\text{V}\)</td></tr>
+      <tr><td>作业 2(1) · 1.7</td><td><a href="#m3">M3</a></td><td>共阴下拉 + 节点电压法</td><td>\(U_F=5\,\text{V}\)</td></tr>
+      <tr><td>作业 2(2) · 1.7</td><td><a href="#m3">M3</a></td><td>共阴下拉 + 假设法否证</td><td>\(U_F=30/7=4.286\,\text{V}\)</td></tr>
+      <tr><td>作业 5 · 1.8(a)</td><td><a href="#m4">M4</a></td><td>稳压管反向击穿 · 串联相加</td><td>\(U_{AO}=15\,\text{V}\)</td></tr>
+      <tr><td>作业 6 · 1.8(b)</td><td><a href="#m4">M4</a></td><td>稳压管正向导通 · 当普通管</td><td>\(U_{AO}=1\,\text{V}\)</td></tr>
+      <tr><td>作业 7 · 1.4(a)</td><td><a href="#m5">M5</a></td><td>上限幅 · 分段传输特性</td><td>所给波形正确</td></tr>
+    </table>
+    <div class="blk"><b>读图约定</b>本作业的电路来自截图，元件方向与电源极性由图中符号读出：<b>电池符号的长细线端为正极、短粗线端为负极</b>；二极管符号<b>三角形底边一侧为阳极、横杠一侧为阴极</b>；稳压管在横杠两端加斜折线。图上只画一只空心圆并注明 \(+12\,\text{V}\)、\(U_A\)、\(U_B\) 的地方，表示一个<b>对公共参考端的理想电压源节点</b>：各电源的负端在原理图里通常并成一条不画全的地线，本文件把那条公共端取作 \(0\,\text{V}\)。波形面板上只标了部分电平，读纵坐标时以标注值与水平虚线为准，不必按像素反推。每张题卡的<b>第0步 (i)</b> 都把该图翻译成"哪个节点等于几伏"的显式陈述——请先把它与课本原图对一遍，再往下看。若某处对不上，只需改第0步的那一句，后面的推导会跟着变，方法本身不受影响。</div>
+    </div>
+  </section>
+
+  <!-- ============ M1 ============ -->
+  <section class="mod" id="m1">
+    <div class="gutter">M1<small>判通断</small></div>
+    <h2>M1 · 二极管模型与通断判据</h2>
+    <div class="in">
+      <div class="blk kp"><b>知识点</b>
+        <p>二极管在电路里是一个<b>由自身电压决定通断的非线性开关</b>。工程上把它线性化成三种模型，深度由粗到细：</p>
+        <p><b>其一，理想模型</b>：导通时压降为 \(0\)（等效为闭合的开关、一段导线），截止时电流为 \(0\)（等效为断开的开关）。适合电源远大于管压降、只需判断电平与通断的场合——本作业的判态与电位计算都先用它；恒压降模型只出现在各卡的灵敏度检查里，另外作业 6 的正向压降 \(0.5\,\text{V}\) 是题目直接给的，不算模型选择。</p>
+        <p><b>其二，恒压降模型</b>：导通时压降固定为 \(U_{D(\text{on})}\)（硅管取 \(0.7\,\text{V}\)），方向是<b>阳极高、阴极低</b>；截止时仍为开路。适合需要算出准确电位的场合。</p>
+        <p><b>其三，折线（分段线性）模型</b>：在恒压降模型上再串一个动态电阻 \(r_d\)，把伏安特性导通段那条斜线也近似出来。代价是 \(r_d\approx\dfrac{U_T}{I_D}\) 要在静态电流上取，所以得先解一遍直流工作点。本作业没有用到它——题目要的恰恰就是那个静态工作点。</p>
+        <p>别把第三个模型叫"小信号模型"。小信号模型是把曲线在静态点上线性化后<b>只保留交流增量</b>的那一层，恒压源项归直流分析管、不进小信号等效电路。两者共用一个 \(r_d\)，但不是同一个模型。</p>
+        <p>判断通断的通用工具是<b>假设法</b>，它把"非线性"这个难点拆成两次线性计算：</p>
+        <div id="eq-1-1">\[ U_{D0}\;=\;\bigl(V_{\text{阳}}-V_{\text{阴}}\bigr)_{\text{把该管断开}},\qquad \begin{cases}U_{D0}\gt U_{D(\text{on})} & \text{判为导通}\\ U_{D0}\le U_{D(\text{on})} & \text{判为截止}\end{cases} \tag{1-1}\]</div>
+        <p>其中理想模型取 \(U_{D(\text{on})}=0\)。式 (1-1) 里的 \(U_{D0}\) 必须是<b>断开状态下</b>的量——导通之后管两端只剩 \(U_{D(\text{on})}\)，拿它去比大小永远看不出结论。</p>
+        <p>判出来还要<b>回查</b>，这是 (1-1) 容易被忽略的另一半：</p>
+        <div id="eq-1-2">\[ \text{导通}\Rightarrow I_D\gt 0\ (\text{电流自阳极流入});\qquad \text{截止}\Rightarrow U_{D}\le U_{D(\text{on})}\ (\text{理想模型即 } U_{D}\le 0) \tag{1-2}\]</div>
+        <p>式中的 \(U_D\) 是<b>把管接回电路之后</b>它两端的"阳极减阴极"电位差，与 (1-1) 里断开状态的 \(U_{D0}\) 不是同一个量：导通支查电流方向，截止支查这个电压。</p>
+        <p>回查不通过就说明假设错了，要换一组假设重来。假设法给的是<b>候选</b>，回查通过才把它取作答案——前提是其余候选已被排除。而这两条判据本身只是<b>必要条件</b>：通过只说明"这组假设自洽"，不说明"它是唯一自洽的假设"。同一个电路常常有几组假设同时通过（作业 1(1)、1(3) 就是），这时要断言唯一性，必须把其余组合逐一否证，或者另找对称性一类的论证。</p>
+      </div>
+
+      <div class="blk idea" id="m1-meth"><b>解题方法</b>
+        <ol class="steps">
+          <li>标出所有节点电位参考（找接地图形符号那一点，令其为 \(0\,\text{V}\)），把每个电源翻译成"某节点 \(=\pm E\)"。</li>
+          <li>把待判的二极管<b>拿掉</b>（视为开路），算它两端的开路电压 \(U_{D0}=V_{\text{阳}}-V_{\text{阴}}\)。</li>
+          <li>按式 (1-1) 与 \(U_{D(\text{on})}\) 比大小，定通断。</li>
+          <li>用对应的等效元件（短路 / \(U_{D(\text{on})}\) 恒压源 / 开路）替换二极管，重解电路求待定量。</li>
+          <li>按式 (1-2) 回查电流方向或反偏极性；不通过则回到第 3 步换假设。</li>
+        </ol>
+        适用条件：单回路或单节点的二极管直流电路；电源为理想电压源。本模块易错点：第 4 步里恒压源的<b>极性加反</b>——导通压降是顺着电流方向降的，所以 \(V_{\text{阴}}=V_{\text{阳}}-U_{D(\text{on})}\)，不是加。</div>
+
+      <div class="q" id="q11a">
+        <h3>作业 4 · 习题 1.1(a)　单管双模型求 U_AO</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>电路如图所示：公共端 \(O\) 接地并作为 \(U_{AO}\) 的参考"−"端。左支路由 \(6\,\text{V}\) 直流源与二极管 VD 串联——\(6\,\text{V}\) 源接在 \(O\) 与 VD 的阳极之间，VD 的阳极在左、阴极在右，阴极接到输出端 \(A\)（标"+"）。右支路由 \(A\) 经 \(2\,\text{k}\Omega\) 电阻串一个 \(10\,\text{V}\) 直流源到 \(O\)。要求：判断 VD 是导通还是截止；分别用<b>理想模型</b>与<b>恒压模型</b>算出 \(U_{AO}\)（如为负填负号）。</div>
+
+          <div class="blk"><b>电路图（按上述读图约定重画）</b>
+            <div class="figwrap" style="width:min(100%,420px)">
+              <svg class="fig" viewBox="0 0 420 210" style="display:block;width:100%;height:auto" role="img" aria-label="习题 1.1(a) 电路">
+                <g stroke="var(--ink)" stroke-width="1.8" fill="none" stroke-linecap="round">
+                  <line x1="50" y1="50" x2="150" y2="50"/>
+                  <line x1="50" y1="50" x2="50" y2="112"/><line x1="50" y1="124" x2="50" y2="180"/>
+                  <line x1="34" y1="112" x2="66" y2="112" stroke-width="4"/>
+                  <line x1="24" y1="124" x2="76" y2="124"/>
+                  <line x1="50" y1="180" x2="330" y2="180"/>
+                  <line x1="150" y1="38" x2="150" y2="62"/><line x1="150" y1="38" x2="175" y2="50"/><line x1="150" y1="62" x2="175" y2="50"/>
+                  <line x1="175" y1="34" x2="175" y2="66" stroke-width="2.6"/>
+                  <line x1="175" y1="50" x2="260" y2="50"/>
+                  <line x1="260" y1="50" x2="260" y2="78"/>
+                  <rect x="252" y="78" width="16" height="36" fill="var(--card)"/>
+                  <line x1="260" y1="114" x2="260" y2="132"/>
+                  <line x1="246" y1="132" x2="274" y2="132" stroke-width="4"/>
+                  <line x1="238" y1="144" x2="282" y2="144"/>
+                  <line x1="260" y1="144" x2="260" y2="180"/>
+                  <line x1="260" y1="50" x2="330" y2="50"/>
+                  <circle cx="330" cy="50" r="5" fill="var(--card)"/>
+                  <circle cx="330" cy="180" r="5" fill="var(--card)"/>
+                  <line x1="300" y1="180" x2="300" y2="194"/>
+                  <line x1="288" y1="194" x2="312" y2="194"/>
+                  <line x1="293" y1="199" x2="307" y2="199"/>
+                  <line x1="297" y1="204" x2="303" y2="204"/>
+                </g>
+                <path d="M150,38 L150,62 L175,50 Z" fill="var(--key)" stroke="none"/>
+              </svg>
+              <span class="figlab" style="left:38%;top:11%">VD</span>
+              <span class="figlab" style="left:25%;top:58%">\(6\,\text{V}\)</span>
+              <span class="figlab" style="left:70%;top:40%">\(2\,\text{k}\Omega\)</span>
+              <span class="figlab" style="left:74%;top:63%">\(10\,\text{V}\)</span>
+              <span class="figlab" style="left:85%;top:21%">\(A\;(+)\)</span>
+              <span class="figlab" style="left:85%;top:52%">\(U_{AO}\)</span>
+              <span class="figlab" style="left:85%;top:84%">\(O\;(-)\)</span>
+            </div>
+          </div>
+
+          <div class="blk s0"><b>第0步 · 三类检查（电路版）</b>
+            <p>(i) <b>参考方向与量纲</b>：\(U_{AO}\) 的参考极性图上已标，\(A\) 为"+"、\(O\) 为"−"，且 \(O\) 接地，故 \(V_O=0\) 且 \(U_{AO}=V_A-0=V_A\)。两个电源的极性按长短线读：\(6\,\text{V}\) 源<b>负极朝上</b>接 VD 阳极、正极朝下接 \(O\)，所以 VD 阳极所在节点 \(=-6\,\text{V}\)；\(10\,\text{V}\) 源<b>负极朝上</b>接 \(2\,\text{k}\Omega\) 下端、正极朝下接 \(O\)，所以该下端节点 \(=-10\,\text{V}\)。电流参考方向取"自阳极流入为正"。单位统一在 V / mA / k\(\Omega\) 一套，\(\text{V}/\text{k}\Omega=\text{mA}\)，不必再换算。</p>
+            <p>(ii) <b>工作区与模型成立前提</b>：本电路只有理想电压源、一个电阻、一个二极管，无运放无 BJT，故不涉及饱和与放大区判定。输出端 \(A\) 只用来量 \(U_{AO}\)、不接负载，按空载处理——若 \(A\) 另挂一只电阻，\(U_{AO}\) 与 \(I_D\) 都得重算。理想模型与恒压模型都是<b>分段线性化</b>，用之前必须先定通断；两个模型的通断结论<b>允许不同</b>：开路管压一旦落在 \(0\lt U_{D0}\le 0.7\,\text{V}\) 这条窄带里，理想模型判导通、恒压模型判截止，两边都对，这正是恒压模型存在的理由。第 5 步算出 \(U_{D0}\) 之后第一件事就是看它落不落在这条带里——落在带里就别去"统一"两个答案。</p>
+            <p>(iii) <b>初始与边界条件</b>：不适用。理由：电路里没有电容、电感，也没有换路动作，纯电阻直流网络不存在 \(0_+\) 与 \(0_-\) 之分，各量对时间恒定的。</p>
+          </div>
+
+          <div class="blk idea"><b>思路</b>路线甲：假设法——先把 VD 断开求开路电压 \(U_{D0}\)，比阈值定通断，再换等效电路重算。路线乙：设 \(V_A\) 为未知量、把管态写成不等式约束，直接列节点方程。选<b>甲</b>：本电路只有一个二极管，甲只需两次线性计算；乙要分"通""断"两套方程分别列再挑自洽的那套，工作量更大且没有额外收益。</div>
+
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>执行假设法第 2 条：把 VD 从电路里拿掉，\(A\) 点只剩 \(2\,\text{k}\Omega\) 这一条支路。<span class="stk"><a href="#s1" tabindex="0" role="button" aria-describedby="s1">断开后该支路电流必为 0</a><span class="pop" id="s1"><u>旁注 · 复现（从结构看）</u>一条支路只要有一处断开，环路上就没有可供电荷持续流动的路径，串联回路的电流处处为 \(0\)。这里 \(A\) 是分支点，但 VD 拿走后 \(A\) 只连着一条线，那条线自己就是一个断头支路。<i>本题用处：第 2 步"电阻压降为 0"完全依赖这一步的电流为 0，别跳过。</i></span></span>（依据：串联回路开路则无电流）</li>
+              <li>该 \(0\,\text{mA}\) 电流在 \(2\,\text{k}\Omega\) 上产生的压降为 \(0\times 2\,\text{k}=0\,\text{V}\)。（依据：欧姆定律 \(U=IR\)）</li>
+              <li>由第0步 (i)，电阻下端节点电位为 \(-10\,\text{V}\)；电阻两端无压降，故上端即 \(A\) 点电位 \(V_A=-10\,\text{V}\)。（依据：第 2 步 + 读图所得下端电位）</li>
+              <li>VD 阳极直接由导线接到 \(6\,\text{V}\) 源的负极，导线无电阻故无压降，\(V_{\text{阳}}=-6\,\text{V}\)。（依据：理想导线等电位）</li>
+              <li>把第 3、4 步代进 (1-1) 的定义式：\(U_{D0}=V_{\text{阳}}-V_{\text{阴}}=(-6)-(-10)=+4\,\text{V}\)。（依据：式 (1-1) 左侧的定义）</li>
+              <li>理想模型取 \(U_{D(\text{on})}=0\)，比较 \(4\,\text{V}\gt 0\)，判为<b>导通</b>。（依据：式 (1-1) 第一支）</li>
+              <li>恒压模型取 \(U_{D(\text{on})}=0.7\,\text{V}\)，比较 \(4\,\text{V}\gt 0.7\,\text{V}\)，同样判为<b>导通</b>。（依据：式 (1-1) 第一支）</li>
+              <li>第 6、7 步合起来给出第一空的答案：<b>两种模型下 VD 都导通</b>。后面只需分别算 \(U_{AO}\)。（依据：第 6、7 步）</li>
+              <li><b>理想模型</b>：导通 ⇒ 管等效为一段导线 ⇒ \(V_A=V_{\text{阳}}=-6\,\text{V}\)。（依据：M1 知识点"理想模型导通压降为 0"）</li>
+              <li>算理想模型的管电流以回查：电流自 \(A\)（\(-6\,\text{V}\)）经 \(2\,\text{k}\Omega\) 流向下端节点（\(-10\,\text{V}\)），\(I_D=\dfrac{(-6)-(-10)}{2}= \dfrac{4}{2}=2\,\text{mA}\)。（依据：欧姆定律，电流由高电位流向低电位）</li>
+              <li>回查：\(I_D=2\,\text{mA}\gt 0\) 且方向为"自阳极流入"，与第 6 步的导通判定自洽。（依据：式 (1-2) 第一支）</li>
+              <li>故理想模型下 \(U_{AO}=V_A-V_O=-6-0=-6\,\text{V}\)。（依据：第0步 (i) 的 \(U_{AO}=V_A\)）</li>
+              <li><b>恒压模型</b>：导通 ⇒ 管等效为一个 \(0.7\,\text{V}\) 的恒压源，阳极端为"+"。<span class="stk r"><a href="#s2" tabindex="0" role="button" aria-describedby="s2">恒压降模型的极性</a><span class="pop" id="s2"><u>旁注 · 复现（换个角度：电流方向）</u>恒压降模型把导通的二极管换成一个小电池，它的极性必须<b>抵抗</b>正向电流，所以电流进去的那一端（阳极）电位高：\(V_{\text{阴}}=V_{\text{阳}}-U_{D(\text{on})}\)。判记法：管吃掉的是"顺着电流方向的一段电位"。<i>此处怎么用：本题 \(V_{\text{阳}}=-6\,\text{V}\)，减 \(0.7\) 得 \(-6.7\,\text{V}\)；写成 \(-6+0.7=-5.3\,\text{V}\) 是本题坑一的写法。</i></span></span>（依据：M1 知识点"其二"）</li>
+              <li>故 \(V_A=V_{\text{阴}}=V_{\text{阳}}-U_{D(\text{on})}=-6-0.7=-6.7\,\text{V}\)。（依据：第 13 步的极性关系）</li>
+              <li>回查电流：\(I_D=\dfrac{V_A-(-10)}{2}=\dfrac{-6.7+10}{2}=\dfrac{3.3}{2}=1.65\,\text{mA}\gt 0\)。（依据：欧姆定律 + 式 (1-2)）</li>
+              <li>恒压模型下 \(U_{AO}=V_A-V_O=-6.7-0=-6.7\,\text{V}\)。（依据：第 14 步）</li>
+            </ol>
+          </div>
+
+          <div class="ans"><b>答案</b>
+            \[ \boxed{\ \text{VD 导通},\qquad U_{AO}\big|_{\text{理想}}=-6\,\text{V},\qquad U_{AO}\big|_{\text{恒压}}=-6.7\,\text{V}\ }\]
+            两个空都填负数。若课上恒压降取 \(0.5\,\text{V}\) 或 \(0.6\,\text{V}\)，把第 14 步的 \(0.7\) 换成对应值即可，通断结论不变。</div>
+
+          <div class="blk chk"><b>验证</b>
+            <p>换列式复核（<b>回路电压法 KVL</b>，与推导用的"逐点算电位"两套列式、同一个单回路）：沿 \(O\to 6\,\text{V}\) 源 \(\to\) VD \(\to 2\,\text{k}\Omega \to 10\,\text{V}\) 源 \(\to O\) 绕一周，电位变化总和为 \(0\)。理想模型下依次为 \((-6-0)+0+(-I_D\cdot 2)+(+10)=0\)，解出 \(I_D=\dfrac{10-6}{2}=2\,\text{mA}\)，与第 10 步一致；恒压模型下多一项 \(-0.7\)，得 \(I_D=\dfrac{10-6-0.7}{2}=1.65\,\text{mA}\)，与第 15 步一致。这条路查得出抄错的号与算错的数，用的却还是同一条欧姆定律与同一组电位，<b>不算独立复核</b>——单回路单管题本就没有第二条事实链；真正能否决假设的是下面这条单调性检查和第 11 步的方向回查。</p>
+            <p>合理性检查：恒压模型比理想模型多算出一段 \(0.7\,\text{V}\) 压降，它只会<b>削弱</b>驱动电压，所以电流必须变小——\(1.65\,\text{mA}\lt 2\,\text{mA}\)，方向不变，通断结论也不变。同时 \(|U_{AO}|=6.7\,\text{V}\) 落在两个电源电位 \(-6\,\text{V}\) 与 \(-10\,\text{V}\) 之间，符合"两源相减、差额落在电阻上"的直觉。反过来，若某次算出恒压模型的电流比理想模型大，就说明极性写反了。</p>
+          </div>
+
+          <div class="blk warn"><b>常见坑</b><div class="pit">
+            <p><b>坑一：</b>把恒压降加成了 \(+0.7\)，答 \(-5.3\,\text{V}\)。这个数一放到极性检查下就站不住：\(-5.3\,\text{V}\) 比阳极的 \(-6\,\text{V}\) 还<b>高</b>，等于说导通管的阴极高过阳极——违反的是<b>恒压降模型自身的定义</b>（M1 其二：导通时 \(V_{\text{阴}}=V_{\text{阳}}-U_{D(\text{on})}\)）。注意 (1-2) 查不出它：\(-5.3\,\text{V}\) 下电流仍自阳极流入、算出来还是正的，(1-2) 第一支照样通过。所以它并不难抓，难的是<b>肯不肯做这两次核对</b>：① 看极性，导通管的阴极必须比阳极低 \(0.7\,\text{V}\)；② 看电流大小，恒压模型多一段压降，电流必须比理想模型<b>小</b>，而 \(\dfrac{-5.3+10}{2}=2.35\,\text{mA}\) 反而大于理想的 \(2\,\text{mA}\)。两处任查一处即可否决。</p>
+            <p><b>坑二：</b>看到两个电源都是负电位，就以为二极管反偏截止。通断比的是<b>阳极减阴极</b>，\(-6\,\text{V}\) 比 \(-10\,\text{V}\) 高 \(4\,\text{V}\)，所以正偏。全负电路里照样可以导通。</p>
+            <p><b>坑三：</b>拿导通后的管压降 \(0.7\,\text{V}\) 去和阈值比，得出"没超过 \(0.7\) 所以截止"。式 (1-1) 左侧的 \(U_{D0}\) 必须是<b>把管断开</b>后算出的开路电压（本题 \(+4\,\text{V}\)），导通以后那个量已经不存在了。</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ M2 ============ -->
+  <section class="mod" id="m2">
+    <div class="gutter">M2<small>共阴组</small></div>
+    <h2>M2 · 多管共阴极与钳位竞争</h2>
+    <div class="in">
+      <div class="blk kp"><b>知识点</b>
+        <p>两只二极管阴极接在一起时叫<b>共阴极接法</b>，那只公共的阴极节点记作"公共点"。两只管子抢着把公共点往<b>自己阳极</b>的电位上拉，但公共点只能有一个电位，所以：</p>
+        <div id="eq-2-1">\[ \text{共阴极组}:\;V_{\text{公}}=\max_k V_{\text{阳}k};\qquad \text{共阳极组}:\;V_{\text{公}}=\min_k V_{\text{阴}k} \tag{2-1}\]</div>
+        <p><b>(2-1) 是理想模型下的等式。</b>换成恒压降模型，导通管两端不再是零压降：共阴组要减一个 \(U_{D(\text{on})}\)、共阳组要加一个，即 \(V_{\text{公}}=\max_k V_{\text{阳}k}-U_{D(\text{on})}\) 与 \(V_{\text{公}}=\min_k V_{\text{阴}k}+U_{D(\text{on})}\)。作业 1(1) 的灵敏度检查算出的 \(5.7=5+0.7\,\text{V}\) 就是这条修正。</p>
+        <p>式 (2-1) 的读法是：共阴时阳极电位<b>最高</b>的那只优先导通，导通后把公共点钳在它的阳极电位上；其余各管的阴极被抬到了公共点电位，而各自阳极更低，因此承受反压截止。共阳是对偶情形，阴极电位<b>最低</b>的那只赢。</p>
+        <p>用 (2-1) 有两个前提，缺一个结论就不成立：<b>其一</b>，公共点必须另有通路：共阴组的赢家把电流<b>推进</b>公共阴极，这条通路得能<b>接收</b>它（作业 3 里是 \(A\to 2\,\text{k}\Omega\to -6\,\text{V}\) 那一条）；共阳组相反，电流由这条通路<b>注入</b>公共阳极再分给各管，它得能<b>提供</b>电流（作业 1 里是 \(+12\,\text{V}\to R\to F\)）。这条通路完全悬空时，赢家停在临界、实际无电流；通路在但方向不对（既收不走也供不上）时，赢家根本通不起来，按截止处理。<b>其二</b>，"最高""最低"比的是<b>该管阳极（阴极）在管断开时的电位</b>，不是电源标称值——电源接反了、或支路里串了电阻，比较对象就变了。</p>
+        <p>所以 (2-1) 只给<b>候选</b>，判完必须回查两件事：赢的那只电流是否 \(\gt 0\)，输的那只管压是否 \(\le U_{D(\text{on})}\)（理想模型即 \(\le 0\)）。这与 M1 式 (1-2) 是同一件事，只是对象从一只管变成一组管。</p>
+      </div>
+
+      <div class="blk idea" id="m2-meth"><b>解题方法</b>
+        <ol class="steps">
+          <li>认出公共点属于共阴还是共阳（看横杠在哪一侧、几只管子的同一极接在一起）。</li>
+          <li>把每只管的"竞争电位"（共阴取阳极电位、共阳取阴极电位）逐个写成节点电压。</li>
+          <li>用式 (2-1) 挑出优先候选，令其导通、其余截止；两路并列时候选不止一只，改取"多管同通"再往下走。</li>
+          <li>在"候选导通 = 短路"的等效电路里解出公共点电位与电流。</li>
+          <li>双路回查：候选管电流 \(\gt 0\)；落选管管压 \(\le U_{D(\text{on})}\)（理想模型即 \(\le 0\)）。任一不通过就换假设，并考虑"多管同时导通"或"全截止"。</li>
+        </ol>
+        适用条件：多只管只有一层公共节点、且各管的另一极接的是理想电压源。本模块易错点：第 2 步直接抄电源标称值，忘了电源极性与支路电阻会改变比较对象。</div>
+
+      <div class="q" id="q12a">
+        <h3>作业 3 · 习题 1.2(a)　两管共阴，判通断并求 U_AO</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>电路如图所示，二极管为理想模型。试判断 VD₁ 是导通还是截止、VD₂ 是导通还是截止，并计算 \(AO\) 两端的电压 \(U_{AO}\)。拓扑：VD₁ 与 VD₂ 的<b>阴极</b>共同接到输出端 \(A\)（标"+"）；VD₁ 的阳极直接接公共端 \(O\)（标"−"，接地）；VD₂ 的阳极接 \(12\,\text{V}\) 源的负极，该源正极接 \(O\)；\(A\) 经 \(2\,\text{k}\Omega\) 电阻接 \(6\,\text{V}\) 源的负极，该源正极接 \(O\)。</div>
+
+          <div class="blk"><b>电路图</b>
+            <div class="figwrap" style="width:min(100%,430px)">
+              <svg class="fig" viewBox="0 0 430 240" style="display:block;width:100%;height:auto" role="img" aria-label="习题 1.2(a) 电路">
+                <g stroke="var(--ink)" stroke-width="1.8" fill="none" stroke-linecap="round">
+                  <line x1="45" y1="45" x2="160" y2="45"/>
+                  <line x1="160" y1="33" x2="160" y2="57"/><line x1="160" y1="33" x2="185" y2="45"/><line x1="160" y1="57" x2="185" y2="45"/>
+                  <line x1="185" y1="29" x2="185" y2="61" stroke-width="2.6"/>
+                  <line x1="45" y1="45" x2="45" y2="200"/>
+                  <line x1="185" y1="45" x2="290" y2="45"/><line x1="290" y1="45" x2="290" y2="95"/>
+                  <line x1="115" y1="95" x2="195" y2="95"/><line x1="220" y1="95" x2="290" y2="95"/>
+                  <line x1="195" y1="83" x2="195" y2="107"/><line x1="195" y1="83" x2="220" y2="95"/><line x1="195" y1="107" x2="220" y2="95"/>
+                  <line x1="220" y1="79" x2="220" y2="111" stroke-width="2.6"/>
+                  <line x1="115" y1="95" x2="115" y2="138"/>
+                  <line x1="99" y1="138" x2="131" y2="138" stroke-width="4"/>
+                  <line x1="89" y1="150" x2="141" y2="150"/>
+                  <line x1="115" y1="150" x2="115" y2="200"/>
+                  <circle cx="290" cy="95" r="5.5" fill="var(--ink)" stroke="none"/>
+                  <line x1="290" y1="95" x2="345" y2="95"/>
+                  <line x1="290" y1="95" x2="290" y2="128"/>
+                  <rect x="282" y="128" width="16" height="34" fill="var(--card)"/>
+                  <line x1="290" y1="162" x2="290" y2="176"/>
+                  <line x1="276" y1="176" x2="304" y2="176" stroke-width="4"/>
+                  <line x1="268" y1="188" x2="312" y2="188"/>
+                  <line x1="290" y1="188" x2="290" y2="200"/>
+                  <line x1="45" y1="200" x2="345" y2="200"/>
+                  <circle cx="345" cy="95" r="5" fill="var(--card)"/>
+                  <circle cx="345" cy="200" r="5" fill="var(--card)"/>
+                  <line x1="318" y1="200" x2="318" y2="214"/><line x1="306" y1="214" x2="330" y2="214"/>
+                  <line x1="311" y1="219" x2="325" y2="219"/><line x1="315" y1="224" x2="321" y2="224"/>
+                </g>
+                <path d="M160,33 L160,57 L185,45 Z" fill="var(--key)" stroke="none"/>
+                <path d="M195,83 L195,107 L220,95 Z" fill="var(--key)" stroke="none"/>
+              </svg>
+              <span class="figlab" style="left:40%;top:8%">VD₁</span>
+              <span class="figlab" style="left:46%;top:52%">VD₂</span>
+              <span class="figlab" style="left:13%;top:60%">\(12\,\text{V}\)</span>
+              <span class="figlab" style="left:76%;top:55%">\(2\,\text{k}\Omega\)</span>
+              <span class="figlab" style="left:77%;top:76%">\(6\,\text{V}\)</span>
+              <span class="figlab" style="left:88%;top:33%">\(A\;(+)\)</span>
+              <span class="figlab" style="left:88%;top:53%">\(U_{AO}\)</span>
+              <span class="figlab" style="left:88%;top:83%">\(O\;(-)\)</span>
+            </div>
+          </div>
+
+          <div class="blk s0"><b>第0步 · 三类检查（电路版）</b>
+            <p>(i) <b>参考方向与量纲</b>：\(O\) 接地 ⇒ \(V_O=0\)，\(U_{AO}=V_A\)。逐节点翻译电源：VD₁ 阳极经导线直连 \(O\) ⇒ \(V_{\text{阳}1}=0\,\text{V}\)；\(12\,\text{V}\) 源负极朝上接 VD₂ 阳极 ⇒ \(V_{\text{阳}2}=-12\,\text{V}\)；\(6\,\text{V}\) 源负极朝上接 \(2\,\text{k}\Omega\) 下端 ⇒ 该下端节点 \(=-6\,\text{V}\)。电流参考方向定为"自各自阳极流入为正"，\(I_{2k}\) 定为自 \(A\) 向下。单位 V / mA / k\(\Omega\)。</p>
+            <p>(ii) <b>工作区与模型成立前提</b>：理想模型 ⇒ 通 = 短路、断 = 开路，无 \(0.7\,\text{V}\) 恒压源。两只管子共用阴极，属式 (2-1) 前半的适用情形；用 (2-1) 前须确认公共点 \(A\) 另有通路（\(2\,\text{k}\Omega\) 支路）能收电流——本题有，故前提成立。</p>
+            <p>(iii) <b>初始与边界条件</b>：不适用。纯电阻直流电路，无储能元件与换路，各量恒定。</p>
+          </div>
+
+          <div class="blk idea"><b>思路</b>路线甲：两只管四种组合（通通、通断、断通、全断）逐一列方程并排除，最笨但绝不漏。路线乙：先用式 (2-1) 一步锁定候选，再补双路回查。选<b>乙</b>：四种组合里"通通"会给出两个互相矛盾的 \(V_A\)，"全断"会给出一个自相矛盾的管压，甲有三次是白算的（通通、VD₂ 独通、全断三组都得否证一遍，见本卡验证段的 ①②③）；乙把候选压到一个，剩下的核对工作正好就是甲的排除法——所以本卡把甲的完整排除放到<b>验证</b>段当独立路径用，两边互为检查。</div>
+
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>认拓扑：VD₁、VD₂ 的横杠（阴极）都接在 \(A\) ⇒ 共阴极接法，公共点为 \(A\)。（依据：第0步 (i) 的读图 + 共阴定义）</li>
+              <li>写出两只管的竞争电位（共阴取阳极电位）：\(V_{\text{阳}1}=0\,\text{V}\)，\(V_{\text{阳}2}=-12\,\text{V}\)。（依据：第0步 (i) 逐节点翻译的结果）</li>
+              <li>比较：\(0\,\text{V}\gt -12\,\text{V}\)，取较大者 ⇒ 候选为 VD₁ 导通、VD₂ 截止。<span class="stk"><a href="#s3" tabindex="0" role="button" aria-describedby="s3">共阴极组阳极最高者先导通</a><span class="pop" id="s3"><u>旁注 · 复现（从 (1-1) 推出它，而不是背它）</u>公共阴极点只容得下一个电位。设阳极电位较高的 VD₁ 导通并换成导线，公共点就被钳在 \(V_{\text{阳}1}\)；再看另一只：它的管压 \(=V_{\text{阳}2}-V_{\text{阳}1}\lt 0\)，按 (1-1) 该截止，与假设自洽。反过来设低的导通，则高的那只管压为正、(1-1) 判它该通，自相矛盾。所以"阳极最高者通"不是新规则，它就是 (1-1) 加一条节点电位唯一。两个前提别漏：公共点得有通路把电流<b>接走</b>（悬空则赢家也只能停在临界、无电流），且比的是<b>管断开时</b>的阳极电位而不是电源上写的数字。<i>此处怎么用：本题公共点 \(A\) 挂着 \(2\,\text{k}\Omega\) 支路，前提满足；两管阳极电位已在第 2 步写成 \(0\,\text{V}\) 与 \(-12\,\text{V}\)，直接比大小。</i></span></span>（依据：式 (2-1) 前半）</li>
+              <li>执行 M2 方法第 ④ 条：令 VD₁ 导通并换成导线 ⇒ \(V_A=V_{\text{阳}1}=0\,\text{V}\)。（依据：理想模型导通压降为 \(0\)）</li>
+              <li>算 \(2\,\text{k}\Omega\) 支路电流：上端 \(V_A=0\,\text{V}\)、下端 \(-6\,\text{V}\)，\(I_{2k}=\dfrac{V_A-(-6)}{2}=\dfrac{0+6}{2}=3\,\text{mA}\)，方向自 \(A\) 向下。（依据：欧姆定律，电流由高电位流向低电位）</li>
+              <li>对节点 \(A\) 列电流方程。<span class="stk r"><a href="#s4" tabindex="0" role="button" aria-describedby="s4">KCL 在只有三条支路的节点上怎么写</a><span class="pop" id="s4"><u>旁注 · 复现（从写法本身）</u>基尔霍夫电流定律：任一节点，流入电流之和等于流出电流之和。\(A\) 点恰好三条支路：VD₁ 送来 \(I_{D1}\)、VD₂ 送来 \(I_{D2}\)、电阻支路带走 \(I_{2k}\)，故 \(I_{D1}+I_{D2}=I_{2k}\)。注意两管的正方向都被定义成"流入 \(A\)"，所以左边是加号。<i>此处怎么用：第 7 步把截止管的电流置 \(0\) 后，这条式子退化成 \(I_{D1}=I_{2k}\)，回查用的电流全靠它。</i></span></span>（依据：基尔霍夫电流定律 KCL）</li>
+              <li>代入 VD₂ 截止的假设 \(I_{D2}=0\)：\(I_{D1}=I_{2k}-0=3\,\text{mA}\)。（依据：第 6 步的方程 + 截止 ⇒ 电流为 \(0\)）</li>
+              <li>回查 VD₁：\(I_{D1}=3\,\text{mA}\gt 0\)，方向自阳极流入，导通假设成立。（依据：式 (1-2) 第一支）</li>
+              <li>回查 VD₂：\(U_{D2}=V_{\text{阳}2}-V_{\text{阴}2}=-12-V_A=-12-0=-12\,\text{V}\le 0\)，反偏，截止假设成立。（依据：式 (1-2) 第二支）</li>
+              <li>两个假设互不相斥且都通过回查 ⇒ 本组假设成立，可以取作答案。（依据：式 (1-2) 两条同时满足。至于它是不是<b>唯一</b>的解，那是另一个问题，要等验证段把其余三种组合逐一否证才知道——本步的电位与电流不依赖那个结论）</li>
+              <li>求输出：\(U_{AO}=V_A-V_O=0-0=0\,\text{V}\)。（依据：第 4 步与第0步 (i) 的 \(V_O=0\)）</li>
+            </ol>
+          </div>
+
+          <div class="ans"><b>答案</b>
+            \[ \boxed{\ \text{VD}_1\ \text{导通},\quad \text{VD}_2\ \text{截止},\quad U_{AO}=0\ \text{V}\ }\]
+            附带工作参数：\(I_{D1}=3\,\text{mA}\)，\(I_{D2}=0\)，VD₂ 承受反压 \(12\,\text{V}\)。</div>
+
+          <div class="blk chk"><b>验证</b>
+            <p>独立路径（<b>穷举反证</b>，与第 3 步"用规则挑候选"是完全不同的列式方式）：
+            ① 设两管都导通 ⇒ 理想短路使 \(V_A\) 同时等于 \(0\,\text{V}\) 与 \(-12\,\text{V}\)，矛盾。
+            ② 设 VD₂ 独通 ⇒ \(V_A=-12\,\text{V}\)，则 \(I_{2k}=\dfrac{-12+6}{2}=-3\,\text{mA}\)，即实际有 \(3\,\text{mA}\) 自下往上流入 \(A\)；这股电流只能从某管的阴极流向阳极流出，两管都不允许，矛盾。
+            ③ 设两管都截止 ⇒ \(I_{2k}=0\) ⇒ \(V_A=-6\,\text{V}\) ⇒ VD₁ 的 \(U_{D1}=0-(-6)=+6\,\text{V}\gt 0\)，应导通，矛盾。
+            ④ 剩下 VD₁ 独通 ⇒ 与本卡第 1–11 步一致，且四种组合只剩这一种存活 ⇒ 解唯一。</p>
+            <p>合理性检查：把 \(2\,\text{k}\Omega\) 换成 \(1\,\text{k}\Omega\) 重算——第 5 步电流变 \(6\,\text{mA}\)，但第 4 步的 \(V_A=0\,\text{V}\) 一个字都不改，\(U_{AO}\) 仍是 \(0\,\text{V}\)。这说明<b>输出电位由"钳住公共点的那只管所接的电源"决定，负载电阻只决定电流</b>。这正是共阴钳位电路作为门电路的物理基础：电平稳定，不随负载电流变化。</p>
+          </div>
+
+          <div class="blk warn"><b>常见坑</b><div class="pit">
+            <p><b>坑一：</b>看到 \(12\,\text{V}\) 数字最大就判 VD₂ 导通。该源是<b>负极朝上</b>接 VD₂ 阳极的，VD₂ 阳极其实是 \(-12\,\text{V}\)，是两管里最低的。极性读错，通断整个反过来，而 \(U_{AO}\) 会算成 \(-12\,\text{V}\)。</p>
+            <p><b>坑二：</b>把 \(U_{AO}\) 答成 \(-6\,\text{V}\)。那是 \(2\,\text{k}\Omega\) <b>下端</b>的电位，不是 \(A\) 点电位；\(A\) 点被导通的 VD₁ 钳在 \(0\,\text{V}\)，电阻两端 \(6\,\text{V}\) 的差正是电流的来源。</p>
+            <p><b>坑三：</b>只判通断、不回查电流方向。把 \(6\,\text{V}\) 源反过来（下端变 \(+6\,\text{V}\)）再走一遍：第 4 步仍给 \(V_A=0\,\text{V}\)，但第 5 步变成 \(I_{2k}=\dfrac{0-6}{2}=-3\,\text{mA}\)，因此第 7 步 \(I_{D1}=-3\,\text{mA}\lt 0\)，第 8 步回查当场失败。此时正确答案是<b>两管都截止</b>、\(U_{AO}=+6\,\text{V}\)。同一张图的极性差别，答案从"一通一断"翻成"全断"——回查这一步省不掉。</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ M3 ============ -->
+  <section class="mod" id="m3">
+    <div class="gutter">M3<small>门电路</small></div>
+    <h2>M3 · 二极管门电路：min 与 max 钳位</h2>
+    <div class="in">
+      <div class="blk kp"><b>知识点</b>
+        <p>M2 的式 (2-1) 是"谁赢"的通用规则。把它套到两种标准结构上，就得到两条可以直接背的结论——这也是教材把 1.6 与 1.7 排在一起的原因。</p>
+        <p><b>结构一：共阳 + 上拉。</b>两只管的阳极接在一起，经电阻 \(R\) 拉到正电源；阴极分别接输入。公共点被上拉电阻往上抬，但阴极电位低的那只输入会先把公共点钳住，其余管子随即反偏。<b>输出取输入中的最小值</b>：</p>
+        <div id="eq-3-1">\[ \text{共阳}+R\ \text{上拉},\ \text{输入直连阴极}:\quad U_O=\min(U_A,\,U_B) \tag{3-1}\]</div>
+        <p>式里的 \(U_O\) 就是图中输出节点 \(F\) 的电位，本文件按图一律写作 \(U_F\)；两条等式同 (2-1) 一样<b>只在理想模型下成立</b>，换恒压降模型时共阳加、共阴减一个 \(U_{D(\text{on})}\)。</p>
+        <p>正逻辑下这就是<b>与门</b>：只有两个输入都为高，最小值才为高。它另有一个前提：\(\min(U_A,U_B)\) 得真的低于上拉电源 \(V_{CC}\)——两个输入都高于 \(V_{CC}\) 时两管全截止、\(U_O=V_{CC}\ne\min\)（作业 1(1) 坑三给了数）。</p>
+        <p><b>结构二：共阴 + 下拉。</b>两只管的阴极接在一起，经电阻 \(R\) 拉到地；阳极分别接输入。阳极电位高的那只抢先把公共点抬高，另一只反偏。<b>输出取输入中的最大值</b>：</p>
+        <div id="eq-3-2">\[ \text{共阴}+R\ \text{下拉},\ \text{输入直连阳极}:\quad U_O=\max(U_A,\,U_B) \tag{3-2}\]</div>
+        <p>正逻辑下这就是<b>或门</b>。对偶地，它要求 \(\max(U_A,U_B)\) 不低于下拉参考：两个输入都低于地时两管同样全截止，\(U_O=0\ne\max\)。</p>
+        <p><b>"直连"两个字是条件，不是装饰。</b>若输入与管极之间串了电阻（习题 1.7 的 \(R_A\)、\(R_B\) 就是），钳位点从输出节点跑到了那个电阻与管极之间的隐藏节点上，输出值不再是干净的 \(\max\)，而要按电阻分压另算；<b>剩下的只是一条候选线索：电位高的那一路"优先"导通</b>，最终有几只管在导通仍要逐只回查。反例（用作业 2 的电路：\(R_A=R_B=2\,\text{k}\Omega\) 串在输入与阳极之间，\(F\) 经 \(R=5\,\text{k}\Omega\) 下拉到地，\(U_A=6\,\text{V}\)）：把 \(U_B\) 从 \(3\,\text{V}\) 抬到 \(5.5\,\text{V}\)，\(\max\) 仍只点 \(A\) 路，可按单路算出 \(U_F=\dfrac{30}{7}=4.286\,\text{V}\) 后回查 VD₂，得 \(U_{D2}=5.5-4.286=+1.214\,\text{V}\gt 0\)——它其实也导通，双通解为 \(U_F=\dfrac{30+5U_B}{12}=4.792\,\text{V}\)。这是 (3-1)(3-2) 最容易被越权使用的一处。</p>
+        <p><b>输入相等时的电流分配是欠定的。</b>两只理想管并联在同样的两个节点之间，KCL 只给得出总电流，KVL 给不出分配比例——方程组少一个独立方程。此时"每管各一半"来自<b>器件完全相同的对称性论证</b>，不是来自电路定律。理想模型下这是固有不确定性；换成恒压降模型并用真实的管子的 \(I\text{-}U\) 曲线，才谈得上精确分配。</p>
+      </div>
+
+      <div class="blk idea" id="m3-meth"><b>解题方法</b>
+        <ol class="steps">
+          <li>认结构：横杠（阴极）朝输入侧 ⇒ 共阳上拉 ⇒ 与门 / min；三角形底边（阳极）朝输入侧 ⇒ 共阴下拉 ⇒ 或门 / max。</li>
+          <li>核对 (3-1) 或 (3-2) 的"直连"条件是否成立：成立则输出电位一步到位；不成立（各支路各串了电阻）时它只回答"哪一路电位最高、谁优先导通"，<b>不回答"一共几只管导通"</b>。</li>
+          <li>按第 2 步的候选把导通管换成导线、截止管换成开路，读出或解出输出节点电位；候选只是起手，导通集合由第 5 步的回查定。</li>
+          <li>用欧姆定律算上拉／下拉电阻的电流，再对输出节点列 KCL 分配到各管。</li>
+          <li>双路回查：导通管电流 \(\gt 0\)，截止管管压 \(\le U_{D(\text{on})}\)（理想模型即 \(\le 0\)）。不通过就换一组假设，特别别漏掉"两管并列同时导通"。电流恰好算出 \(0\) 属临界，式 (1-2) 在此不给取舍依据，要另找论证——作业 1(3) 整卡就是这种情形。</li>
+        </ol>
+        适用条件：输入由理想电压源驱动、输出端不另接负载（或负载已并入 \(R\)）。本模块易错点：第 3 步在"两输入相等"时误挑一只管独担电流。</div>
+
+      <div class="blk"><b>习题 1.6 电路（作业 1 三小题共用）</b>
+        <div class="figwrap" style="width:min(100%,430px)">
+          <svg class="fig" viewBox="0 0 430 240" style="display:block;width:100%;height:auto" role="img" aria-label="习题 1.6 电路">
+            <g stroke="var(--ink)" stroke-width="1.8" fill="none" stroke-linecap="round">
+              <circle cx="300" cy="30" r="5" fill="var(--card)"/>
+              <line x1="300" y1="35" x2="300" y2="50"/>
+              <rect x="292" y="50" width="16" height="36" fill="var(--card)"/>
+              <line x1="300" y1="86" x2="300" y2="190"/>
+              <circle cx="55" cy="120" r="5" fill="var(--card)"/>
+              <line x1="60" y1="120" x2="140" y2="120"/>
+              <line x1="140" y1="106" x2="140" y2="134" stroke-width="2.6"/>
+              <line x1="165" y1="120" x2="300" y2="120"/>
+              <circle cx="55" cy="190" r="5" fill="var(--card)"/>
+              <line x1="60" y1="190" x2="140" y2="190"/>
+              <line x1="140" y1="176" x2="140" y2="204" stroke-width="2.6"/>
+              <line x1="165" y1="190" x2="375" y2="190"/>
+              <circle cx="300" cy="120" r="5" fill="var(--ink)" stroke="none"/>
+              <circle cx="300" cy="190" r="5" fill="var(--ink)" stroke="none"/>
+              <circle cx="375" cy="190" r="5" fill="var(--card)"/>
+            </g>
+            <path d="M165,108 L165,132 L140,120 Z" fill="var(--key)" stroke="none"/>
+            <path d="M165,178 L165,202 L140,190 Z" fill="var(--key)" stroke="none"/>
+          </svg>
+          <span class="figlab" style="left:83%;top:11%">\(+12\,\text{V}\)</span>
+          <span class="figlab" style="left:85%;top:29%">\(R=3.9\,\text{k}\Omega\)</span>
+          <span class="figlab" style="left:7%;top:48%">\(A\)</span>
+          <span class="figlab" style="left:7%;top:79%">\(B\)</span>
+          <span class="figlab" style="left:35%;top:38%">\(\text{VD}_1\)</span>
+          <span class="figlab" style="left:35%;top:68%">\(\text{VD}_2\)</span>
+          <span class="figlab" style="left:88%;top:70%">\(U_F\)</span>
+        </div>
+      </div>
+
+      <div class="q" id="q16a">
+        <h3>作业 1(1) · 习题 1.6　U_A = U_B = 5 V</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>电路如图（上方"习题 1.6 电路"）：输出节点 \(F\) 经 \(R=3.9\,\text{k}\Omega\) 上拉到 \(+12\,\text{V}\)；二极管 VD₁、VD₂ 的<b>阳极</b>共接在 \(F\)，<b>阴极</b>分别接输入端 \(A\) 与 \(B\)。二极管为理想器件。本小题给 \(U_A=5\,\text{V}\)、\(U_B=5\,\text{V}\)，求输出端电位 \(U_F\)。</div>
+
+          <div class="blk s0"><b>第0步 · 三类检查（电路版）</b>
+            <p>(i) <b>参考方向与量纲</b>：\(U_F\) 是 \(F\) 对参考地（\(+12\,\text{V}\) 源的负端，即 \(A\)、\(B\) 两个输入源的公共端）的电位。电流参考方向：\(I_R\) 自 \(+12\,\text{V}\) 流向 \(F\)，\(I_{D1}\) 自 \(F\) 流向 \(A\)，\(I_{D2}\) 自 \(F\) 流向 \(B\)，即"自各自阳极流入为正"。单位取 V / mA / k\(\Omega\) 一套，\(\text{V}/\text{k}\Omega\) 直接给 mA，不必换算 \(10^3\)。</p>
+            <p>(ii) <b>工作区与模型成立前提</b>：理想器件 ⇒ 通 = 短路、断 = 开路。三个电压源（\(+12\,\text{V}\)、\(U_A\)、\(U_B\)）都按理想源处理，内阻为 \(0\)，这正是式 (3-1) 中"输入直连阴极"成立的前提。输出端 \(F\) 除 \(R\) 与两管阳极外没有别的连线，即空载。</p>
+            <p>(iii) <b>初始与边界条件</b>：不适用。纯电阻直流网络，无电容电感、无换路动作。</p>
+          </div>
+
+          <div class="blk idea"><b>思路</b>路线甲：直接套 (3-1) 说"输出等于 min(5,5) = 5V"，一步到位。路线乙：先走假设法把"全断"这一组否掉，再论证两管并列导通。选<b>乙</b>：甲在 \(U_A=U_B\) 这个特殊点上跳过了两个真实存在的困难——(a) 为什么不是两管都截止，(b) 为什么电流要分给两只管。这两点在甲里都被一句话带过，在乙里各占一步。</div>
+
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>认结构：VD₁、VD₂ 的三角形底边都接在 \(F\)、横杠分别朝 \(A\) 与 \(B\) ⇒ 两管<b>阳极共接</b>，且公共阳极经 \(R\) 上拉到正电源 ⇒ 属式 (3-1) 的共阳上拉结构。（依据：第0步 (i) 读图 + 共阳定义）</li>
+              <li>核对 (3-1) 的条件"输入直连阴极"：\(A\)、\(B\) 是理想电压源，与阴极之间无电阻 ⇒ 条件成立。（依据：第0步 (ii)）</li>
+              <li>先做假设法的"全断"尝试：把两管都拿掉，则 \(F\) 只经 \(R\) 连到 \(+12\,\text{V}\)，那条支路是断头支路、电流为 \(0\)。（依据：串联回路开路则无电流）</li>
+              <li>\(I_R=0\) 使 \(R\) 上压降为 \(0\,\text{V}\)，故 \(U_F=12\,\text{V}\)。（依据：欧姆定律）</li>
+              <li>算两管的开路管压：\(U_{D1}=U_{D2}=V_{\text{阳}}-V_{\text{阴}}=12-5=+7\,\text{V}\gt 0\)。（依据：式 (1-1) 左侧的定义 + 第 4 步）</li>
+              <li>第 5 步与"全断"假设矛盾（式 (1-1) 判其应导通），故"全断"被否证。（依据：式 (1-2) 第二支的反面）</li>
+              <li>换假设。两管阴极同为 \(5\,\text{V}\)，(3-1) 的 min 规则在此并列：\(\min(5,5)=5\)。它只说得出"公共点钳在 \(5\,\text{V}\)"，说不出有几只管在通。先把单通组摆出来：设"仅 VD₁ 通"⇒ \(U_F=5\,\text{V}\)、\(I_{D1}=I_R=\dfrac{12-5}{3.9}=1.795\,\text{mA}\gt0\)、\(U_{D2}=5-5=0\,\text{V}\le U_{D(\text{on})}\) ⇒ 自洽；把两管对调，"仅 VD₂ 通"同样自洽。⇒ 与作业 1(3) 同一局面：判据给不出取舍。取交换对称的不动点作代表解，即设两管<b>同时导通</b>。（依据：式 (1-1)(1-2) 只是必要条件 + 交换对称性）</li>
+              <li>两管都换成导线 ⇒ \(F\) 与 \(A\)、\(B\) 三点并成同一节点 ⇒ \(U_F=5\,\text{V}\)。（依据：理想导线等电位）</li>
+              <li>上拉电阻电流 \(I_R=\dfrac{12-U_F}{3.9}=\dfrac{12-5}{3.9}=\dfrac{7}{3.9}=1.795\,\text{mA}\)。（依据：欧姆定律）</li>
+              <li>对 \(F\) 列 KCL：流入的 \(I_R\) 等于流出的两管电流之和，\(I_{D1}+I_{D2}=1.795\,\text{mA}\)。（依据：基尔霍夫电流定律）</li>
+              <li>把总电流分到两只管。<span class="stk r"><a href="#s5" tabindex="0" role="button" aria-describedby="s5">并联理想管的电流分配靠对称性</a><span class="pop" id="s5"><u>旁注 · 复现（讲它为什么会发生）</u>两只理想管并联在同一对节点之间，各自压降都被强制为 \(0\)，因此 KVL 给出的两个回路方程退化成一个，"分给谁多少"没有方程可解——电路定律在这里是<b>欠定</b>的。补上"两只管子完全相同"这一物理条件，交换两管电路不变，只有 \(I_{D1}=I_{D2}\) 那一组与自己的交换像重合——一半一半是<b>对称性挑出来的代表值</b>，不是"唯一自洽"的解：\((1.795,0)\) 同样满足 KCL 与 (1-1)(1-2)。<i>此处怎么用：本题 \(U_A=U_B\) 恰好制造了这个欠定点。别把 1.795 mA 全记在一只管上，也别以为写不出分配式就是算错。</i></span></span>两管完全相同且处境对称 ⇒ \(I_{D1}=I_{D2}=\dfrac{1}{2}\times\dfrac{7}{3.9}=\dfrac{7}{7.8}=0.897\,\text{mA}\)。（依据：对称性论证）</li>
+              <li>回查：\(I_{D1}=I_{D2}=0.897\,\text{mA}\gt 0\)，方向均为自阳极流入，导通假设成立。（依据：式 (1-2) 第一支）</li>
+              <li>结论量 \(U_F=5\,\text{V}\)。三组自洽解（仅 VD₁ 通、仅 VD₂ 通、双通）给出的 \(U_F\) 都是 \(5\,\text{V}\)——单通时被导通管钳在它所接的 \(5\,\text{V}\) 输入上——所以这一空<b>与取舍无关</b>，受取舍影响的只有第 11 步的电流分配。（依据：第 8 步）</li>
+            </ol>
+          </div>
+
+          <div class="ans"><b>答案</b>　\[\boxed{\ U_F=5\ \text{V}\ }\qquad I_R=1.795\ \text{mA},\quad I_{D1}=I_{D2}=0.897\ \text{mA}\]</div>
+
+          <div class="blk chk"><b>验证</b>
+            <p>灵敏度检查（<b>换模型重算</b>，与推导用的理想开关是两套参数）：改用恒压降 \(0.7\,\text{V}\) 模型，导通管压降 \(0.7\,\text{V}\) 且阳极高，故 \(U_F=5+0.7=5.7\,\text{V}\)，\(I_R=\dfrac{12-5.7}{3.9}=1.615\,\text{mA}\)，每管 \(0.808\,\text{mA}\gt 0\)。通断结论不变，电位差 \(0.7\,\text{V}\) 恰好等于一个管压降，与第 8 步的"钳在 \(5\,\text{V}\)"逻辑一致。它<b>不查</b>"并列该不该取"：恒压模型下"仅 VD₁ 通"照样自洽（\(U_F=5.7\,\text{V}\)，另一管 \(5-5.7=-0.7\,\text{V}\le U_{D(\text{on})}\)，\(I_{D1}=1.615\,\text{mA}\gt0\)）。</p>
+            <p>完整性检查（<b>四组合穷举</b>，全程不用 (3-1)；查的是假设空间有没有漏，不引入新事实——四组的数在第 3–6 步与第 7 步都已算过）：① 全断 ⇒ \(U_F=12\,\text{V}\)，两管开路管压 \(12-5=+7\,\text{V}\gt0\)，否证。② 仅 VD₁ 通 ⇒ \(U_F=5\,\text{V}\)、\(I_{D1}=\dfrac{12-5}{3.9}=1.795\,\text{mA}\gt0\)、\(U_{D2}=5-5=0\le U_{D(\text{on})}\)，自洽。③ 仅 VD₂ 通 ⇒ 与②镜像，自洽。④ 双通 ⇒ \(U_F=5\,\text{V}\)、每管 \(0.897\,\text{mA}\gt0\)，自洽。⇒ 只有①被排除；②③④并存，但三者的 \(U_F\) 同为 \(5\,\text{V}\)，所以答案不依赖第 7 步的取舍。</p>
+            <p>合理性检查：把 \(5\,\text{V}\) 当逻辑 1、\(0\,\text{V}\) 当逻辑 0，则输入 (1,1) 得输出 1，符合与门真值表里"输入全为 1"那一行。更要紧的是"输出 \(5\,\text{V}\) 而不是 \(12\,\text{V}\)"——输出高电平由<b>输入</b>决定，上拉电源只负责供电流，这正是二极管与门作为电平开关的行为特征。</p>
+          </div>
+
+          <div class="blk warn"><b>常见坑</b><div class="pit">
+            <p><b>坑一：</b>以为两管都导通就要把两个 \(5\,\text{V}\) 做某种平均或相加。节点电位是被理想电源强制的，接两次还是 \(5\,\text{V}\)；能相加的只有电流。</p>
+            <p><b>坑二：</b>把 \(1.795\,\text{mA}\) 整股记给 VD₁ 或 VD₂。它满足 KCL，看不出问题，但违反第 11 步的对称性——两只完全一样的管子不可能一管满载一管空载。</p>
+            <p><b>坑三：</b>跳过第 3–6 步的"全断"检验。本题它确实被否证了，但把输入换成 \(U_A=U_B=15\,\text{V}\)（高于上拉电源），"全断"就<b>成立</b>：\(U_F=12\,\text{V}\)、两管各承受 \(-3\,\text{V}\) 反压、\(U_F\) 不再是 \(\min(15,15)\)。式 (3-1) 在这里失效，因为公共点被上拉电源钳住了、根本没有电流可分。背结论而不检验，就会在 \(15\,\text{V}\) 上答成 \(15\,\text{V}\)。</p>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="q" id="q16b">
+        <h3>作业 1(2) · 习题 1.6　U_A = 5 V, U_B = 0 V</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>同一个电路（见"习题 1.6 电路"图）：\(F\) 经 \(R=3.9\,\text{k}\Omega\) 上拉到 \(+12\,\text{V}\)，VD₁ 阳极接 \(F\)、阴极接 \(A\)，VD₂ 阳极接 \(F\)、阴极接 \(B\)，二极管理想。本小题给 \(U_A=5\,\text{V}\)、\(U_B=0\,\text{V}\)，求 \(U_F\)。</div>
+
+          <div class="blk s0"><b>第0步 · 三类检查（电路版）</b>
+            <p>(i) <b>参考方向与量纲</b>：与作业 1(1) 完全一致——\(I_R\) 自 \(+12\,\text{V}\) 流向 \(F\)，\(I_{D1}\) 自 \(F\) 流向 \(A\)，\(I_{D2}\) 自 \(F\) 流向 \(B\)；单位 V / mA / k\(\Omega\)。本小题 \(U_B=0\,\text{V}\) 表示 \(B\) 端接到与 \(+12\,\text{V}\) 源负端同电位的那条参考线上，不是悬空。</p>
+            <p>(ii) <b>工作区与模型成立前提</b>：理想器件（通 = 短路、断 = 开路）；\(A\)、\(B\) 为理想电压源直连阴极，式 (3-1) 的"直连"条件成立；输出空载。</p>
+            <p>(iii) <b>初始与边界条件</b>：不适用。无储能元件、无换路。</p>
+          </div>
+
+          <div class="blk idea"><b>思路</b>路线甲：用 (3-1) 一步取 min。路线乙：先假设导通管、算完再回查落选管的反偏。选<b>乙</b>：本小题两输入不等，min 规则给的候选是唯一的，但"唯一候选"和"结论正确"之间还差一次回查——VD₁ 到底承不承受得住反偏，必须算出来。甲把这一步省了。</div>
+
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>结构与作业 1(1) 相同：两管阳极共接 \(F\)、经 \(R=3.9\,\text{k}\Omega\) 上拉到 \(+12\,\text{V}\)，阴极分别接 \(5\,\text{V}\) 与 \(0\,\text{V}\)。（依据：第0步 (i) 读图）</li>
+              <li>挑候选。<span class="stk"><a href="#s6" tabindex="0" role="button" aria-describedby="s6">共阳组：阴极最低者钳住公共点</a><span class="pop" id="s6"><u>旁注 · 复现（给它的推导）</u>规则 (3-1) 不是新假设，它就是 (2-1) 的共阳一侧：公共阳极点只能有一个电位，谁的阴极更低，谁就先满足"阳极高过阴极"而导通；导通后公共点被拉到该最低阴极电位，其余管子阳极（＝公共点）不再高于自己的阴极，因此反偏截止。<i>此处怎么用：\(\min(5,0)=0\) 落在 \(B\) 侧，候选是 VD₂，且可预判 VD₁ 将承受 \(5-0=5\,\text{V}\) 反压。</i></span></span>按式 (3-1)，\(\min(U_A,U_B)=\min(5,0)=0\) ⇒ 候选为 VD₂ 导通、VD₁ 截止。（依据：式 (3-1)）</li>
+              <li>执行候选假设：VD₂ 换成导线 ⇒ \(F\) 与 \(B\) 等电位 ⇒ \(U_F=U_B=0\,\text{V}\)。（依据：理想模型导通压降为 \(0\)）</li>
+              <li>上拉电阻电流 \(I_R=\dfrac{12-U_F}{3.9}=\dfrac{12-0}{3.9}=3.077\,\text{mA}\)，方向自 \(+12\,\text{V}\) 注入 \(F\)。（依据：欧姆定律）</li>
+              <li>对 \(F\) 列 KCL：\(I_{D1}+I_{D2}=I_R=3.077\,\text{mA}\)。（依据：基尔霍夫电流定律）</li>
+              <li>校 VD₁ 的管压：\(U_{D1}=V_{\text{阳}1}-V_{\text{阴}1}=U_F-U_A=0-5=-5\,\text{V}\le 0\) ⇒ 反偏 ⇒ 截止 ⇒ \(I_{D1}=0\)。（依据：式 (1-2) 第二支 + 截止定义）</li>
+              <li>把第 6 步的 \(I_{D1}=0\) 代进第 5 步：\(I_{D2}=3.077-0=3.077\,\text{mA}\gt 0\) ⇒ VD₂ 导通假设自洽。（依据：式 (1-2) 第一支）</li>
+              <li>第 6、7 步双双通过 ⇒ 本组假设自洽，可以取作答案。（依据：式 (1-2) 两条同时满足。还有没有别组假设也自洽，本步不下结论——那要由验证段把其余三种组合逐一否证才回答得了，而本步的 \(U_F\) 与 \(I_{D2}\) 不依赖那个结论）</li>
+              <li>结论量 \(U_F=0\,\text{V}\)。（依据：第 3 步）</li>
+            </ol>
+          </div>
+
+          <div class="ans"><b>答案</b>　\[\boxed{\ U_F=0\ \text{V}\ }\qquad I_{D2}=3.077\ \text{mA},\quad I_{D1}=0,\quad \text{VD}_1\ \text{承受反压 } 5\ \text{V}\]</div>
+
+          <div class="blk chk"><b>验证</b>
+            <p>独立路径（<b>穷举反证</b>，不依赖第 2 步的 min 规则）：
+            ① 设 VD₁ 独通 ⇒ \(U_F=5\,\text{V}\) ⇒ \(U_{D2}=5-0=+5\,\text{V}\gt 0\)，VD₂ 也该通，与"独通"矛盾。
+            ② 设双通 ⇒ 两根导线把 \(F\) 同时接到 \(5\,\text{V}\) 与 \(0\,\text{V}\)，即两个理想电压源被短路并联，\(U_F\) 无解，矛盾。
+            ③ 设双断 ⇒ \(I_R=0\) ⇒ \(U_F=12\,\text{V}\) ⇒ 两管开路管压分别为 \(7\,\text{V}\) 与 \(12\,\text{V}\)，都 \(\gt 0\)，矛盾。
+            ④ 只剩 VD₂ 独通，与第 3–8 步一致。</p>
+            <p>合理性检查：输入 (1,0) 得输出 0，符合与门真值表。再看反压落点：输出被拉低时，<b>是高电平那一侧的输入端承受反压</b>（VD₁ 上 \(5\,\text{V}\)），这决定了选管子的反向耐压下限；把它说成"电流从 \(A\) 倒灌进 \(F\)"是概念错误，截止管电流恒为 \(0\)。</p>
+          </div>
+
+          <div class="blk warn"><b>常见坑</b><div class="pit">
+            <p><b>坑一：</b>用 \(R\) 上的压降去"算" \(U_F\)，写成 \(U_F=12-I_R R\) 却把 \(I_R\) 当成未知。\(U_F\) 由导通管的阴极电位直接钳定（第 3 步），\(I_R\) 是它的<b>结果</b>不是原因。把 \(R\) 换成 \(10\,\text{k}\Omega\)，\(U_F\) 仍是 \(0\,\text{V}\)，只有 \(I_{D2}\) 变成 \(\dfrac{12}{10}=1.2\,\text{mA}\)。</p>
+            <p><b>坑二：</b>以为 VD₁ 截止就意味着它两端是 \(0\,\text{V}\)。它两端是 \(-5\,\text{V}\)。截止管"电压不为零、电流为零"，与导通管正好相反，选型时反压按这个数取。</p>
+            <p><b>坑三：</b>在②里"两个理想源短路并联"看似荒谬，但换成 \(U_A=U_B=5\,\text{V}\)（作业 1(1)）它就合法了——同电位并联不冲突。同一结构在两个相邻小题里一处矛盾一处成立，差别只在数值上，这正是三张卡必须分开推的原因。</p>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="q" id="q16c">
+        <h3>作业 1(3) · 习题 1.6　U_A = U_B = 0 V</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>同一个电路（见"习题 1.6 电路"图）：\(F\) 经 \(R=3.9\,\text{k}\Omega\) 上拉到 \(+12\,\text{V}\)，VD₁ 阳极接 \(F\)、阴极接 \(A\)，VD₂ 阳极接 \(F\)、阴极接 \(B\)，二极管理想。本小题给 \(U_A=0\,\text{V}\)、\(U_B=0\,\text{V}\)，求 \(U_F\)。</div>
+
+          <div class="blk s0"><b>第0步 · 三类检查（电路版）</b>
+            <p>(i) <b>参考方向与量纲</b>：与前两小题同一套：\(I_R\) 注入 \(F\)，\(I_{D1}\)、\(I_{D2}\) 自 \(F\) 流出；V / mA / k\(\Omega\)。本小题两个阴极同为 \(0\,\text{V}\)，即 \(A\)、\(B\)、以及 \(+12\,\text{V}\) 源的负端四点同电位。</p>
+            <p>(ii) <b>工作区与模型成立前提</b>：理想器件；输入为理想源直连阴极 ⇒ (3-1) 适用；输出空载。注意本小题会出现"三组假设同时自洽"，第 8 步要另找取舍依据（对称性），第 12 步用它挑电流分配。</p>
+            <p>(iii) <b>初始与边界条件</b>：不适用。无动态元件。</p>
+          </div>
+
+          <div class="blk idea"><b>思路</b>路线甲：抄作业 1(2) 的结论"输出 \(0\,\text{V}\)、一管导电"，理由是"答案一样"。路线乙：把 \(U_A=U_B=0\) 当作新的电位关系重新走一遍假设法。选<b>乙</b>：甲是典型的"同型即证"——两小题的输出电压确实相同，但电流分配的前提变了，抄过来的过程里藏着一个错。</div>
+
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>结构：共阳 + 上拉，两阴极分别接 \(0\,\text{V}\) 与 \(0\,\text{V}\)。（依据：第0步 (i) 读图）</li>
+              <li>先试"全断"：两管拿掉后 \(F\) 是断头支路，\(I_R=0\) ⇒ \(U_F=12\,\text{V}\)。（依据：串联回路开路则无电流 + 欧姆定律）</li>
+              <li>两管开路管压均为 \(U_{D0}=12-0=+12\,\text{V}\gt 0\) ⇒ "全断"被否证。（依据：式 (1-1) 第一支，理想模型 \(U_{D(\text{on})}=0\)）</li>
+              <li>换假设，试"仅 VD₁ 通"：把 VD₁ 换成导线 ⇒ \(F\) 与 \(A\) 等电位 ⇒ \(U_F=U_A=0\,\text{V}\)。（依据：理想模型导通压降为 \(0\)）</li>
+              <li>在这组假设下算落选管的管压：\(U_{D2}=U_F-U_B=0-0=0\,\text{V}\)。理想模型 \(U_{D(\text{on})}=0\)，(1-1) 的第二支是 \(U_{D2}\le 0\) ⇒ 判 VD₂ 截止，与"仅 VD₁ 通"不冲突。（依据：式 (1-1) 第二支）</li>
+              <li>再核导通管电流：\(I_{D1}=I_R=\dfrac{12-0}{3.9}=3.077\,\text{mA}\gt 0\) ⇒ (1-2) 的两条同时满足 ⇒ <b>"仅 VD₁ 通"是一组自洽解</b>。（依据：欧姆定律 + 式 (1-2)）</li>
+              <li>把两只管对调、重走第 4–6 步：\(U_F=U_B=0\,\text{V}\) ⇒ \(U_{D1}=0-0=0\,\text{V}\) 判 VD₁ 截止 ⇒ \(I_{D2}=I_R=3.077\,\text{mA}\gt 0\) ⇒ <b>"仅 VD₂ 通"同样自洽</b>。（依据：同一套判据，两路元件与电位完全对称）</li>
+              <li>前两条解互为镜像：把整个电路左右交换（元件相同、两阴极同为 \(0\,\text{V}\)，交换后电路一模一样），"仅 VD₁ 通"就变成"仅 VD₂ 通"。理想模型在这道题<b>本来就有三条自洽解</b>，这是模型的欠定，不是推理漏了哪一步（欠定的来历见作业 1(1) 的 s5）。工程上的处置是取在交换下<b>不变</b>的那条作代表，即双通组，再验它自洽。（依据：交换对称性选不动点；"判据没有失效，失效的是唯一性"说的就是这件事）</li>
+              <li>两管换成导线 ⇒ \(F\) 与 \(A\)、\(B\) 三点并成同一节点 ⇒ \(U_F=0\,\text{V}\)。（依据：理想导线等电位 + 式 (3-1) 的 \(\min(0,0)=0\)）</li>
+              <li>上拉电阻电流 \(I_R=\dfrac{12-0}{3.9}=3.077\,\text{mA}\)。（依据：欧姆定律）</li>
+              <li>KCL：\(I_{D1}+I_{D2}=3.077\,\text{mA}\)。注意这只给得出<b>和</b>，给不出分配。（依据：基尔霍夫电流定律）</li>
+              <li>分配。<span class="stk r"><a href="#s7" tabindex="0" aria-describedby="s7" role="button">欠定处用对称性挑代表值</a><span class="pop" id="s7"><u>旁注 · 复现（交换之后谁与自己的像重合）</u>第 11 步的 KCL 只有一个方程 \(I_{D1}+I_{D2}=3.077\,\text{mA}\)，未知数比方程多一个：\((2,1.077)\)、\((1.538,1.538)\)、\((3.077,0)\) 都满足它，也都满足 (1-1)(1-2)。这就是欠定，不是算错。把电路左右交换，任何一组 \((I_{D1},I_{D2})\) 都换成 \((I_{D2},I_{D1})\)，只有两数相等的那一组与自己的交换像重合——它是对称性的不动点。<b>别把这一招说成"否则违反唯一性"</b>：理想模型在这里本来就有无穷多解，对称性是用来挑代表值的规则，不是定理。<i>此处怎么用：\(I_{D1}=I_{D2}=\dfrac{1}{2}\times\dfrac{12}{3.9}=\dfrac{12}{7.8}=1.538\,\text{mA}\)。作业 1(1) 的 s5 讲的是同一个欠定点，那里\(U_A=U_B=5\,\text{V}\)，本卡是\(U_A=U_B=0\,\text{V}\)；作业 1(2) 里\(U_A\neq U_B\)，对称性不存在，分配是算出来的、不是对称出来的。</i></span></span>两管同为理想管且阴极同电位 ⇒ 交换对称 ⇒ \(I_{D1}=I_{D2}=\dfrac{1}{2}\times\dfrac{12}{3.9}=\dfrac{12}{7.8}=1.538\,\text{mA}\)。（依据：交换对称性 + 第 11 步的总和）</li>
+              <li>回查：\(I_{D1}=I_{D2}=1.538\,\text{mA}\gt 0\)，方向均自阳极流入 ⇒ <b>双通组也自洽</b>。至此三组假设全部通过机械核对，(1-1)(1-2) 给不出取舍——它们是必要条件，不是唯一性判据。（依据：式 (1-2) 第一支 + M1"回查只证自洽"）</li>
+              <li>结论量 \(U_F=0\,\text{V}\)。三组自洽解给出的 \(U_F\) 都是 \(0\,\text{V}\)（单通时被导通管钳在它所接的 \(0\,\text{V}\) 输入上），所以这一空<b>与取舍无关</b>；受取舍影响的只有第 12 步的电流分配。（依据：第 9 步）</li>
+            </ol>
+          </div>
+
+          <div class="ans"><b>答案</b>　\[\boxed{\ U_F=0\ \text{V}\ }\qquad I_{D1}=I_{D2}=1.538\ \text{mA}\]</div>
+
+          <div class="blk chk"><b>验证</b>
+            <p>灵敏度检查（<b>换模型重算</b>）：恒压降 \(0.7\,\text{V}\) 模型下两管都导通，\(U_F=0+0.7=0.7\,\text{V}\)，\(I_R=\dfrac{12-0.7}{3.9}=2.897\,\text{mA}\)，每管 \(1.449\,\text{mA}\gt 0\)。这一段是<b>灵敏度检查</b>，不是独立复核：它查"答案对模型参数有多敏感"（\(U_F\) 从 \(0\,\text{V}\) 移到 \(0.7\,\text{V}\)，差一个管压降），<b>查不出并列该不该取</b>——恒压模型下"仅 VD₁ 通"同样自洽（\(U_F=0.7\,\text{V}\)，另一管管压 \(0.7-0=0.7\,\text{V}\le U_{D(\text{on})}\)，\(I_{D1}=\dfrac{12-0.7}{3.9}=2.897\,\text{mA}\gt 0\)），换模型破不开第 7 步那个镜像。并列的依据只在第 8 步的对称性。</p>
+            <p>本卡唯一有否决力的检查写在推导第 4–8 步：三组假设逐组核对、逐组给数。验证段不重复它——换模型破不开那对镜像（上一段已算），而穷举又已在推导里走完，这就是本卡没有另设"独立路径"的原因。</p>
+            <p>合理性检查：输入 (0,0) 得输出 0，与门真值表里"输入全为 0"那一行。再与作业 1(2) 对照：两小题的 \(U_F\) 都是 \(0\,\text{V}\)，但总电流同为 \(3.077\,\text{mA}\) 而分配一个是 \((0,\,3.077)\)、一个是 \((1.538,\,1.538)\)。<b>输出电压相同不代表工作状态相同</b>，这正是三张卡不能合并成一张的实证理由。</p>
+          </div>
+
+          <div class="blk warn"><b>常见坑</b><div class="pit">
+            <p><b>坑一（错得最隐蔽的一种）：</b>照抄作业 1(2) 的"只有 VD₂ 导电"，写 \(I_{D2}=3.077\,\text{mA}\)、\(I_{D1}=0\)。它满足 KCL（\(I_R=3.077=I_{D1}+I_{D2}\)）、也满足 \(U_{D1}=0-0=0\,\text{V}\le U_{D(\text{on})}\) 的截止判据，机械核对全过——第 4–6 步已经把它算给读者看过了。破它只有第 8 步那句：两只完全相同的管子处境一模一样，没有任何物理理由让一管独担全部电流。式 (1-1) 在临界点上不给答案，此时必须补对称性。</p>
+            <p><b>坑二：</b>因为 \(U_A=U_B=0\) 与 \(U_F=0\) 三点同电位，就断言"没有电流"。\(F\) 与 \(+12\,\text{V}\) 之间隔着 \(R\)，那 \(12\,\text{V}\) 全落在电阻上，电流 \(3.077\,\text{mA}\) 实实在在。三点同电位只说明它们之间无压降，不说明整个回路无压降。</p>
+            <p><b>坑三：</b>把第 5 步那句"按 \(U_{D2}\le 0\) 判 VD₂ 截止"当成一条独立证据。它只是<b>"仅 VD₁ 通"这组假设内部</b>的自洽检验（第 6 步），拿它去否证别的假设就成了循环论证——同一套数在双通组里同样自洽（第 13 步）。判"一管断"在机械核对上并不违规，它输在对称性：两只相同管子处境一样，没有物理理由让一管独担 \(3.077\,\text{mA}\)。顺带把口径记清：截止判据是 \(U_D\le U_{D(\text{on})}\)（理想模型 \(\le 0\)），不是 \(\lt 0\)；写成 \(\lt\) 会把 \(U_D=0\) 的管判成导通，与 (1-1) 的第二支冲突。</p>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="blk"><b>习题 1.7 电路（作业 2 两小题共用）</b>
+        <div class="figwrap" style="width:min(100%,430px)">
+          <svg class="fig" viewBox="0 0 430 240" style="display:block;width:100%;height:auto" role="img" aria-label="习题 1.7 电路">
+            <g stroke="var(--ink)" stroke-width="1.8" fill="none" stroke-linecap="round">
+              <circle cx="40" cy="55" r="5" fill="var(--card)"/><line x1="45" y1="55" x2="90" y2="55"/>
+              <rect x="90" y="48" width="50" height="14" fill="var(--card)"/>
+              <line x1="140" y1="55" x2="180" y2="55"/>
+              <line x1="205" y1="41" x2="205" y2="69" stroke-width="2.6"/>
+              <line x1="205" y1="55" x2="280" y2="55"/><line x1="280" y1="55" x2="280" y2="110"/>
+              <circle cx="40" cy="110" r="5" fill="var(--card)"/><line x1="45" y1="110" x2="90" y2="110"/>
+              <rect x="90" y="103" width="50" height="14" fill="var(--card)"/>
+              <line x1="140" y1="110" x2="180" y2="110"/>
+              <line x1="205" y1="96" x2="205" y2="124" stroke-width="2.6"/>
+              <line x1="205" y1="110" x2="380" y2="110"/>
+              <circle cx="280" cy="110" r="5.5" fill="var(--ink)" stroke="none"/>
+              <line x1="280" y1="110" x2="280" y2="145"/>
+              <rect x="272" y="145" width="16" height="36" fill="var(--card)"/>
+              <line x1="280" y1="181" x2="280" y2="205"/>
+              <line x1="266" y1="205" x2="294" y2="205"/>
+              <line x1="271" y1="210" x2="289" y2="210"/><line x1="276" y1="215" x2="284" y2="215"/>
+              <circle cx="380" cy="110" r="5" fill="var(--card)"/>
+              <line x1="52" y1="76" x2="80" y2="76"/><path d="M80,72 L88,76 L80,80 Z" fill="var(--ink)" stroke="none"/>
+              <line x1="52" y1="133" x2="80" y2="133"/><path d="M80,129 L88,133 L80,137 Z" fill="var(--ink)" stroke="none"/>
+              <line x1="310" y1="145" x2="310" y2="173"/><path d="M306,173 L314,173 L310,181 Z" fill="var(--ink)" stroke="none"/>
+            </g>
+            <path d="M180,41 L180,69 L205,55 Z" fill="var(--key)" stroke="none"/>
+            <path d="M180,96 L180,124 L205,110 Z" fill="var(--key)" stroke="none"/>
+          </svg>
+          <span class="figlab" style="left:6%;top:21%">\(U_A\)</span>
+          <span class="figlab" style="left:6%;top:44%">\(U_B\)</span>
+          <span class="figlab" style="left:27%;top:13%">\(R_A\)</span>
+          <span class="figlab" style="left:27%;top:34%">\(R_B\)</span>
+          <span class="figlab" style="left:45%;top:13%">\(\text{VD}_1\)</span>
+          <span class="figlab" style="left:45%;top:34%">\(\text{VD}_2\)</span>
+          <span class="figlab" style="left:16%;top:38%">\(I_A\)</span>
+          <span class="figlab" style="left:16%;top:65%">\(I_B\)</span>
+          <span class="figlab" style="left:57%;top:66%">\(R\)</span>
+          <span class="figlab" style="left:80%;top:68%">\(I_R\)</span>
+          <span class="figlab" style="left:91%;top:39%">\(U_F\)</span>
+        </div>
+        <p style="font-size:14px;color:var(--mut)">图中三个箭头是题目给定的电流参考方向：\(I_A\)、\(I_B\) 向右，\(I_R\) 向下。全部计算按这套方向取号，算出负数即说明实际方向相反。</p>
+      </div>
+
+      <div class="q" id="q17a">
+        <h3>作业 2(1) · 习题 1.7　U_A = U_B = 6 V</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>电路如图（上方"习题 1.7 电路"）：\(U_A\) 经 \(R_A=2\,\text{k}\Omega\) 接 VD₁ 阳极，\(U_B\) 经 \(R_B=2\,\text{k}\Omega\) 接 VD₂ 阳极；两管的<b>阴极</b>共接于输出节点 \(F\)，\(F\) 经 \(R=5\,\text{k}\Omega\) 接地，输出电压 \(U_F\) 取自 \(F\)。二极管为理想器件。本小题给 \(U_A=6\,\text{V}\)、\(U_B=6\,\text{V}\)，求 \(U_F\)。</div>
+
+          <div class="blk s0"><b>第0步 · 三类检查（电路版）</b>
+            <p>(i) <b>参考方向与量纲</b>：题目已给 \(I_A\)、\(I_B\) 向右（自输入流向 \(F\)）、\(I_R\) 向下（自 \(F\) 流向地）。这三条就是本卡的取号标准，\(U_F=I_R R\)。电阻下端接地 ⇒ 该点 \(0\,\text{V}\)。单位 V / mA / k\(\Omega\)。两路输入 \(U_A\)、\(U_B\) 都是<b>对同一个参考地</b>的理想电压源节点（图上只画空心端子并注明电位，内阻取 \(0\)），故两条支路电流一律写成 \(\dfrac{U_{\text{输入}}-U_F}{R_{A,B}}\)。</p>
+            <p>(ii) <b>工作区与模型成立前提</b>：理想器件 ⇒ 通 = 短路、断 = 开路。结构是共阴 + 下拉，但<b>输入与阳极之间串了 \(R_A\)、\(R_B\)</b>，式 (3-2) 的"输入直连阳极"条件<b>不成立</b> ⇒ 它只回答"哪一路电位高、谁优先导通"，不回答"一共几只管导通"。后者要等解完方程再回查，所以 \(U_F\) 必须解方程。</p>
+            <p>(iii) <b>初始与边界条件</b>：不适用。无动态元件，直流稳态。</p>
+          </div>
+
+          <div class="blk idea"><b>思路</b>路线甲：套 (3-2) 直接答 \(U_F=\max(6,6)=6\,\text{V}\)。路线乙：把两管当导线、对 \(F\) 列节点电压方程求解。选<b>乙</b>：甲忽略了 \(R\) 与 \(R_A\)、\(R_B\) 构成分压——输出端挂着 \(5\,\text{k}\Omega\) 负载，\(6\,\text{V}\) 传不到 \(F\)。第0步 (ii) 已经写明 (3-2) 的条件不成立，甲正是那条限定语要拦的错。</div>
+
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>认结构：VD₁、VD₂ 的横杠（阴极）都接在 \(F\)，\(F\) 经 \(R\) 下拉到地 ⇒ 共阴 + 下拉。（依据：第0步 (i) 读图）</li>
+              <li>判定 (3-2) 不可直接取用：\(R_A\)、\(R_B\) 串在输入与阳极之间 ⇒ 钳位点不在 \(F\) 上，而在电阻与阳极之间的两个隐藏节点上。（依据：第0步 (ii) + 式 (3-2) 的条件）</li>
+              <li>仍借 (3-2) 的"取 max"找候选：两路源同为 \(6\,\text{V}\)，\(\max(6,6)=6\) 两路并列 ⇒ 没有哪一路有理由独占，起手取"双通"这一组假设。这只是候选，导通集合要由第 12 步回查来定。（依据：式 (3-2) 只给优先候选，不给导通集合）</li>
+              <li>把两管换成导线，对 \(F\) 列方程。<span class="stk"><a href="#s8" tabindex="0" role="button" aria-describedby="s8">节点电压法的标准写法</a><span class="pop" id="s8"><u>旁注 · 复现（从方程怎么来的）</u>节点电压法：对某一节点，把"流入该节点的电流之和 = 流出之和"里的每个电流都用欧姆定律写成 \(\dfrac{\text{本节点电位}-\text{邻节点电位}}{R}\)。\(F\) 点三条支路：来自 \(U_A\) 经 \(2\,\text{k}\Omega\)、来自 \(U_B\) 经 \(2\,\text{k}\Omega\)、流向地经 \(5\,\text{k}\Omega\)。写成 \(\dfrac{U_A-U_F}{2}+\dfrac{U_B-U_F}{2}=\dfrac{U_F-0}{5}\)。<i>此处怎么用：两管导通换成导线后，"来自 \(U_A\) 经 \(2\,\text{k}\Omega\)"就是 \(I_A\)，方向与题目给的参考方向一致，所以式子左边直接是 \(I_A+I_B\)。</i></span></span>
+                \[ \frac{6-U_F}{2}+\frac{6-U_F}{2}=\frac{U_F}{5} \]</li>
+              <li>左端两项分母相同、分子相同，合并成一项：\(6-U_F=\dfrac{U_F}{5}\)。（依据：\(\dfrac{x}{2}+\dfrac{x}{2}=x\)）</li>
+              <li>两边同乘 \(5\)：\(5\left(6-U_F\right)=U_F\)，即 \(30-5U_F=U_F\)。（依据：等式两边同乘非零常数）</li>
+              <li>两边同加 \(5U_F\)：\(30=6U_F\)。（依据：等式性质）</li>
+              <li>两边同除以 \(6\)：\(U_F=\dfrac{30}{6}=5\,\text{V}\)。（依据：等式性质）</li>
+              <li>回代求各支路电流：\(I_A=\dfrac{6-5}{2}=0.5\,\text{mA}\)，\(I_B=\dfrac{6-5}{2}=0.5\,\text{mA}\)。（依据：欧姆定律 + 第 8 步）</li>
+              <li>\(I_R=\dfrac{U_F}{5}=\dfrac{5}{5}=1\,\text{mA}\)。（依据：欧姆定律）</li>
+              <li>KCL 核对：\(I_A+I_B=0.5+0.5=1\,\text{mA}=I_R\)，方程闭合。（依据：基尔霍夫电流定律）</li>
+              <li>回查通断：\(I_A=I_B=0.5\,\text{mA}\gt 0\)，两管电流都自阳极流入 ⇒ 第 3 步的双通假设成立。（依据：式 (1-2) 第一支）</li>
+            </ol>
+          </div>
+
+          <div class="ans"><b>答案</b>　\[\boxed{\ U_F=5\ \text{V}\ }\qquad I_A=I_B=0.5\ \text{mA},\quad I_R=1\ \text{mA}\]</div>
+
+          <div class="blk chk"><b>验证</b>
+            <p>换列式复核（<b>电源等效变换</b>，与第 4 步的节点方程是两套列式，但仍借用第 3 步的双通假设——它查的是算术与分压，不查通断）：两条"\(6\,\text{V}\) 串 \(2\,\text{k}\Omega\)"支路在 \(F\) 点并联 ⇒ 化成一条戴维南等效支路，开路电压仍为 \(6\,\text{V}\)、内阻为 \(2\,\text{k}\Omega\parallel 2\,\text{k}\Omega=1\,\text{k}\Omega\)。它与 \(R=5\,\text{k}\Omega\) 串联分压：
+            \[ U_F=6\times\frac{5}{1+5}=6\times\frac{5}{6}=5\ \text{V} \]
+            与第 8 步同值，且全程没有解过方程。</p>
+            <p>合理性检查：先把 \(R\) 留成符号。第 4 步右端写成 \(\dfrac{U_F}{R}\)，解出 \(U_F=\dfrac{6/2+6/2}{1/2+1/2+1/R}=\dfrac{6}{1+1/R}=\dfrac{6R}{R+1}\)（\(R\) 取 \(\text{k}\Omega\)，分母那个 \(1\) 就是 \(R_A\parallel R_B=1\,\text{k}\Omega\)）；代 \(R=5\) 得 \(\dfrac{30}{6}=5\,\text{V}\)，与第 8 步同值。再令 \(R\to\infty\)（输出空载），此式给 \(U_F\to 6\,\text{V}\)，回到"或门空载输出等于输入高电平"，也回到 (3-2) 的结论——这印证了第 2 步的限定语：\(R\) 越大越接近直连。反过来 \(R\) 越小输出越低，说明二极管或门<b>带负载能力差</b>：本小题两路 \(6\,\text{V}\) 经这一层衰减到 \(F\) 只剩 \(5\,\text{V}\)；若输入本身只有 \(5\,\text{V}\)，输出会进一步降到 \(5\times\dfrac{5}{1+5}=4.167\,\text{V}\)。</p>
+          </div>
+
+          <div class="blk warn"><b>常见坑</b><div class="pit">
+            <p><b>坑一：</b>用单路分压 \(U_F=6\times\dfrac{5}{2+5}=\dfrac{30}{7}=4.286\,\text{V}\)。那是<b>只有一路供电</b>时的值（作业 2(2) 的情形）。两路都通时串联电阻是 \(1\,\text{k}\Omega\) 不是 \(2\,\text{k}\Omega\)，两答案差 \(5-\dfrac{30}{7}=\dfrac{5}{7}=0.714\,\text{V}\)。判据：把单路解代回另一路做第 12 步那种回查——\(U_F=\dfrac{30}{7}=4.286\,\text{V}\) 时 VD₂ 的管压是 \(6-\dfrac{30}{7}=\dfrac{12}{7}=+1.714\,\text{V}\gt 0\)，它本该导通，与"只有一路供电"的前提冲突，所以单路解在本小题不自洽。作业 2(2) 里 \(U_B=3\,\text{V}\)，同一算法给 \(3-\dfrac{30}{7}=-\dfrac{9}{7}=-1.286\,\text{V}\le 0\)，单路解才成立。两题的分别正在这条回查上。</p>
+            <p><b>坑二：</b>套 (3-2) 答 \(6\,\text{V}\)。\(6\,\text{V}\) 是隐藏节点（\(R_A\) 与 VD₁ 阳极之间）的电位，不是 \(F\) 的电位；\(R_A\) 上有 \(1\,\text{V}\) 压降。</p>
+            <p><b>坑三：</b>把 \(I_R\) 的方向取反。题目已给向下箭头，\(U_F=+I_R R\)。若自设成向上，第 4 步右端要写 \(-\dfrac{U_F}{5}\)，解 \(6-U_F=-\dfrac{U_F}{5}\) 得 \(U_F=\dfrac{30}{4}=7.5\,\text{V}\)——比两路输入的 \(6\,\text{V}\) 还高。无源电阻网络抬不高电位，"输出高于所有输入"才是符号错的签名；别等它变成负数才警觉。</p>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="q" id="q17b">
+        <h3>作业 2(2) · 习题 1.7　U_A = 6 V, U_B = 3 V</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>同一个电路（见"习题 1.7 电路"图）：\(R_A=R_B=2\,\text{k}\Omega\)、\(R=5\,\text{k}\Omega\)，VD₁、VD₂ 阴极共接于输出节点 \(F\)，\(F\) 经 \(R\) 接地，二极管理想。本小题给 \(U_A=6\,\text{V}\)、\(U_B=3\,\text{V}\)，求 \(U_F\)。</div>
+
+          <div class="blk s0"><b>第0步 · 三类检查（电路版）</b>
+            <p>(i) <b>参考方向与量纲</b>：沿用题目给的 \(I_A\)、\(I_B\) 向右、\(I_R\) 向下；\(U_F=I_R R\)。电阻下端接地 ⇒ \(0\,\text{V}\)。V / mA / k\(\Omega\)。\(U_A=6\,\text{V}\)、\(U_B=3\,\text{V}\) 都是对同一个参考地的理想电压源节点（图上只画空心端子），内阻取 \(0\)。</p>
+            <p>(ii) <b>工作区与模型成立前提</b>：理想器件；\(R_A\)、\(R_B\) 使式 (3-2) 的"直连"条件不成立，只能借它挑候选。本小题两输入不等，会出现"候选截止"的情形，因此截止管的阳极电位必须单独算（见第 12 步），不能默认为 \(0\)。</p>
+            <p>(iii) <b>初始与边界条件</b>：不适用。无储能元件。</p>
+          </div>
+
+          <div class="blk idea"><b>思路</b>路线甲：一上来就令 VD₂ 截止，只解 A 回路的分压。路线乙：先假设<b>两管都通</b>、解出 \(U_F\)，再用 B 支路电流的符号否证它，然后改设 VD₂ 截止重算。选<b>乙</b>：甲的"VD₂ 截止"是猜的，猜错要整题重来；乙把猜测变成一次可检验的推导，第 9 步的负号就是它给出的证据。多花四步换一个不会翻车的流程。</div>
+
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>结构：共阴 + 下拉，两路源分别为 \(6\,\text{V}\) 与 \(3\,\text{V}\)，各自串 \(2\,\text{k}\Omega\)。（依据：第0步 (i) 读图）</li>
+              <li>借 (3-2) 的"取 max"看候选：\(\max(6,3)=6\) 落在 \(A\) 路 ⇒ VD₁ 优先导通，VD₂ 待判。（依据：式 (3-2) 的候选挑选部分）</li>
+              <li>先不急着下结论，把"两管都通"这一组完整解一遍。两管换成导线，对 \(F\) 列节点方程：
+                \[ \frac{6-U_F}{2}+\frac{3-U_F}{2}=\frac{U_F}{5} \]</li>
+              <li>左端两项分母同为 \(2\)，分子相加：\(\dfrac{(6-U_F)+(3-U_F)}{2}=\dfrac{9-2U_F}{2}\)，方程写成 \(\dfrac{9-2U_F}{2}=\dfrac{U_F}{5}\)。（依据：同分母分式相加）</li>
+              <li>两边同乘 \(10\)（两个分母的最小公倍数）：\(5\left(9-2U_F\right)=2U_F\)。（依据：等式两边同乘非零常数）</li>
+              <li>展开左端括号：\(45-10U_F=2U_F\)。（依据：乘法分配律）</li>
+              <li>两边同加 \(10U_F\)：\(45=12U_F\)。（依据：等式性质）</li>
+              <li>两边同除以 \(12\)：\(U_F=\dfrac{45}{12}=3.75\,\text{V}\)。（依据：等式性质）</li>
+              <li>算 B 支路电流检验：\(I_B=\dfrac{U_B-U_F}{2}=\dfrac{3-3.75}{2}=\dfrac{-0.75}{2}=-0.375\,\text{mA}\)。（依据：欧姆定律 + 第 8 步）</li>
+              <li><span class="stk"><a href="#s9" tabindex="0" role="button" aria-describedby="s9">负电流就是假设的否证信号</a><span class="pop" id="s9"><u>旁注 · 复现（讲清它否证了什么）</u>式 (1-2) 要求导通管电流必须 \(\gt 0\)。算出 \(I_B\lt 0\)，按第0步 (i) 的参考方向（自 \(U_B\) 流向 \(F\)）意味着正电荷从 \(F\) 逆流进 VD₂ 的阴极——那是二极管的反向，理想管不允许。所以否证的是<b>"这一只管导通"</b>，不是整个方程列错了：\(U_F=3.75\,\text{V}\) 是"双通"这一假设下唯一合法的解，只是这个假设本身不成立。<i>此处怎么用：\(I_B=-0.375\,\text{mA}\) 直接把 VD₂ 踢出导通集合，第 11 步起改用"VD₂ 截止"重算。</i></span></span>否证成立 ⇒ "双通"假设作废。（依据：式 (1-2) 第一支的反面）</li>
+              <li>改设 VD₂ 截止（换成开路），因此 \(I_B=0\)，B 支路成为断头支路。（依据：截止定义）</li>
+              <li>求 VD₂ 阳极电位。<span class="stk r"><a href="#s10" tabindex="0" role="button" aria-describedby="s10">无电流的电阻两端等电位</a><span class="pop" id="s10"><u>旁注 · 复现（它的适用边界）</u>欧姆定律 \(U=IR\)：\(I=0\) 则 \(U=0\)，电阻两端电位相同，电阻此时在电位计算里"透明"。这条只在<b>直流或纯阻性</b>下成立；若电阻与电容并联，交流分量会从电容走，电阻上照样有压降。<i>此处怎么用：第 11 步已定 \(I_B=0\)，故 \(R_B\) 上无压降，VD₂ 阳极电位 \(=U_B=3\,\text{V}\)，不是 \(0\,\text{V}\)。回查 VD₂ 反偏要用这个数。</i></span></span>\(I_B=0\) ⇒ \(R_B\) 压降为 \(0\times 2=0\,\text{V}\) ⇒ VD₂ 阳极电位 \(=U_B=3\,\text{V}\)。（依据：欧姆定律）</li>
+              <li>剩下的电路是单回路：\(6\,\text{V}\) 源 \(\to R_A=2\,\text{k}\Omega \to\) VD₁（导线）\(\to R=5\,\text{k}\Omega \to\) 地。用串联分压：
+                \[ U_F=6\times\frac{5}{2+5}=\frac{30}{7}=4.286\ \text{V} \]</li>
+              <li>算 A 支路电流：\(I_A=\dfrac{6-U_F}{2}=\dfrac{6-30/7}{2}=\dfrac{12/7}{2}=\dfrac{6}{7}=0.857\,\text{mA}\gt 0\) ⇒ VD₁ 导通自洽。（依据：欧姆定律 + 式 (1-2) 第一支）</li>
+              <li>校 VD₂：\(U_{D2}=V_{\text{阳}2}-V_{\text{阴}2}=3-U_F=3-\dfrac{30}{7}=\dfrac{21-30}{7}=-\dfrac{9}{7}=-1.286\,\text{V}\le 0\) ⇒ 反偏，截止自洽。（依据：式 (1-2) 第二支）</li>
+              <li>穷举四组假设：双通已被第 10 步否证；"全断"使 \(U_F=0\,\text{V}\)，则 \(U_{D1}=6-0=+6\,\text{V}\gt0\) ⇒ 该导通，矛盾；"仅 VD₂ 通"使 \(U_F=3\times\dfrac{5}{2+5}=\dfrac{15}{7}=2.143\,\text{V}\)，此时 A 支路无电流、\(R_A\) 无压降，VD₁ 阳极被顶在 \(6\,\text{V}\)，故 \(U_{D1}=6-2.143=+3.857\,\text{V}\gt0\) ⇒ VD₁ 也该导通，矛盾。⇒ 只剩"仅 VD₁ 通"这一组。（依据：穷举四组 + 式 (1-1)）</li>
+              <li>结论量 \(U_F=\dfrac{30}{7}=4.286\,\text{V}\)。（依据：第 13 步）</li>
+            </ol>
+          </div>
+
+          <div class="ans"><b>答案</b>　\[\boxed{\ U_F=\frac{30}{7}=4.286\ \text{V}\ }\qquad I_A=I_R=0.857\ \text{mA},\quad I_B=0,\quad \text{VD}_2\ \text{反压 } 1.286\ \text{V}\]</div>
+
+          <div class="blk chk"><b>验证</b>
+            <p>换列式复核（<b>断开法求反偏电压</b>，即对 VD₂ 所在支路取戴维南等效；列式与第 3–10 步的"先双通再否证"不同，但 \(30/7\) 这个数第 13 步已经算过，所以它<b>不是</b>重新求 \(U_F\)，只查"摘掉 VD₂ 这一手自不自洽"）：把 VD₂ 连同 \(R_B\) 整条支路从 \(F\) 摘掉，看它断口两端的电位。阴极侧只剩 A 回路的串联分压 \(\dfrac{30}{7}=4.286\,\text{V}\)；阳极侧因该支路已摘、无电流，\(R_B\) 上无压降，等于 \(U_B=3\,\text{V}\)。断口管压 \(=3-4.286=-1.286\,\text{V}\lt 0\) ⇒ 摘掉它本来就正确，接回去也不会有电流 ⇒ 与第 11、15 步一致。</p>
+            <p>合理性检查：\(U_F=4.286\,\text{V}\) 落在 \(3\,\text{V}\) 与 \(6\,\text{V}\) 之间，且低于作业 2(1) 的 \(5\,\text{V}\)——因为只有一路供电，\(2\,\text{k}\Omega\) 独吞了 \(6-\dfrac{30}{7}=\dfrac{12}{7}=1.714\,\text{V}\)，而两路并流时等效内阻从 \(2\,\text{k}\Omega\) 减半到 \(1\,\text{k}\Omega\)，压降随之从 \(1.714\,\text{V}\) 降到 \(1.0\,\text{V}\)——减半的是<b>内阻</b>，压降只降到 \(\dfrac{1}{1.714}=0.583\) 倍，因为分压比 \(\dfrac{R}{R_{\text{内}}+R}\) 不是线性的。把 \(U_B\) 从 \(3\,\text{V}\) 往上抬，答案<b>先平后升</b>：\(U_B\le 4.286\,\text{V}\) 段 VD₂ 一直截止、\(U_F\) 钉在 \(\dfrac{30}{7}=4.286\,\text{V}\) 不动；越过这一点两管才同时导通，\(U_F=\dfrac{30+5U_B}{12}\)，到 \(U_B=6\,\text{V}\) 处正好取到 2(1) 的 \(5\,\text{V}\)，两卡衔接得上；反过来把 \(U_B\) 继续降到 \(0\,\text{V}\)，\(U_F\) 保持 \(4.286\,\text{V}\) 不变（B 路已截止，其电位不再影响结果）——两卡互为极限检验。</p>
+          </div>
+
+          <div class="blk warn"><b>常见坑</b><div class="pit">
+            <p><b>坑一（差 \(\dfrac{30}{7}-3.75=0.536\,\text{V}\)，最容易被放过）：</b>把第 8 步的 \(3.75\,\text{V}\) 当答案交上去。它是"双通"假设下的正确解，但第 9 步的 \(I_B=-0.375\,\text{mA}\) 已经把这个假设本身否证了。检查习惯：解出 \(U_F\) 后，<b>每条支路电流都代出来看符号</b>，只要有一条负的，就说明那只管不该在导通集合里。</p>
+            <p><b>坑二：</b>第 12 步把 VD₂ 阳极电位写成 \(0\,\text{V}\)。截止只说明电流为 \(0\)，不说明电位为 \(0\)；\(R_B\) 上无压降，阳极被顶在 \(U_B=3\,\text{V}\)。用 \(0\,\text{V}\) 去算反压会得到 \(-4.286\,\text{V}\)，数值错了但符号碰巧对，通断结论照样通过——这种"错着对"的坑只能靠把式子写全来暴露。</p>
+            <p><b>坑三：</b>拿作业 2(1) 的"两路并联成 \(1\,\text{k}\Omega\)"来套本小题。那个等效的前提是两管都导通，而第 10 步刚刚否证了它。等效变换的适用前提和公式本身一样重要。</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ M4 ============ -->
+  <section class="mod" id="m4">
+    <div class="gutter">M4<small>稳压管</small></div>
+    <h2>M4 · 稳压管的三种状态</h2>
+    <div class="in">
+      <div class="blk kp"><b>知识点</b>
+        <p>稳压管（硅稳压二极管，符号是在阴极横杠两端加一小段折线）是<b>专门设计工作在反向击穿区</b>的二极管。它比普通二极管多出一个可用状态，所以 M1 的"通 / 断"二选一在这里变成三选一：</p>
+        <div id="eq-4-1">\[ \begin{cases} \text{电流自阳极流入，且正压 }\gt U_{D(\text{on})} & \Longrightarrow\ \text{正向导通，管压降 } =U_{D(\text{on})}\\[2pt] \text{电流自阴极流入，且反压 }\ge U_Z\ \text{（且 }I_Z\text{ 落在稳压电流区间）} & \Longrightarrow\ \text{反向击穿（稳压），管压降 } =U_Z\\[2pt] \text{其余（反压 }\lt U_Z\ \text{，或正压未超过 }U_{D(\text{on})}\text{）} & \Longrightarrow\ \text{截止，视为开路} \end{cases} \tag{4-1}\]</div>
+        <p>三行一律<b>左边是条件、右边是结论</b>；条件里先写方向、再写大小，顺序不能颠倒：电流准备从阳极进，反压再大也落不到第二行的稳压态；方向对了但反压不够 \(U_Z\)，它仍是开路。第一行还带着正压门限 \(U_{D(\text{on})}\)——"阳极进"不等于"必导通"，作业 6 第 8 步用的就是这一条。<b>两处等号口径不同，是有意为之</b>：正压那行写 \(\gt\)，让"恰好等于门限"落进截止，与式 (1-1)(1-2) 对普通二极管的取法同一条口径；击穿那行写 \(\ge\)，因为反压一旦够得着 \(U_Z\) 就已在击穿区边界上，作业 5 第 10 步的回查正是按"反压恰为 \(9\,\text{V}\) 与 \(6\,\text{V}\)、等于其 \(U_Z\)"判定击穿的——若把等号挪到截止那行，作业 5 的解就没了着落。</p>
+        <p>所以拿到一个稳压管电路，第一件事不是看它标了多大的 \(U_Z\)，而是<b>顺着电源极性把电流的"意图方向"画出来，看它准备从哪个极进</b>。习题 1.8 的两个小题用的是一对完全相同的管子、同一个 \(20\,\text{V}\) 与同一个 \(3\,\text{k}\Omega\)，只把管子的朝向掉转，答案就从 \(15\,\text{V}\) 变成 \(1\,\text{V}\)——差别全部来自这个"方向"。</p>
+        <p><b>串联时的合成规则</b>：同向串联的击穿电压相加（\(U_{Z1}+U_{Z2}\)），同向串联的正向压降也相加（\(2U_{D(\text{on})}\)）；一正一反串联则是一个 \(U_Z\) 加一个 \(U_{D(\text{on})}\)。这是用两只管子拼出非标准稳压值的常用办法。</p>
+        <p><b>限流电阻 \(R\) 不可省</b>：击穿区的管子近似一个恒压源，没有 \(R\) 时电源电压直接加在它两端，电流不受约束。\(R\) 承担"输入电压与稳压值之差"，并把差值变成电流：\(I_R=\dfrac{V_{\text{in}}-U_{\text{out}}}{R}\)。该电流必须落在 \(I_{Z\min}\) 与 \(I_{Z\max}\) 之间，式 (4-1) 第二行的"稳压"才真的成立；题目没给这两个界限时，按"工作在稳压区"处理，但要把这个前提写出来。</p>
+      </div>
+
+      <div class="blk idea" id="m4-meth"><b>解题方法</b>
+        <ol class="steps">
+          <li>定参考地，顺电源极性判断电流"想"从哪个极进入每只稳压管。</li>
+          <li>先假设该管<b>未击穿</b>（开路），算出加在支路上的总电压，与 \(U_Z\) 比较。</li>
+          <li>按式 (4-1) 定每只管的状态；多管串联时逐只判，锁定组合靠的是"电流＋电压"两条反证：先由"某只截止 ⇒ 串联电流为 \(0\) ⇒ 限流电阻无压降 ⇒ 全部输入电压都落在管子身上"钉住总压降，再逐只试——假设这只截止，把其余管按各自的钳位值分完后，剩给它的那一份一旦超过它自己的 \(U_Z\)（正向则是 \(U_{D(\text{on})}\)），该组假设即被否证。作业 5 第 6–8 步是这条的完整展开。</li>
+          <li>把每只换成对应等效元件（开路 / \(U_Z\) 恒压源 / \(U_{D(\text{on})}\) 恒压源），解出待求量。</li>
+          <li>回查三件事：击穿管电流为正、正向管电流为正、截止管反压确实小于 \(U_Z\)。</li>
+        </ol>
+        适用条件：直流稳压供电电路，输入电压高于（或可能高于）稳压值。本模块易错点：把题目给的"正向压降"当成万能参数往击穿态上加。</div>
+
+      <div class="blk"><b>习题 1.8 电路（作业 5 与作业 6 共用同一拓扑，只差管子朝向）</b>
+        <div class="figwrap" style="width:min(100%,430px)">
+          <svg class="fig" viewBox="0 0 430 240" style="display:block;width:100%;height:auto" role="img" aria-label="习题 1.8 电路">
+            <g stroke="var(--ink)" stroke-width="1.8" fill="none" stroke-linecap="round">
+              <line x1="60" y1="40" x2="60" y2="106"/>
+              <line x1="42" y1="106" x2="78" y2="106"/>
+              <line x1="49" y1="118" x2="71" y2="118" stroke-width="4"/>
+              <line x1="60" y1="118" x2="60" y2="200"/>
+              <line x1="60" y1="40" x2="140" y2="40"/>
+              <rect x="140" y="33" width="46" height="14" fill="var(--card)"/>
+              <line x1="186" y1="40" x2="345" y2="40"/>
+              <line x1="265" y1="40" x2="265" y2="62"/>
+              <line x1="251" y1="62" x2="279" y2="62" stroke-width="2.6"/>
+              <line x1="251" y1="62" x2="256" y2="55" stroke-width="2.2"/>
+              <line x1="279" y1="62" x2="284" y2="55" stroke-width="2.2"/>
+              <line x1="265" y1="90" x2="265" y2="122"/>
+              <line x1="251" y1="122" x2="279" y2="122" stroke-width="2.6"/>
+              <line x1="251" y1="122" x2="256" y2="115" stroke-width="2.2"/>
+              <line x1="279" y1="122" x2="284" y2="115" stroke-width="2.2"/>
+              <line x1="265" y1="150" x2="265" y2="200"/>
+              <line x1="60" y1="200" x2="345" y2="200"/>
+              <circle cx="265" cy="40" r="5" fill="var(--ink)" stroke="none"/>
+              <circle cx="345" cy="40" r="5" fill="var(--card)"/>
+              <circle cx="345" cy="200" r="5" fill="var(--card)"/>
+            </g>
+            <path d="M253,90 L277,90 L265,62 Z" fill="var(--key)" stroke="none"/>
+            <path d="M253,150 L277,150 L265,122 Z" fill="var(--key)" stroke="none"/>
+          </svg>
+          <span class="figlab" style="left:6%;top:33%">\(20\,\text{V}\)</span>
+          <span class="figlab" style="left:38%;top:10%">\(R=3\,\text{k}\Omega\)</span>
+          <span class="figlab" style="left:72%;top:31%">\(\text{VD}_{Z1}\)</span>
+          <span class="figlab" style="left:72%;top:57%">\(\text{VD}_{Z2}\)</span>
+          <span class="figlab" style="left:88%;top:13%">\(A\;(+)\)</span>
+          <span class="figlab" style="left:88%;top:49%">\(U_{AO}\)</span>
+          <span class="figlab" style="left:88%;top:86%">\(O\;(-)\)</span>
+        </div>
+        <p style="font-size:14px;color:var(--mut)">上图按<b>作业 5</b>（两管阴极朝上）绘制，三角形顶点指向折线横杠那一侧。<b>作业 6</b> 与之唯一差别是两只管子整体掉转、阳极朝上，横杠落在下方；其余连线、元件值完全相同。</p>
+      </div>
+
+      <div class="q" id="q18a">
+        <h3>作业 5 · 习题 1.8(a)　两管反向串联，求 U_AO</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>电路如图（上方"习题 1.8 电路"，两管阴极朝上的那一版）：\(20\,\text{V}\) 直流源正极朝上，经 \(R=3\,\text{k}\Omega\) 接到输出端 \(A\)；从 \(A\) 向下依次串稳压管 \(\text{VD}_{Z1}\)、\(\text{VD}_{Z2}\) 到公共端 \(O\)，两管均为<b>阴极朝上</b>（\(\text{VD}_{Z1}\) 的阴极接 \(A\)、阳极接 \(\text{VD}_{Z2}\) 的阴极、\(\text{VD}_{Z2}\) 的阳极接 \(O\)）。已知 \(U_{Z1}=9\,\text{V}\)、\(U_{Z2}=6\,\text{V}\)，两管正向压降均为 \(0.5\,\text{V}\)。求 \(A\)、\(O\) 两端电压 \(U_{AO}\)。</div>
+
+          <div class="blk s0"><b>第0步 · 三类检查（电路版）</b>
+            <p>(i) <b>参考方向与量纲</b>：\(U_{AO}\) 取 \(A\) 为"+"、\(O\) 为"−"。电流参考方向定为自 \(20\,\text{V}\) 源正极经 \(R\) 注入 \(A\)、再自上而下流过两只管子到 \(O\)，记作 \(I_R\)（向下为正）。单位 V / mA / k\(\Omega\)。\(O\) 即 \(20\,\text{V}\) 源负端，取 \(V_O=0\)。</p>
+            <p>(ii) <b>工作区与模型成立前提</b>：本模块用式 (4-1) 的三态模型。击穿态成立的前提是<b>稳压电流落在 \(I_{Z\min}\sim I_{Z\max}\) 之间</b>；题目未给这两个界限，按"工作在稳压区"处理，并在第 11 步把该前提显写出来。\(20\,\text{V}\) 视为理想源，\(R\) 为限流电阻。</p>
+            <p>(iii) <b>初始与边界条件</b>：不适用。直流稳压电路，无电抗元件与换路过程。</p>
+          </div>
+
+          <div class="blk idea"><b>思路</b>路线甲：两只管都反接、又是串联，直接答"稳压值相加 \(9+6=15\,\text{V}\)"。路线乙：先假设支路开路定出可用电压，再逐只排除"只有一只击穿"的混合组合。选<b>乙</b>：甲跳过了两个真实存在的问题——可用电压到底够不够把两只都送进击穿区（若电源是 \(10\,\text{V}\) 就根本不够，答案会是 \(10\,\text{V}\) 而不是 \(15\,\text{V}\)），以及为什么不会是一只击穿一只截止。乙把这两点各变成一步。</div>
+
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>定电源极性：\(20\,\text{V}\) 源正极朝上、负极接 \(O\) ⇒ \(R\) 左端电位为 \(+20\,\text{V}\)。（依据：第0步 (i) 读图）</li>
+              <li>判电流的"意图方向"：\(20\,\text{V}\gt 0\) 只会推动电流自上而下流过支路，即从 \(\text{VD}_{Z1}\) 的<b>阴极</b>进入。（依据：第0步 (i) 的参考方向 + 两管阴极朝上的连线）</li>
+              <li>由第 2 步，两管都处于"电流自阴极流入"这一侧，式 (4-1) 的第二、三行二选一，即<b>要么击穿、要么截止，不可能是正向导通</b>。（依据：式 (4-1) 各行的方向条件）</li>
+              <li>先试最粗的假设"两管都截止"：支路开路 ⇒ \(I_R=0\) ⇒ \(R\) 上压降 \(0\times 3=0\,\text{V}\) ⇒ \(U_{AO}=20\,\text{V}\)。（依据：欧姆定律）</li>
+              <li>检验第 4 步：若两管都停在第三行（截止），每只的<b>反压大小</b>都得进不了自己的击穿门限，即 \(\vert U_{D1}\vert\lt 9\,\text{V}\)、\(\vert U_{D2}\vert\lt 6\,\text{V}\)（这里取大小，因为带符号的 \(U_D\) 反偏时为负，定义见 (1-2)），两只串联相加 \(\lt 15\,\text{V}\)；可 KVL 要求它们分担全部 \(20\,\text{V}\) ⇒ 矛盾 ⇒ "都截止"被否证。（依据：式 (4-1) 第三行 + KVL。这里<b>不能</b>说"每只各分 \(10\,\text{V}\)"——两只都截止时没有任何方程约束它们怎么分，能用的只有"总和必须小于 \(15\,\text{V}\)"这一条）</li>
+              <li>试混合组合"仅 \(\text{VD}_{Z1}\) 击穿、\(\text{VD}_{Z2}\) 截止"：击穿是稳压区的工作状态，式 (4-1) 第二行的前提里写着 \(I_Z\) 要落在稳压电流区间内，即电流非零；可 \(\text{VD}_{Z2}\) 截止 ⇒ 串联支路电流 \(I=0\)。同一股电流既要非零又要为零 ⇒ 该组合自相矛盾，直接否证。（依据：串联支路电流唯一 + 式 (4-1) 第二行的前提）</li>
+              <li>第 6 步靠电流就已否证，不必再比电压；把电压这一路也算出来当第二重保险。前提得说清：\(I=0\) 与"某只管处在需要 \(I_Z\neq0\) 的钳位态"这对矛盾已在第 6 步判死，本步是<b>反事实地</b>借"\(\text{VD}_{Z1}\) 钳在 \(9\,\text{V}\)"这一条把两只管子的电压重新分配一次，不是回头主张它真的钳住了。分配过程：\(I=0\) ⇒ \(R\) 无压降 ⇒ \(20\,\text{V}\) 全落在两只管子上；Z1 取 \(9\,\text{V}\)，余下 \(20-9=11\,\text{V}\gt U_{Z2}=6\,\text{V}\) ⇒ \(\text{VD}_{Z2}\) 按式 (4-1) 第二行必须击穿，与"它截止"矛盾。（依据：欧姆定律 + KVL + 式 (4-1) 第二行；其中"Z1 钳在 \(9\,\text{V}\)"只是本步临时取用的假设，第 6 步并不支持它）</li>
+              <li>试对偶组合"仅 \(\text{VD}_{Z2}\) 击穿、\(\text{VD}_{Z1}\) 截止"：第 6 步的电流论证照用（两只管 \(U_Z\) 不同，说的是同一条规则、不是同一组数）；电压一路给 \(20-6=14\,\text{V}\gt U_{Z1}=9\,\text{V}\)，\(\text{VD}_{Z1}\) 也该击穿 ⇒ 同样矛盾 ⇒ 该组合否证。（依据：串联电流唯一 + 式 (4-1) 第二行）</li>
+              <li>第 3 步把范围收成"每只要么击穿、要么截止"，共 \(2\times 2=4\) 组：(断,断) 已由第 5 步否证，(击,断) 由第 6–7 步、(断,击) 由第 8 步否证，只剩"两管都击穿"。此时支路总压降被两只管子各自钳在 \(U_{Z1}\) 与 \(U_{Z2}\) 上，串联相加：\(U_{AO}=9+6=15\,\text{V}\)。<span class="stk r"><a href="#s11" tabindex="0" role="button" aria-describedby="s11">串联击穿时稳压值相加</a><span class="pop" id="s11"><u>旁注 · 复现（它的适用条件）</u>两只稳压管同向（都反向）串联且都进入击穿区时，支路压降等于各自 \(U_Z\) 之和。前提是<b>同一股电流同时满足两只管子的稳压电流要求</b>——串联电流相同，只要它大于两者中较大的那个 \(I_{Z\min}\)，两只就都能稳住。若一只需要 \(5\,\text{mA}\) 才击穿、另一只 \(1\,\text{mA}\) 就够，就得先按电流校核，不能直接相加。<i>此处怎么用：本题两管串同一股 \(1.667\,\text{mA}\)，第 10 步算出来后要回头确认它对两只管都成立。</i></span></span>（依据：式 (4-1) 第二行 + 串联相加）</li>
+              <li>算维持电流：\(I_R=\dfrac{20-U_{AO}}{3}=\dfrac{20-15}{3}=\dfrac{5}{3}=1.667\,\text{mA}\)。（依据：欧姆定律 + 第 9 步）</li>
+              <li>回查：串联 ⇒ \(I_{Z1}=I_{Z2}=I_R=1.667\,\text{mA}\gt 0\)，方向为自阴极流入，与第 2 步一致；两管各自反压恰为 \(9\,\text{V}\) 与 \(6\,\text{V}\)，等于其 \(U_Z\)。击穿态成立的前提是 \(1.667\,\text{mA}\) 落在两管的 \(I_{Z\min}\sim I_{Z\max}\) 区间内，题目未给界限，此处按"工作在稳压区"取用。（依据：式 (4-1) 第二行 + 第0步 (ii)）</li>
+            </ol>
+          </div>
+
+          <div class="ans"><b>答案</b>　\[\boxed{\ U_{AO}=U_{Z1}+U_{Z2}=9+6=15\ \text{V}\ }\qquad I_R=I_{Z1}=I_{Z2}=1.667\ \text{mA},\quad R\ \text{上压降 } 5\ \text{V}\]</div>
+
+          <div class="blk chk"><b>验证</b>
+            <p>换列式复核（<b>负载线交点法</b>，与第 4–9 步的"逐组合否证"是两套列式）：从稳压支路两端往里看，电源网络等效成一个 \(20\,\text{V}\) 源串 \(3\,\text{k}\Omega\)，它对外加的电压与流过的电流被一条直线约束：\(U=20-3I\)（\(U\) 取 V、\(I\) 取 mA）。支路自身的特性是"电压没到 \(15\,\text{V}\) 之前电流为 \(0\)，一旦到了 \(15\,\text{V}\) 电压就不再往上走"。两条线只有一个交点：把 \(U=15\) 代进负载线得 \(I=\dfrac{20-15}{3}=1.667\,\text{mA}\)。这条路上只用到支路<b>总</b>压降 \(15\,\text{V}\)，既没有调用"哪只管子分多少"，也没有走"设某只截止再导出矛盾"那一步。<b>但要说清楚</b>：它最后算的 \(\dfrac{20-15}{3}\) 与第 10 步同式同值，代进去的 \(15\,\text{V}\) 又正是待验的结论，所以这条只查"负载线与钳位值对不对得上"，<b>不能</b>用来复核 \(U_{AO}=15\,\text{V}\) 本身。</p>
+            <p>独立路径（<b>换参数对照</b>，引入推导没用过的数值）：把 \(U_{Z2}\) 从 \(6\,\text{V}\) 改成 \(4\,\text{V}\)，重走第 3–11 步。\(20\gt 9+4=13\)，两管仍都击穿 ⇒ \(U_{AO}=9+4=13\,\text{V}\)、\(I_R=\dfrac{20-13}{3}=2.333\,\text{mA}\)。钳位值跟着 \(U_{Z2}\) 一起动了 \(2\,\text{V}\)：若 \(15\,\text{V}\) 其实来自别处（比如误当成电源电压、或只算了一只管子），改 \(U_{Z2}\) 不会牵动它。这一条才有否决力。</p>
+            <p>记账核对（<b>不算</b>独立路径，只查数有没有记错）：沿支路走一遍 KVL，\(15-9-6=0\) 回到参考地；两管中间那个节点的电位是 \(15-9=6\,\text{V}\)，也就是 \(\text{VD}_{Z2}\) 实际承受的反压。这一步复用的正是第 9 步已经取用的两个钳位值，因此只能算算术核对——拿它当验证等于拿结论验结论。</p>
+            <p>合理性检查（<b>极限情形</b>）：把电源从 \(20\,\text{V}\) 往下调。调到 \(15\,\text{V}\) 时第 5 步的不等式取等号，两管刚到击穿边缘；再往下调（例如 \(10\,\text{V}\lt 15\,\text{V}\)），第 5 步的不等式反向 ⇒ 两管都进不了击穿 ⇒ 支路开路 ⇒ \(U_{AO}=10\,\text{V}\) 跟随输入。再往上扫到 \(30\,\text{V}\)，\(U_{AO}\) 仍是 \(15\,\text{V}\)，只有电流涨到 \(\dfrac{30-15}{3}=5\,\text{mA}\)。这一"往下跟随、往上持平"的分段响应就是击穿钳位的答案签名：若把 \(U_{AO}\) 错答成 \(20\,\text{V}\) 或 \(11\,\text{V}\)，扫一遍电源就对不上。所以 \(15\,\text{V}\) 是"输入够高时才出现的钳位值"，而不是任意输入下都成立的结论——这正是限流电阻型稳压电路必须留足输入余量的原因。</p>
+          </div>
+
+          <div class="blk warn"><b>常见坑</b><div class="pit">
+            <p><b>坑一：</b>把题目给的"正向压降均为 \(0.5\,\text{V}\)"也加进去，答 \(9+6+2\times 0.5=16\,\text{V}\) 或 \(15.5\,\text{V}\)。\(0.5\,\text{V}\) 只在管子<b>正向导通</b>时存在（式 (4-1) 第一行），本题两管都走第三行的反向路径，全程与 \(0.5\,\text{V}\) 无关。这个条件是干扰项——但它在作业 6 里会变成唯一有用的数，两题对照才看得出它属于哪一态。</p>
+            <p><b>坑二：</b>以为两只管"按 \(U_Z\) 比例分压"，把 \(20\,\text{V}\) 按 \(9:6\) 分成 \(12\,\text{V}\) 与 \(8\,\text{V}\)。击穿区的管子是<b>恒压源</b>不是电阻，分到的电压是被自己的 \(U_Z\) 强制的，与另一只无关；剩下的 \(5\,\text{V}\) 全部落在 \(R\) 上。</p>
+            <p><b>坑三：</b>不算电流就宣布稳压成立。把 \(R\) 换成 \(100\,\text{k}\Omega\)，\(I_Z=\dfrac{20-15}{100}=0.05\,\text{mA}\)，很可能低于最小稳定电流，两管实际都退回截止态，\(U_{AO}\) 变回 \(20\,\text{V}\)。第 11 步那句"按稳压区取用"就是为这种情况留的口子。</p>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="q" id="q18b">
+        <h3>作业 6 · 习题 1.8(b)　两管正向串联，求 U_AO</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>与作业 5 完全相同的电源与电阻（\(20\,\text{V}\) 源正极朝上、经 \(R=3\,\text{k}\Omega\) 接 \(A\)、\(O\) 接源负极），元件值与稳压参数也相同（\(U_{Z1}=9\,\text{V}\)、\(U_{Z2}=6\,\text{V}\)、正向压降均 \(0.5\,\text{V}\)），<b>唯一区别</b>是两只稳压管整体掉转：\(\text{VD}_{Z1}\) 的<b>阳极</b>接 \(A\)、阴极接 \(\text{VD}_{Z2}\) 的阳极、\(\text{VD}_{Z2}\) 的阴极接 \(O\)。求 \(U_{AO}\)。</div>
+
+          <div class="blk s0"><b>第0步 · 三类检查（电路版）</b>
+            <p>(i) <b>参考方向与量纲</b>：\(U_{AO}\) 取 \(A\) 为"+"、\(O\) 为"−"，\(V_O=0\)。电流参考方向仍定为自上而下流过支路（\(I_R\) 向下为正）。单位 V / mA / k\(\Omega\)。</p>
+            <p>(ii) <b>工作区与模型成立前提</b>：式 (4-1) 三态模型。本小题两管都是阳极朝上，电流若流则从<b>阳极</b>进 ⇒ 落在式 (4-1) 第一行，走的是普通二极管的正向恒压降路径，\(U_Z\) 两个参数不参与。正向压降取题目给定的 \(0.5\,\text{V}\)（不是硅管常用的 \(0.7\,\text{V}\)，按题给值取）。</p>
+            <p>(iii) <b>初始与边界条件</b>：不适用。无电抗元件、无换路。</p>
+          </div>
+
+          <div class="blk idea"><b>思路</b>路线甲：沿用作业 5 的印象"这是稳压管电路，答案是 \(15\,\text{V}\)"。路线乙：重新按式 (4-1) 每行的方向条件判方向，再定状态。选<b>乙</b>：两题的图只差在三角形朝向上，甲把上一题的结论平移过来，恰好踩在出题人设的对比点上。判态先判方向，方向一换，第二行（稳压）整行都不再可用。</div>
+
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>电源极性与作业 5 相同：\(R\) 左端 \(+20\,\text{V}\)，只会推动电流自上而下流过支路。（依据：第0步 (i) 读图）</li>
+              <li>本小题 \(\text{VD}_{Z1}\) 阳极朝上接 \(A\) ⇒ 电流自上而下即<b>从阳极流入</b>。\(\text{VD}_{Z2}\) 同为阳极朝上，串在它下面，电流同样从它的阳极流入。（依据：第0步 (i) 的连线描述）</li>
+              <li>方向条件把两管都放在式 (4-1) 第一行那一侧 ⇒ 第二行（稳压）先排除；但第一行还要求正压超过门限（等号按 (4-1) 归截止，与 (1-1) 同口径），所以真正的候选是"正向导通"与"截止"两行，由第 8 步定胜负。先取候选<b>正向导通</b>，各自压降 \(U_{D(\text{on})}=0.5\,\text{V}\)。<span class="stk r"><a href="#s12" tabindex="0" role="button" aria-describedby="s12">稳压管正向就是普通二极管</a><span class="pop" id="s12"><u>旁注 · 复现（讲它的物理来由）</u>稳压管只是<b>把击穿区做得可控、可长期工作</b>的二极管，它的 PN 结与普通二极管没有区别：正偏时仍是 \(0.5\sim0.7\,\text{V}\) 的恒压降，反偏未达 \(U_Z\) 时仍是开路。所以"稳压管"三个字不表示它任何时刻都在稳压，它同样要按式 (4-1) 先判方向再定态。<i>此处怎么用：本小题两管正偏，\(U_{Z1}=9\,\text{V}\) 与 \(U_{Z2}=6\,\text{V}\) 两个参数全程用不上，只有 \(0.5\,\text{V}\) 用得上——与作业 5 恰好相反。</i></span></span>（依据：式 (4-1) 第一行的方向条件 + 第三行）</li>
+              <li>两管串联同向 ⇒ 支路总压降为两个正向压降相加：\(U_{AO}=0.5+0.5=1\,\text{V}\)。（依据：串联相加 + 第 3 步）</li>
+              <li>算电流：\(I_R=\dfrac{20-U_{AO}}{3}=\dfrac{20-1}{3}=\dfrac{19}{3}=6.333\,\text{mA}\)。（依据：欧姆定律 + 第 4 步）</li>
+              <li>回查正向态：\(I_R=6.333\,\text{mA}\gt 0\) 且方向为自阳极流入，与第 2、3 步一致 ⇒ 正向导通成立。（依据：式 (4-1) 第一行 + 式 (1-2) 第一支）</li>
+              <li>排除击穿态：击穿要求"电流自阴极流入"（式 (4-1) 第二行）。本电路 \(A\) 为正、电流只能向下从阳极进，方向相反 ⇒ 击穿态在本小题无从发生。（依据：式 (4-1) 第二行）</li>
+              <li>排除截止态：设两管都截止 ⇒ \(I_R=0\) ⇒ \(R\) 无压降 ⇒ \(U_{AO}=20\,\text{V}\)，即 \(20\,\text{V}\) 全落在两只管子上。可截止态要求每只管子的压降都进不了导通门限，两只串联相加 \(\lt 2\times 0.5=1\,\text{V}\)，与 \(20\,\text{V}\) 矛盾 ⇒ 不能截止。（依据：式 (4-1) 第一行 + 串联电压相加。这里<b>不能</b>说"每只各分 \(10\,\text{V}\)"——两只都截止时没有任何方程约束它们怎么分，能用的只有"总和必须小于 \(1\,\text{V}\)"这一条。这一否证同时补上了第 3 步欠下的门限条件 ⇒ 正压远超 \(0.5\,\text{V}\)，第一行成立）</li>
+              <li>三态只剩正向导通一种 ⇒ 第 4 步的 \(U_{AO}=1\,\text{V}\) 为唯一解。（依据：第 6–8 步）</li>
+            </ol>
+          </div>
+
+          <div class="ans"><b>答案</b>　\[\boxed{\ U_{AO}=2\times 0.5=1\ \text{V}\ }\qquad I_R=6.333\ \text{mA},\quad R\ \text{上压降 } 19\ \text{V}\]</div>
+
+          <div class="blk chk"><b>验证</b>
+            <p>灵敏度检查（<b>换参数重算</b>，与第 4 步"按题给 \(0.5\,\text{V}\) 取值"是两套数）：把两只管子当成普通硅管、正向压降取 \(0.7\,\text{V}\)，则 \(U_{AO}=1.4\,\text{V}\)、\(I_R=\dfrac{20-1.4}{3}=6.2\,\text{mA}\)。数值只随那一个参数线性移动，\(U_{Z1}\)、\(U_{Z2}\) 不进入结果——但这句话本身只是第 3 步把状态定在第一行的<b>直接后果</b>（第一行的式子里根本没有 \(U_Z\)），拿它"证实"第 7 步等于拿结论证结论。真要查答案有没有偷偷用到 \(U_Z\)，得换一组推导没用过的数重跑：</p>
+            <p><b>独立路径（换参数对照）</b>：把两只管子的稳压值对调成 \(U_{Z1}=6\,\text{V}\)、\(U_{Z2}=9\,\text{V}\)，重走第 3–8 步。第 7 步"电流自阳极流入 ⇒ 第二行无从发生"一字不改，第 3 步仍落在第一行 ⇒ 答案仍是 \(1\,\text{V}\)。若本卡的 \(1\,\text{V}\) 其实来自 \(U_Z\)（像作业 5 那样），对调必然改动它；它没动，\(U_Z\) 才被真正排除。再把正向门限取成 \(0.6\,\text{V}\)，答案变 \(1.2\,\text{V}\)——结果只随 \(U_{D(\text{on})}\) 移动。</p>
+            <p>合理性检查：与作业 5 对照——同一对管子、同一个 \(20\,\text{V}\)、同一个 \(3\,\text{k}\Omega\)，仅把朝向掉转，输出从 \(15\,\text{V}\) 变成 \(1\,\text{V}\)，相差 \(14\,\text{V}\)。这个落差正是本模块要立的结论：<b>稳压管反着用才是稳压管，正着用就是一颗普通二极管</b>。再看电流：\(6.333\,\text{mA}\) 远大于作业 5 的 \(1.667\,\text{mA}\)，因为 \(R\) 上的压降从 \(5\,\text{V}\) 涨到了 \(19\,\text{V}\)；这也提示实际选型时要检查管子正向电流是否超限。</p>
+          </div>
+
+          <div class="blk warn"><b>常见坑</b><div class="pit">
+            <p><b>坑一（本卡的全部意义所在）：</b>看见"稳压管"三个字就套 \(U_Z\)，答 \(15\,\text{V}\)。判据是<b>电流从哪个极进入</b>（式 (4-1) 每行的方向条件），不是元件叫什么名字。</p>
+            <p><b>坑二：</b>把作业 5 与作业 6 的图混看。两图唯一区别是三角形朝向：作业 5 横杠（带折线）在上方、作业 6 在下方。第0步 (i) 里"阳极接 \(A\)"与"阴极接 \(A\)"一字之差，答案差 \(14\,\text{V}\)。</p>
+            <p><b>坑三：</b>只算一只管的 \(0.5\,\text{V}\)，答 \(0.5\,\text{V}\)。两管串联同向，压降必须相加；\(R\) 上的 \(19\,\text{V}\) 也只有在 \(U_{AO}=1\,\text{V}\) 时才与 KVL 闭合。</p>
+            <p><b>坑四：</b>把正向压降取成 \(0.7\,\text{V}\)。题目明确给了"正向压降均为 \(0.5\,\text{V}\)"，这是这批稳压管的给定参数，覆盖硅管 \(0.7\,\text{V}\) 的默认值。题给参数优先于经验值。</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ M5 ============ -->
+  <section class="mod" id="m5">
+    <div class="gutter">M5<small>限幅</small></div>
+    <h2>M5 · 限幅电路与波形分段</h2>
+    <div class="in">
+      <div class="blk kp"><b>知识点</b>
+        <p>前面四个模块都是直流：通断判一次就够。把输入换成 \(u_i=10\sin\omega t\) 之后，同一个判据要在<b>每一个时刻</b>重新成立一次，而管态只可能在少数几个时刻翻转。处理办法是<b>以临界点为界把时间轴切段，段内当直流处理</b>：</p>
+        <ol class="steps">
+          <li>写出两种管态下输出与输入的关系（截止态通常 \(u_O=u_i\)，导通态通常 \(u_O=\) 某个钳位值）。</li>
+          <li>令两者相等，解出<b>临界输入值</b>——管压恰好为 \(0\) 的那一点。</li>
+          <li>在临界值两侧各取一段，用假设法（式 (1-1) + 式 (1-2)）判该段的管态，判据不通过就换。</li>
+          <li>把输入函数代进去，解出临界<b>相位角</b>，写出分段结果并画图。</li>
+        </ol>
+        <p>对本题这种"二极管串一个直流源接地、输出从二极管阳极那头取"的单管电路，分段结果可以一句话概括：</p>
+        <div id="eq-5-1">\[ u_O=\begin{cases}u_i, & u_i\le E\\[2pt] E, & u_i\gt E\end{cases}\;=\;\min\left(u_i,\,E\right) \tag{5-1}\]</div>
+        <p>式 (5-1) 与 M3 的 (3-1) 是同一件事：M3 里"多个直流输入取 min"，这里"同一输入在不同时刻取 min"，只不过被比较的第二个量换成了参考电压 \(E\)。</p>
+        <p><b>上下限幅的识别只看管向。</b>二极管<b>阳极</b>接输出节点 ⇒ 输出被顶在参考值以下 ⇒ <b>上限幅（削顶）</b>；<b>阴极</b>接输出节点 ⇒ 输出被托在参考值以上 ⇒ <b>下限幅（削底）</b>。参考值取的是"管另一侧那个节点的电位"，它由串在后面的直流源决定，<b>不是地</b>——这是本模块最集中的错点。</p>
+        <p>还有一件直流题里没有的事：<b>截止段管子承受的峰值反压</b>要单独算，它是选管子的依据。\(u_{D\,\text{peak}}=E-u_{i\,\min}\)。在式 (5-1) 的电路里，输入到负峰 \(-10\,\text{V}\) 时管子承受的<b>反压大小</b>是 \(6-(-10)=16\,\text{V}\)；按式 (1-2) 的管压写法它是 \(U_D=-16\,\text{V}\)，符号别丢——判截止用的正是它 \(\le 0\)。</p>
+      </div>
+
+      <div class="blk idea" id="m5-meth"><b>解题方法</b>
+        <ol class="steps">
+          <li>把"管另一侧"的节点电位算成直流值（含串接电源的极性），它是钳位电平。</li>
+          <li>分别写出截止态与导通态的 \(u_O\)，令二者相等解出临界输入值。</li>
+          <li>两侧各判一次管态（假设法 + 电流方向回查），确认钳位段与跟随段。</li>
+          <li>把 \(u_i\) 的解析式代进临界条件，解出相位角，算出导通区间宽度。</li>
+          <li>用传输特性作图法独立复核一遍，再补算峰值反压。</li>
+        </ol>
+        适用条件：单二极管 + 直流偏置 + 串联电阻的限幅电路，输入为周期信号且输出端空载。本模块易错点：第 4 步把 \(\sin\theta=0.6\) 的角记成 \(30^\circ\)。</div>
+
+      <div class="q" id="q14a">
+        <h3>作业 7 · 习题 1.4(a)　判断所画 u_O 波形对不对</h3>
+        <div class="in">
+          <div class="blk"><b>题目重述</b>电路如图：输入 \(u_i\) 从左侧"+"、"−"两端接入，经电阻 \(R\) 送到右侧输出端 \(u_O\) 的"+"端；在输出节点与公共端（"−"端）之间挂一条支路——二极管 VD 的<b>阳极</b>接输出节点、阴极朝下，串一个直流源 \(E\)（正极朝上、接 VD 阴极，负极接公共端）到地。二极管为理想器件，\(u_i=10\sin\omega t\ (\text{V})\)，\(E=6\,\text{V}\)。判断题：所画出的 \(u_O\) 波形（下图下方那条：正峰被削平在 \(6\,\text{V}\)、负半周完整保留到 \(-10\,\text{V}\)）是否正确。</div>
+
+          <div class="blk"><b>电路与波形</b>
+            <div class="figwrap" style="width:min(100%,430px)">
+              <svg class="fig" viewBox="0 0 430 240" style="display:block;width:100%;height:auto" role="img" aria-label="习题 1.4(a) 限幅电路">
+                <g stroke="var(--ink)" stroke-width="1.8" fill="none" stroke-linecap="round">
+                  <circle cx="45" cy="45" r="5" fill="var(--card)"/><line x1="50" y1="45" x2="105" y2="45"/>
+                  <rect x="105" y="38" width="46" height="14" fill="var(--card)"/>
+                  <line x1="151" y1="45" x2="345" y2="45"/>
+                  <line x1="250" y1="45" x2="250" y2="72"/>
+                  <line x1="236" y1="100" x2="264" y2="100" stroke-width="2.6"/>
+                  <line x1="250" y1="100" x2="250" y2="118"/>
+                  <line x1="232" y1="118" x2="268" y2="118"/>
+                  <line x1="239" y1="130" x2="261" y2="130" stroke-width="4"/>
+                  <line x1="250" y1="130" x2="250" y2="185"/>
+                  <line x1="45" y1="45" x2="45" y2="99"/><circle cx="45" cy="115" r="16" fill="var(--card)"/><path d="M37,115 q4,-9 8,0 t8,0" stroke-width="1.4" fill="none"/><line x1="45" y1="131" x2="45" y2="185"/>
+                  <line x1="45" y1="185" x2="345" y2="185"/>
+                  <circle cx="45" cy="185" r="5" fill="var(--card)"/>
+                  <circle cx="345" cy="45" r="5" fill="var(--card)"/>
+                  <circle cx="345" cy="185" r="5" fill="var(--card)"/>
+                  <circle cx="250" cy="45" r="5" fill="var(--ink)" stroke="none"/>
+                </g>
+                <path d="M236,72 L264,72 L250,100 Z" fill="var(--key)" stroke="none"/>
+              </svg>
+              <span class="figlab" style="left:29%;top:10%">\(R\)</span>
+              <span class="figlab" style="left:3%;top:14%">\(+\)</span>
+              <span class="figlab" style="left:3%;top:80%">\(-\)</span>
+              <span class="figlab" style="left:3%;top:46%">\(u_i\)</span>
+              <span class="figlab" style="left:70%;top:34%">\(\text{VD}\)</span>
+              <span class="figlab" style="left:64%;top:55%">\(E\)</span>
+              <span class="figlab" style="left:90%;top:14%">\(+\)</span>
+              <span class="figlab" style="left:90%;top:80%">\(-\)</span>
+              <span class="figlab" style="left:90%;top:46%">\(u_O\)</span>
+            </div>
+            <div class="figwrap" style="width:min(100%,430px)">
+              <svg class="fig" viewBox="0 0 430 340" style="display:block;width:100%;height:auto" role="img" aria-label="输入与输出波形">
+                <g stroke="var(--line)" stroke-width="1.2" fill="none">
+                  <line x1="40" y1="100" x2="410" y2="100"/><line x1="40" y1="250" x2="410" y2="250"/>
+                </g>
+                <g stroke="var(--mut)" stroke-width="1.6" fill="none">
+                  <line x1="40" y1="30" x2="40" y2="170"/><line x1="40" y1="180" x2="40" y2="320"/>
+                  <line x1="40" y1="100" x2="410" y2="100"/><line x1="40" y1="250" x2="410" y2="250"/>
+                </g>
+                <g stroke="var(--acc)" stroke-width="1.2" stroke-dasharray="4 3" fill="none">
+                  <line x1="40" y1="64" x2="400" y2="64"/><line x1="40" y1="214" x2="400" y2="214"/><line x1="40" y1="310" x2="400" y2="310"/>
+                  <line x1="58.4" y1="64" x2="58.4" y2="214"/><line x1="111.6" y1="64" x2="111.6" y2="214"/>
+                  <line x1="238.4" y1="64" x2="238.4" y2="214"/><line x1="291.6" y1="64" x2="291.6" y2="214"/>
+                </g>
+                <path d="M40,100L43,93.7L46,87.5L49,81.5L52,75.6L55,70L58,64.7L61,59.9L64,55.4L67,51.5L70,48L73,45.2L76,42.9L79,41.3L82,40.3L85,40L88,40.3L91,41.3L94,42.9L97,45.2L100,48L103,51.5L106,55.4L109,59.9L112,64.7L115,70L118,75.6L121,81.5L124,87.5L127,93.7L130,100L133,106.3L136,112.5L139,118.5L142,124.4L145,130L148,135.3L151,140.1L154,144.6L157,148.5L160,152L163,154.8L166,157.1L169,158.7L172,159.7L175,160L178,159.7L181,158.7L184,157.1L187,154.8L190,152L193,148.5L196,144.6L199,140.1L202,135.3L205,130L208,124.4L211,118.5L214,112.5L217,106.3L220,100L223,93.7L226,87.5L229,81.5L232,75.6L235,70L238,64.7L241,59.9L244,55.4L247,51.5L250,48L253,45.2L256,42.9L259,41.3L262,40.3L265,40L268,40.3L271,41.3L274,42.9L277,45.2L280,48L283,51.5L286,55.4L289,59.9L292,64.7L295,70L298,75.6L301,81.5L304,87.5L307,93.7L310,100L313,106.3L316,112.5L319,118.5L322,124.4L325,130L328,135.3L331,140.1L334,144.6L337,148.5L340,152L343,154.8L346,157.1L349,158.7L352,159.7L355,160L358,159.7L361,158.7L364,157.1L367,154.8L370,152L373,148.5L376,144.6L379,140.1L382,135.3L385,130L388,124.4L391,118.5L394,112.5L397,106.3L400,100"
+                  stroke="var(--ink)" stroke-width="2" fill="none"/>
+                <path d="M40,250L43,243.7L46,237.5L49,231.5L52,225.6L55,220L58,214.7L61,214L64,214L67,214L70,214L73,214L76,214L79,214L82,214L85,214L88,214L91,214L94,214L97,214L100,214L103,214L106,214L109,214L112,214.7L115,220L118,225.6L121,231.5L124,237.5L127,243.7L130,250L133,256.3L136,262.5L139,268.5L142,274.4L145,280L148,285.3L151,290.1L154,294.6L157,298.5L160,302L163,304.8L166,307.1L169,308.7L172,309.7L175,310L178,309.7L181,308.7L184,307.1L187,304.8L190,302L193,298.5L196,294.6L199,290.1L202,285.3L205,280L208,274.4L211,268.5L214,262.5L217,256.3L220,250L223,243.7L226,237.5L229,231.5L232,225.6L235,220L238,214.7L241,214L244,214L247,214L250,214L253,214L256,214L259,214L262,214L265,214L268,214L271,214L274,214L277,214L280,214L283,214L286,214L289,214L292,214.7L295,220L298,225.6L301,231.5L304,237.5L307,243.7L310,250L313,256.3L316,262.5L319,268.5L322,274.4L325,280L328,285.3L331,290.1L334,294.6L337,298.5L340,302L343,304.8L346,307.1L349,308.7L352,309.7L355,310L358,309.7L361,308.7L364,307.1L367,304.8L370,302L373,298.5L376,294.6L379,290.1L382,285.3L385,280L388,274.4L391,268.5L394,262.5L397,256.3L400,250"
+                  stroke="var(--key)" stroke-width="2.4" fill="none"/>
+              </svg>
+              <span class="figlab" style="left:6%;top:6%">\(u_i/\text{V}\)</span>
+              <span class="figlab" style="left:6%;top:58%">\(u_O/\text{V}\)</span>
+              <span class="figlab" style="left:13%;top:8%">\(10\)</span>
+              <span class="figlab" style="left:13%;top:18%">\(6\)</span>
+              <span class="figlab" style="left:13%;top:60%">\(6\)</span>
+              <span class="figlab" style="left:13%;top:91%">\(-10\)</span>
+              <span class="figlab" style="left:95%;top:30%">\(\omega t\)</span>
+              <span class="figlab" style="left:95%;top:78%">\(\omega t\)</span>
+              <span class="figlab" style="left:19%;top:68%">削顶段</span>
+            </div>
+          </div>
+
+          <div class="blk s0"><b>第0步 · 三类检查（电路版）</b>
+            <p>(i) <b>参考方向与量纲</b>：\(u_i\) 与 \(u_O\) 共用左侧"−"、右侧"−"那条下端导线作为参考（图上两端都标了"−"），故两支路的下端同电位，取为 \(0\,\text{V}\)。VD 阴极那一侧的电位由 \(E\) 决定：\(E\) 正极朝上接阴极、负极朝下接参考地 ⇒ <b>阴极电位 \(=+6\,\text{V}\)，且与 \(u_i\) 无关</b>。电流参考方向取"自输出节点向下流过 VD 为正"。单位 V / mA / k\(\Omega\)。</p>
+            <p>(ii) <b>工作区与模型成立前提</b>：理想器件 ⇒ 通 = 短路、断 = 开路，导通时钳位电平精确等于 \(E\)，不含 \(0.7\,\text{V}\)。输出端只画了两个端子、未接负载 ⇒ 空载，输出电流全部来自那条 VD 支路。\(R\) 必须存在：它承担"输入与钳位值之差"，若 \(R=0\)，则 \(u_i\gt 6\,\text{V}\) 时理想电压源 \(u_i\) 与 \(E\) 直接并联，电路无解。</p>
+            <p>(iii) <b>初始与边界条件</b>：本电路是<b>纯电阻</b>网络（无电容电感），所以不存在暂态与时间常数，每一时刻的输出只由该时刻的输入决定——这正是"逐段当直流处理"合法的根据。要落的是<b>相位边界</b>：\(u_i\) 一个周期内两次越过钳位电平 \(6\,\text{V}\)，这两次穿越把周期切成三段，第 8 步要把它们解出来。</p>
+          </div>
+
+          <div class="blk idea"><b>思路</b>路线甲：认出这是标准上限幅电路，直接写"削顶在 \(6\,\text{V}\)"，与所给图对一眼就判对。路线乙：把截止态与导通态各自的 \(u_O(u_i)\) 写出来、解临界角、逐段判态，再拿三段结果去比对波形。选<b>乙</b>：判断题要的是"能不能找出图里画错的地方"，甲没有可核对的量——万一图里把削顶电平画成 \(5\,\text{V}\)、或把负半周也削了，甲根本发现不了。乙给出三个具体数字（\(6\,\text{V}\)、\(36.87^\circ\)、\(-10\,\text{V}\)），逐个对图即可。</div>
+
+          <div class="blk sol"><b>分步推导</b>
+            <ol class="steps">
+              <li>算钳位电平：VD 阴极经 \(E\) 源（正极朝上）接到参考地 ⇒ \(V_{\text{阴}}=+E=+6\,\text{V}\)，为常值。（依据：第0步 (i) 的读图 + 理想源端电压恒定）</li>
+              <li>写截止态：VD 断开 ⇒ 输出端无负载、\(R\) 上无电流 ⇒ \(R\) 压降 \(0\,\text{V}\) ⇒ \(u_O=u_i\)。（依据：欧姆定律 + 第0步 (ii) 空载）</li>
+              <li>写导通态：VD 换成导线 ⇒ 输出节点与阴极同电位 ⇒ \(u_O=V_{\text{阴}}=6\,\text{V}\)。（依据：理想模型导通压降为 \(0\)）</li>
+              <li>令第 2、3 步相等解临界：\(u_i=6\,\text{V}\) 是管压恰好为 \(0\) 的临界输入值。（依据：式 (1-1) 取 \(U_{D0}=0\)）</li>
+              <li>判 \(u_i\gt 6\,\text{V}\) 段：假设截止 ⇒ 由第 2 步 \(u_O=u_i\gt 6=V_{\text{阴}}\)，而 VD 阳极就接在 \(u_O\) 上 ⇒ \(U_{D0}\gt 0\) ⇒ 应导通，与假设矛盾 ⇒ 该段<b>导通</b> ⇒ \(u_O=6\,\text{V}\)。（依据：式 (1-1) 第一支）</li>
+              <li>判 \(u_i\lt 6\,\text{V}\) 段：假设导通 ⇒ 由第 3 步 \(u_O=6\,\text{V}\)，则需 \(i_R=\dfrac{u_i-6}{R}\lt 0\)，即电流从地经 \(E\) 与 VD 倒灌回输入源 ⇒ 违反式 (1-2) 第一支 ⇒ 该段<b>截止</b> ⇒ \(u_O=u_i\)。（依据：欧姆定律 + 式 (1-2)）</li>
+              <li>把第 5、6 步合成传输特性，即式 (5-1)：\(u_O=\min(u_i,E)\)。（依据：式 (5-1)）</li>
+              <li>代输入解临界角：\(10\sin\omega t=6\Rightarrow \sin\omega t=0.6\)。正弦在第一、第二象限各有一解 ⇒ \(\omega t=36.87^\circ\) 与 \(\omega t=180^\circ-36.87^\circ=143.13^\circ\)。<span class="stk"><a href="#s13" tabindex="0" role="button" aria-describedby="s13">sin 方程在一个周期内有两个解</a><span class="pop" id="s13"><u>旁注 · 复现（给它的图象理由）</u>\(\sin\theta=c\)（\(\vert c\vert\lt 1\)）在 \([0,360^\circ)\) 内恰有两个解：\(\theta=\arcsin c\) 与 \(\theta=180^\circ-\arcsin c\)，因为正弦曲线在峰值两侧各穿过一次同一水平线。只写前者会漏掉下降沿那一次，导通区间宽度就从 \(106.26^\circ\) 错成 \(106.26^\circ\) 的一半。<i>此处怎么用：本题 \(c=0.6\)，\(\arcsin 0.6=36.87^\circ\)，补角 \(143.13^\circ\)。别把 \(0.6\) 记成 \(0.5\) 对应的 \(30^\circ\)。</i></span></span>（依据：反正弦的主值与补角）</li>
+              <li>算导通区间宽度：\(143.13^\circ-36.87^\circ=106.26^\circ\)，占一个周期 \(360^\circ\) 的 \(\dfrac{106.26}{360}=0.295\)。（依据：第 8 步两解相减）</li>
+              <li>写出一个周期内的分段结果：\(0\to36.87^\circ\) 跟随 \(u_i\)；\(36.87^\circ\to143.13^\circ\) 钳在 \(6\,\text{V}\)；\(143.13^\circ\to360^\circ\) 跟随 \(u_i\)。（依据：第 5、6、8 步）</li>
+              <li>单独校负半周：\(u_i=-10\,\text{V}\) 时 \(U_{D}=u_i-V_{\text{阴}}=-10-6=-16\,\text{V}\le 0\) ⇒ 确实截止，输出原样跟随到 \(-10\,\text{V}\)，负半周不削。（依据：式 (1-2) 第二支）</li>
+              <li>记下选型量：峰值反压 \(\vert U_{D}\vert_{\max}=16\,\text{V}\)，出现在 \(u_i\) 负峰处。（依据：第 11 步）</li>
+              <li>逐点比对所给波形：① 削顶电平 \(6\,\text{V}\) —— 与第 10 步一致；② 负峰保留到 \(-10\,\text{V}\)、未削 —— 与第 11 步一致（下方面板已把 \(-10\,\text{V}\) 画成虚线并标了数，不必再按像素比例反推）；③ 削顶段从第一峰左侧到右侧、宽度约为周期的三成 —— 与第 9 步的 \(0.295\) 一致（说成"四分之一"等于按 \(90^\circ\) 去对 \(106.26^\circ\)，反而对不上图）；④ 上升沿与下降沿各穿越一次 \(6\,\text{V}\) —— 与第 8 步的两个解一致。四项全合。（依据：第 8–11 步）</li>
+              <li>故该判断题的答案为<b>正确</b>。（依据：第 13 步）</li>
+            </ol>
+          </div>
+
+          <div class="ans"><b>答案</b>　\[\boxed{\ \text{所画 } u_O \text{ 波形正确}\ }\qquad u_O=\min(u_i,\,6\,\text{V}),\quad \text{削顶区间 } 36.87^\circ\sim143.13^\circ,\quad \text{峰值反压 } 16\ \text{V}\]</div>
+
+          <div class="blk chk"><b>验证</b>
+            <p>换记号复核（换列式复核的一种，<b>传输特性作图法</b>：把第 2、3、4 步的分段式画成折线，再沿竖直方向投影读回来。它查"画出来的和列出来的是不是同一回事"，用的事实全部出自那几步，<b>不算</b>独立复核）：以 \(u_i\) 为横轴、\(u_O\) 为纵轴画折线——\(u_i\le 6\) 段是斜率 \(1\) 的对角线（第 2 步），\(u_i\gt 6\) 段是 \(u_O=6\) 的水平线（第 3 步），两段在 \((6,6)\) 处相接。再把 \(u_i=10\sin\omega t\) 的每个瞬时值沿竖直方向投影到这条折线上读 \(u_O\)：正弦升到 \(6\) 之前投影点在对角线上（输出跟输入）、越过 \(6\) 之后投影点被"压"在水平线上（输出恒为 \(6\)）、下降回到 \(6\) 以下又落回对角线。得到的形状正是"顶部压平、底部完整"，与第 10 步的分段结果一致。</p>
+            <p>独立路径（<b>管向反向对照</b>：改动的是推导从未用到的那根连线方向）：本电路 VD <b>阳极</b>接输出节点 ⇒ 只能把输出往<b>下</b>钳（输出高于参考时导通泄流），所以削顶不削底，与图一致。做个反向对照：若把 VD 掉转成阴极接输出节点、阳极接 \(+6\,\text{V}\)，则 \(u_O\lt 6\,\text{V}\) 时导通、输出被托在 \(6\,\text{V}\) 之上，波形会变成"削底留顶"——与所给图完全相反。所给图削的是顶，反推管向必须是阳极朝输出，与图上的三角形朝向吻合，两处互相印证。</p>
+          </div>
+
+          <div class="blk warn"><b>常见坑</b><div class="pit">
+            <p><b>坑一：</b>把钳位电平答成 \(0\,\text{V}\)，理由是"理想二极管导通时压降为 \(0\)"。压降为 \(0\) 说的是<b>管子两端</b>等电位，而它另一端接的不是地、是 \(E\) 源顶起来的 \(+6\,\text{V}\)。所以输出被钳在 \(6\,\text{V}\)。这一条在第 1 步单独占一步，就是为拦这个错。</p>
+            <p><b>坑二：</b>以为负半周也会被削。负半周时阳极为负、阴极为 \(+6\,\text{V}\)，管压 \(-16\,\text{V}\) 深反偏，输出完整跟随到 \(-10\,\text{V}\)（第 11 步）。真正被"削"的只有超过 \(+6\,\text{V}\) 的那一段。</p>
+            <p><b>坑三：</b>把导通区间写成 \(30^\circ\sim150^\circ\)、宽度 \(120^\circ\)。那是 \(\sin=0.5\) 的角；本题是 \(\dfrac{6}{10}=0.6\)，对应 \(36.87^\circ\) 与 \(143.13^\circ\)，宽度 \(106.26^\circ\)。按 \(30^\circ/150^\circ\) 画出来的削顶会明显偏宽（\(120^\circ\) 对 \(106.26^\circ\)，宽出约 \(13\%\)），判断题若考的就是角度位置，这一步会判错。</p>
+            <p><b>坑四：</b>只画波形不算峰值反压。\(16\,\text{V}\) 是选型依据：反向耐压低于 \(16\,\text{V}\) 的管子在这个电路里会被击穿。它同时说明——把 \(E\) 从 \(+6\,\text{V}\) 改成 \(-6\,\text{V}\)（只反接电源、管子不掉转），峰值反压变成 \(\vert -10-(-6)\vert =4\,\text{V}\)，可<b>功能仍是上限幅</b>，只是钳位电平跟着参考点从 \(+6\,\text{V}\) 移到 \(-6\,\text{V}\)：\(u_O=\min(u_i,-6\,\text{V})\)，连 \(-6\,\text{V}\) 以上的那部分负半周也被削掉。要换成下限幅得掉转<b>管子</b>（见上面那条管向反向对照），不是掉转电源——"削哪一侧由管向定，削到哪一电平由参考点定"，这两件事别混。</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 收束附录 ============ -->
+  <section class="mod" id="pitfalls"><div class="gutter">附<small>易错</small></div><h2>易错点清单</h2>
+    <div class="in"><table><tr><th>模块</th><th>坑</th><th>触发条件</th></tr>
+      <tr><td>M1</td><td>恒压降的极性加成 \(+0.7\,\text{V}\)，得 \(-5.3\,\text{V}\)</td><td>电源全为负电位时最容易反。抓法：算电流，恒压模型的电流必须比理想模型<b>小</b></td></tr>
+      <tr><td>M1</td><td>拿导通后的管压降去和 \(U_{D(\text{on})}\) 比</td><td>式 (1-1) 左侧必须是<b>管断开时</b>的开路电压</td></tr>
+      <tr><td>M1</td><td>见两个电源都是负电位就判反偏截止</td><td>通断比的是阳极减阴极，\(-6\,\text{V}\gt -10\,\text{V}\)</td></tr>
+      <tr><td>M2</td><td>按电源标称值大小判谁导通（"12V 最大所以它通"）</td><td>电源负极朝上时该管阳极是 \(-12\,\text{V}\)，是最低而非最高</td></tr>
+      <tr><td>M2</td><td>把输出电位答成负载电阻那一端的电位（\(-6\,\text{V}\)）</td><td>公共点被导通管钳住，负载只决定电流</td></tr>
+      <tr><td>M2</td><td>判完通断不回查电流方向</td><td>把 \(6\,\text{V}\) 源反过来，正确答案从"一通一断"翻成"两管全断"</td></tr>
+      <tr><td>M3</td><td>两输入相等时让一只管独担全部电流</td><td>它满足 KCL 也满足截止判据，只有对称性能破它</td></tr>
+      <tr><td>M3</td><td>把 \(U_O=\min/\max\) 用到输入支路串了电阻的电路</td><td>习题 1.7 的 \(R_A\)、\(R_B\)。此时 max/min 只给"哪一路优先"的候选，导通集合仍要逐只回查（\(U_B=5.5\,\text{V}\) 时两管其实同通，见 M3 知识点）</td></tr>
+      <tr><td>M3</td><td>把"双通"解出的 \(3.75\,\text{V}\) 当答案交上去</td><td>解出 \(U_F\) 后必须把每条支路电流都代出来看符号</td></tr>
+      <tr><td>M3</td><td>截止管的阳极电位当成 \(0\,\text{V}\)</td><td>无电流的电阻两端等电位，阳极被顶在 \(U_B=3\,\text{V}\)</td></tr>
+      <tr><td>M4</td><td>把"正向压降 \(0.5\,\text{V}\)"加到反向击穿的管子上</td><td>该参数只属于式 (4-1) 第一行；两管反接时它是干扰项</td></td></tr>
+      <tr><td>M4</td><td>看到"稳压管"就套 \(U_Z\)，作业 6 答成 \(15\,\text{V}\)</td><td>判据是电流从哪个极进入，不是元件名称</td></tr>
+      <tr><td>M4</td><td>以为串联两管按 \(U_Z\) 比例分压</td><td>击穿区是恒压源，各管电压由自身 \(U_Z\) 强制</td></tr>
+      <tr><td>M4</td><td>不校稳压电流就宣布稳压成立</td><td>\(R\) 太大时 \(I_Z\lt I_{Z\min}\)，两管退回截止、输出跟随输入</td></tr>
+      <tr><td>M5</td><td>把钳位电平答成 \(0\,\text{V}\)</td><td>理想管压降为 \(0\) 说的是它两端等电位，另一端接的是 \(+E\)</td></tr>
+      <tr><td>M5</td><td>以为负半周也削</td><td>阳极接输出的电路只向下钳，负半周深反偏、原样跟随</td></tr>
+      <tr><td>M5</td><td>把 \(\sin\theta=0.6\) 的角写成 \(30^\circ/150^\circ\)</td><td>那是 \(0.5\) 的角。正确为 \(36.87^\circ/143.13^\circ\)，宽 \(106.26^\circ\)</td></tr>
+      <tr><td>M5</td><td>只画波形不算峰值反压</td><td>本电路峰值反压 \(16\,\text{V}\)，是管子反向耐压的选型下限</td></tr>
+    </table></div></section>
+
+  <section class="mod" id="cheatsheet"><div class="gutter">附<small>速查</small></div><h2>公式·结论速查表</h2>
+    <div class="in"><table><tr><th>编号</th><th>内容</th><th>适用条件</th></tr>
+      <tr><td><a href="#eq-1-1">(1-1)</a></td><td>假设法判据：\(U_{D0}=V_{\text{阳}}-V_{\text{阴}}\)（管断开时），与 \(U_{D(\text{on})}\) 比大小定通断</td><td>任何二极管直流电路；理想模型取 \(U_{D(\text{on})}=0\)</td></tr>
+      <tr><td><a href="#eq-1-2">(1-2)</a></td><td>回查：导通须 \(I_D\gt 0\)，截止须 \(U_D\le U_{D(\text{on})}\)（理想模型即 \(\le 0\)）</td><td>(1-1) 的配套另一半，不通过就换假设；<b>通过只说明自洽，不说明唯一</b></td></tr>
+      <tr><td><a href="#eq-2-1">(2-1)</a></td><td>共阴极组 \(V_{\text{公}}=\max_k V_{\text{阳}k}\)；共阳极组 \(V_{\text{公}}=\min_k V_{\text{阴}k}\)</td><td>多管只有一层公共节点、另一极有通路供／收电流；<b>理想模型下的等式</b>（换恒压降模型时共阴组减、共阳组加一个 \(U_{D(\text{on})}\)，见 M2）</td></tr>
+      <tr><td><a href="#eq-3-1">(3-1)</a></td><td>共阳 + 上拉：\(U_O=\min(U_A,U_B)\)，二极管与门</td><td>输入为理想源<b>直连阴极</b>；只有当两个输入<b>都</b>高于上拉电源（\(\min(U_A,U_B)\gt V_{CC}\)）时才失效，一高一低照常成立</td></tr>
+      <tr><td><a href="#eq-3-2">(3-2)</a></td><td>共阴 + 下拉：\(U_O=\max(U_A,U_B)\)，二极管或门</td><td>输入为理想源<b>直连阳极</b>；串了 \(R_A,R_B\) 时只能当"谁优先"的候选线索，导通集合仍要逐只回查；两个输入都低于下拉参考（地）时也失效，此时两管全截止、\(U_O=0\ne\max\)</td></tr>
+      <tr><td><a href="#eq-4-1">(4-1)</a></td><td>稳压管三态：阳极进 → 正向导通 \(U_{D(\text{on})}\)；阴极进且反压 \(\ge U_Z\) → 稳压；阴极进且反压 \(\lt U_Z\) → 开路</td><td>每行左边是条件、右边是结论；先判方向、再判大小，顺序不可颠倒。第二行另需 \(I_Z\) 落在管子手册给的稳压电流区间内，第一行另需正压超过 \(U_{D(\text{on})}\)（两处等号口径不同：正压的等号按 (1-1) 归截止，反压 \(=U_Z\) 按 M4 归击穿）</td></tr>
+      <tr><td><a href="#eq-5-1">(5-1)</a></td><td>上限幅传输特性 \(u_O=\min(u_i,E)\)</td><td>单理想管阳极接输出、阴极接固定参考 \(E\)，输出空载且串有限流电阻</td></tr>
+      <tr><td>补充</td><td>串联稳压值相加 \(U_Z=U_{Z1}+U_{Z2}\)；同向正向压降相加 \(2U_{D(\text{on})}\)；限流电阻 \(I_R=\dfrac{V_{\text{in}}-U_{\text{out}}}{R}\)</td><td>电流需同时满足串联各管的工作区间</td></tr>
+      <tr><td>补充</td><td>无电流的电阻两端等电位（\(U=IR\)，\(I=0\Rightarrow U=0\)）</td><td>仅直流／纯阻场合；与电容并联时不适用</td></tr>
+    </table></div></section>
+
+  <section class="mod" id="answers"><div class="gutter">附<small>答案</small></div><h2>答案总表</h2>
+    <div class="in"><table><tr><th>题号</th><th>填空</th><th>答案</th></tr>
+      <tr><td><a href="#q11a">作业 4 · 1.1(a)</a></td><td>通断 / 理想 \(U_{AO}\) / 恒压 \(U_{AO}\)</td><td>导通；\(-6\,\text{V}\)；\(-6.7\,\text{V}\)（恒压降取 \(0.7\,\text{V}\)）</td></tr>
+      <tr><td><a href="#q12a">作业 3 · 1.2(a)</a></td><td>VD₁ / VD₂ / \(U_{AO}\)</td><td>导通；截止；\(0\,\text{V}\)</td></tr>
+      <tr><td><a href="#q16a">作业 1(1) · 1.6</a></td><td>\(U_F\)</td><td>\(5\,\text{V}\)</td></tr>
+      <tr><td><a href="#q16b">作业 1(2) · 1.6</a></td><td>\(U_F\)</td><td>\(0\,\text{V}\)</td></tr>
+      <tr><td><a href="#q16c">作业 1(3) · 1.6</a></td><td>\(U_F\)</td><td>\(0\,\text{V}\)</td></tr>
+      <tr><td><a href="#q17a">作业 2(1) · 1.7</a></td><td>\(U_F\)</td><td>\(5\,\text{V}\)</td></tr>
+      <tr><td><a href="#q17b">作业 2(2) · 1.7</a></td><td>\(U_F\)</td><td>\(\dfrac{30}{7}=4.286\,\text{V}\)</td></tr>
+      <tr><td><a href="#q18a">作业 5 · 1.8(a)</a></td><td>\(U_{AO}\)</td><td>\(15\,\text{V}\)</td></tr>
+      <tr><td><a href="#q18b">作业 6 · 1.8(b)</a></td><td>\(U_{AO}\)</td><td>\(1\,\text{V}\)</td></tr>
+      <tr><td><a href="#q14a">作业 7 · 1.4(a)</a></td><td>判断题</td><td>正确（\(u_O=\min(u_i,6\,\text{V})\)，削顶 \(36.87^\circ\sim143.13^\circ\)）</td></tr>
+    </table>
+    <p style="font-size:14px;color:var(--mut)">交作业时的顺序提醒：本表按<b>模块</b>排（认知顺序），不是按截图里的 1 到 7。左列的"作业 n"才是截图上的题号，索引表里也有同一组对应关系。</p>
+    </div></section>
+
+  <section class="mod" id="verify"><div class="gutter">附<small>校验</small></div><h2>校验说明</h2>
+    <div class="in">
+      <p>本文件的数值与判态按以下四条路径复核过，逐题不再重复这句话。</p>
+      <p><b>一、验证段分五级标注。</b>本文件不笼统写"独立复核"：每段验证的段首都标明它属于哪一级，判据是"这一段有没有引入推导没用过的事实"。<b>独立路径</b>（引入新事实、有否决力）：作业 3 与作业 1(2) 验证段里的四组合穷举反证，作业 5 的换参数对照（改 \(U_{Z2}\)），作业 6 的稳压值对调，作业 7 的管向反向对照。<b>换列式复核</b>（同一组事实换一种定律写法，查抄错的号与算错的数，查不出假设错）：作业 4 的回路 KVL、作业 2(1) 的电源等效变换、作业 2(2) 的断开法、作业 5 的负载线交点。<b>换记号复核</b>算它的下属一档（不换算子、换表达：作业 7 把第 2–4 步的分段式画成传输特性折线再投影读回，同一批事实换一种记号，查的是"画出来的是不是列出来的那一回事"）。<b>完整性检查</b>（查假设空间漏没漏，不引入新数）：作业 1(1) 验证段的四组合穷举；作业 1(3)、2(2) 的穷举直接写在推导里（分别是第 4–8 步与第 16 步）。<b>灵敏度检查</b>（换一个模型参数，看结论跟不跟）：作业 1(1)、1(3)、6 的三处换模型／换参数重算。<b>记账核对</b>（只重算算术）：作业 5 沿支路走的那遍 KVL。</p>
+        <p>为什么要这样分层：单回路单管题<b>不存在</b>第二条独立事实链，任何"验证"最后都回到同一条欧姆定律，把它写成独立复核就是拿结论验结论。凡涉多管竞争，穷举一律把四组假设逐组写出、逐组给数，不写"其余类似"。</p>
+      <p><b>二、机械自检。</b>全文经技能自带的检查脚本扫过数学分隔符配对、数学式内裸尖括号、KaTeX 不支持的控制序列、内联 \(\backslash\)tag、未加花括号的 \(\backslash\)frac、搪塞词与占位残留、题卡七要素是否齐、"见第 N 步"是否越界、贴纸三处文案是否缺格、目录锚点是否覆盖四条附录、KaTeX 三件套版本与 SRI 是否一致、媒体查询书写顺序等项。</p>
+      <p><b>三、数值一致性。</b>所有小数由同一份计算脚本一次算出并核对：\(7/3.9=1.795\)、\(12/3.9=3.077\)、\(45/12=3.75\)、\(30/7=4.286\)、\(6/7=0.857\)、\(9/7=1.286\)、\(5/3=1.667\)、\(7/3=2.333\)、\(19/3=6.333\)、\(\arcsin 0.6=36.87^\circ\)、\(\dfrac{30+5\times 5.5}{12}=4.792\)。恒压降那一组另有八个数，都由 \(U_{D(\text{on})}=0.7\,\text{V}\) 与同一组电阻推出：\((12-5.7)/3.9=1.615\)、\(6.3/7.8=0.808\)、\((12-0.7)/3.9=2.897\)、\(11.3/7.8=1.449\)、\(5.5-4.286=1.214\)、\((3-3.75)/2=-0.375\)、\(15/7=2.143\)、\(6-2.143=3.857\)。文中出现的每一个电流、电位与角度都能由这两组数推出。全文小数一律取三位，索引表与答案总表同此口径；每个除法都从精确分数出发再取三位（例如 \(I_{D1}=\dfrac{1}{2}\times\dfrac{7}{3.9}=\dfrac{7}{7.8}=0.897\,\text{mA}\)），不把上一行显示出来的三位小数当作下一行的输入，因此全文不存在第二套舍入口径。</p>
+      <p><b>四、读图风险声明。</b>六张电路图与一张波形图的元件朝向、电源极性由手机截图判读，判读规则写在索引节的"读图约定"里，并逐题落到第0步 (i) 的显式电位陈述上。<b>这一层没有独立复核</b>——若某题的三角形朝向或电池长短线与课本原图不符，该题答案会整体改变，而方法与各题的推导链不受影响。请先把第0步 (i) 与自己的课本或作业页面比对一遍。</p>
+    </div></section>
+</div>
+</div>
+
+<script>
+/* ---- KaTeX 启动：按序换源，全失败出横幅。版本/URL/SRI 是原子资产 ---- */
+var SRC=['https://cdn.jsdelivr.net/npm/katex@0.16.11/dist',
+         'https://unpkg.com/katex@0.16.11/dist',
+         'https://registry.npmmirror.com/katex/0.16.11/files/dist',
+         'https://fastly.jsdelivr.net/npm/katex@0.16.11/dist'];
+var SRI={'katex.min.css':'sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+',
+         'katex.min.js':'sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg',
+         'auto-render.min.js':'sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk'};
+function tag(el,base,file,done,fail){
+  var u=base+'/'+file, s=el==='link'?document.createElement('link'):document.createElement('script');
+  if(el==='link'){s.rel='stylesheet';s.href=u;}else{s.src=u;}
+  s.integrity=SRI[file];s.crossOrigin='anonymous';s.onload=done;s.onerror=fail;document.head.appendChild(s);
+}
+function boot(i){
+  if(i>=SRC.length){document.getElementById('banner').style.display='block';return;}
+  var b=SRC[i];
+  tag('link',b,'katex.min.css',function(){
+    tag('script',b,'katex.min.js',function(){
+      tag('script',b,'contrib/auto-render.min.js',render,function(){boot(i+1)});
+    },function(){boot(i+1)});
+  },function(){boot(i+1)});
+}
+function render(){
+  if(typeof renderMathInElement!=='function'){return;}
+  renderMathInElement(document.body,{
+    delimiters:[{left:'\\[',right:'\\]',display:true},{left:'\\(',right:'\\)',display:false}],
+    throwOnError:false,
+    ignoredTags:['script','noscript','style','textarea','pre','code'],
+    macros:{'\\ch':'\\cosh','\\sh':'\\sinh','\\cis':'\\mathop{\\rm cis}\\nolimits','\\Res':'\\mathop{\\rm Res}\\nolimits','\\i':'\\mathrm{i}'}
+  });
+}
+/* ---- 交互：折叠、贴纸、scrollspy、主题 ---- */
+document.querySelectorAll('.q>h3').forEach(function(h){h.addEventListener('click',function(){h.parentNode.classList.toggle('fold')})});
+document.getElementById('fold').addEventListener('click',function(){
+  var fold=!!document.querySelector('.q:not(.fold)');
+  document.querySelectorAll('.q').forEach(function(q){q.classList.toggle('fold',fold)});
+  this.textContent=fold?'全部展开':'全部收起';
+});
+document.querySelectorAll('.stk>a').forEach(function(a){
+  a.addEventListener('click',function(e){e.preventDefault();a.closest('.stk').classList.toggle('open')});
+});
+document.getElementById('theme').addEventListener('click',function(){
+  var ink=document.documentElement.dataset.theme==='ink';
+  document.documentElement.dataset.theme=ink?'book':'ink';
+  this.textContent=ink?'切换暗色':'切换浅色';
+});
+var links=[].slice.call(document.querySelectorAll('nav.toc a[href^="#"]'));
+addEventListener('scroll',function(){
+  var y=scrollY+120,best=null;
+  links.forEach(function(a){var el=document.querySelector(a.getAttribute('href'));if(el&&el.offsetTop<=y)best=a});
+  links.forEach(function(a){a.classList.remove('on')});if(best)best.classList.add('on');
+},{passive:true});
+window.addEventListener('load',function(){if(typeof renderMathInElement==='function'){render()}else{boot(0)}});
+</script>
+</body>
+</html>

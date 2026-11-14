@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+<!-- xx · 习题详解产物。结构规则见 references/structure.md；数学只用 \( \) 与 \[ \] -->
+<html lang="zh-CN" data-theme="book">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>恒定磁场习题详解 · 11-11 / 11-14 / 11-16 / 11-21 / 11-26 / 11-28</title>
+<link rel="stylesheet" crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+      integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+">
+<script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+        integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg"></script>
+<script defer crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+        integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk"></script>
+<style>
+*{box-sizing:border-box}
+html[data-theme=book]{--bg:#f4f2ec;--card:#fdfcf8;--ink:#26241f;--mut:#6d685d;--line:#e0dbcf;--acc:#1f6f6b;--key:#c0392b;--kp:#a97142;--warn:#c0392b;--ans:#e8f0ee;--ansline:#cfe0dc;--sh:0 1px 2px rgba(38,36,31,.07),0 6px 18px rgba(38,36,31,.06)}
+html[data-theme=ink]{--bg:#14161a;--card:#1b1e24;--ink:#e8e6e1;--mut:#9aa0a8;--line:#2b2f37;--acc:#5ac8c0;--key:#ff8b6b;--kp:#c9a227;--warn:#ff8b6b;--ans:#172422;--ansline:#2e4b48;--sh:none}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.85 "Noto Sans SC","Microsoft YaHei","PingFang SC",sans-serif;transition:background .2s}
+h1,h2,h3,.kicker{font-family:"Noto Serif SC",Georgia,serif}
+a{color:var(--acc)}
+#banner{display:none;background:var(--key);color:#fff;padding:10px 14px;font:14px sans-serif}
+.shell{display:grid;grid-template-columns:268px minmax(0,1fr)}
+nav.toc{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;padding:24px 16px;font-size:14px;border-right:1px solid var(--line);background:var(--card)}
+nav.toc h2{font:12px/1 sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:0 0 12px}
+nav.toc a{display:block;color:var(--mut);text-decoration:none;padding:4px 8px;border-left:3px solid transparent}
+nav.toc a.sub{padding-left:22px;font-size:13px}
+nav.toc a.on{color:var(--acc);font-weight:700;border-left-color:var(--acc);background:color-mix(in srgb,var(--acc) 10%,transparent)}
+nav.toc .tools{margin-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+nav.toc .tools button{all:unset;cursor:pointer;font:12px/1 sans-serif;padding:6px 10px;border:1px solid var(--line);border-radius:8px;color:var(--mut)}
+nav.toc .tools button:hover{color:var(--acc);border-color:var(--acc)}
+.wrap{padding:26px clamp(20px,5vw,72px) 120px;max-width:1080px}
+.kicker{font:12px/1 sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--mut);margin:0 0 8px}
+h1.doc{font-size:clamp(24px,3.4vw,34px);line-height:1.3;margin:0 0 10px}
+.lead{font-size:15px;color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:12px 16px;background:var(--card);margin:0 0 26px}
+section.mod{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh);padding:22px 24px;margin:0 0 26px;display:grid;grid-template-columns:64px minmax(0,1fr);column-gap:18px}
+.gutter{grid-column:1;color:var(--acc);font:700 13px/1.4 Consolas,monospace}
+.gutter small{display:block;color:var(--mut);font:400 11px/1.4 sans-serif;letter-spacing:.02em}
+section.mod>h2{grid-column:2;margin:0 0 10px;font-size:22px;color:var(--acc);font-weight:600}
+section.mod>.in{grid-column:2;min-width:0}
+.blk{margin:14px 0;padding-left:16px;border-left:2px solid var(--line)}
+.blk>b:first-child{display:block;font-size:13px;letter-spacing:.03em;margin-bottom:4px}
+.blk.kp{border-left-color:var(--kp)} .blk.kp>b{color:var(--kp)}
+.blk.idea{border-left-color:var(--acc)} .blk.idea>b{color:var(--acc)}
+.blk.chk{border-left-color:var(--acc)} .blk.chk>b{color:var(--acc)}
+.blk.warn{border-left-color:var(--warn)} .blk.warn>b{color:var(--warn)}
+.blk.sol>b{color:var(--ink)}
+.blk.s0{border-left-color:var(--key);background:color-mix(in srgb,var(--key) 5%,transparent)} .blk.s0>b{color:var(--key)}
+.blk p{margin:.35em 0}
+.qsum{border:1px dashed var(--acc);border-radius:10px;padding:10px 14px;margin:12px 0;font-size:15px}
+.qsum>b:first-child{display:block;font-size:13px;letter-spacing:.03em;margin-bottom:4px;color:var(--acc)}
+.q{border:1px solid var(--line);border-left:4px solid var(--key);border-radius:12px;background:var(--card);box-shadow:var(--sh);padding:0 20px 18px;margin:18px 0}
+.q>h3{font-size:18px;margin:0;padding:14px 0;border-bottom:1px dashed var(--line);cursor:pointer;display:flex;justify-content:space-between;gap:12px;align-items:baseline}
+.q>h3::after{content:"收起";font:11px/1 sans-serif;color:var(--mut);border:1px solid var(--line);border-radius:6px;padding:3px 7px;flex:none}
+.q.fold>h3::after{content:"展开"}
+.q.fold>.in{display:none}
+.q .in{min-width:0}
+ol.steps{list-style:none;counter-reset:s;padding-left:0;margin:8px 0}
+ol.steps>li{counter-increment:s;position:relative;padding-left:44px;margin:0 0 10px}
+ol.steps>li::before{content:counter(s);position:absolute;left:0;top:2px;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:12px/1 Consolas,monospace;font-weight:700;background:color-mix(in srgb,var(--acc) 14%,transparent);color:var(--acc)}
+.ans{background:var(--ans);border:1px solid var(--ansline);border-radius:10px;padding:10px 14px;margin:12px 0}
+.pit{background:color-mix(in srgb,var(--warn) 8%,transparent);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);border-radius:10px;padding:10px 14px;font-size:15px}
+.katex{color:var(--ink)}
+.katex-display{overflow-x:auto;overflow-y:hidden;padding:2px 0}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:8px 0}
+th,td{border-bottom:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{color:var(--acc);font-weight:600}
+.fig{display:block;max-width:100%;height:auto}
+.figwrap{position:relative;display:inline-block;max-width:100%;margin:10px 0}
+.figlab{position:absolute;transform:translate(-50%,-50%);font:13px/1.3 sans-serif;color:var(--ink);background:color-mix(in srgb,var(--card) 88%,transparent);padding:1px 4px;border-radius:4px;white-space:nowrap}
+.stk{position:relative;display:inline}
+.stk>a{color:var(--acc);text-decoration:none;border-bottom:1px dashed var(--acc);cursor:pointer;font-weight:600}
+.pop{position:absolute;left:0;bottom:135%;width:min(340px,74vw);z-index:30;display:none;background:var(--card);border:1px solid var(--kp);border-radius:10px;box-shadow:0 8px 26px rgba(0,0,0,.18);padding:12px 14px;font:14px/1.75 sans-serif}
+.stk.r>.pop{left:auto;right:0}
+.stk>a:hover+.pop,.stk>a:focus-visible+.pop,.stk.open .pop{display:block}
+.pop u{display:block;font-style:normal;text-decoration:none;font:11px/1 sans-serif;letter-spacing:.1em;color:var(--kp);margin-bottom:5px}
+.pop i{display:block;margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);font-style:normal;color:var(--mut);font-size:13px}
+@media(max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  nav.toc{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}
+  nav.toc .lst{columns:2;column-gap:24px}
+  section.mod{grid-template-columns:minmax(0,1fr)}
+  .gutter{grid-column:1;margin-bottom:6px}
+  section.mod>h2,section.mod>.in{grid-column:1}
+}
+@media(max-width:640px){
+  .stk{display:inline-block}
+  .pop{position:fixed;left:8px;right:8px;top:auto;bottom:8px;width:auto;
+       max-height:52vh;overflow:auto;z-index:40}
+  .stk.r>.pop{left:8px;right:8px}
+}
+</style>
+</head>
+<body>
+<div id="banner">⚠ 公式未渲染：数学库加载失败，本文件需联网。下方保留 LaTeX 原文。</div>
+
+<div class="shell">
+<nav class="toc">
+  <h2>目录</h2>
+  <div class="lst">
+    <a href="#idx">题号索引表</a>
+    <a href="#m1">M1 毕奥-萨伐尔定律与磁场叠加</a>
+    <a href="#m1-meth" class="sub">解题方法</a>
+    <a href="#q11a" class="sub">题 11-11(a)</a>
+    <a href="#q11b" class="sub">题 11-11(b)</a>
+    <a href="#q11c" class="sub">题 11-11(c)</a>
+    <a href="#q28" class="sub">题 11-28</a>
+    <a href="#m2">M2 安培环路定理与对称场分布</a>
+    <a href="#m2-meth" class="sub">解题方法</a>
+    <a href="#q16" class="sub">题 11-16</a>
+    <a href="#m3">M3 空间磁通量计算与面积分</a>
+    <a href="#m3-meth" class="sub">解题方法</a>
+    <a href="#q14" class="sub">题 11-14</a>
+    <a href="#m4">M4 载流回路受力与做功</a>
+    <a href="#m4-meth" class="sub">解题方法</a>
+    <a href="#q26" class="sub">题 11-26</a>
+    <a href="#q21_1" class="sub">题 11-21(1)</a>
+    <a href="#q21_2" class="sub">题 11-21(2)</a>
+    <a href="#pitfalls" class="sub">附 · 易错点清单</a>
+    <a href="#cheatsheet" class="sub">附 · 公式速查表</a>
+    <a href="#answers" class="sub">附 · 答案总表</a>
+    <a href="#verify" class="sub">附 · 校验说明</a>
+  </div>
+  <div class="tools">
+    <button id="fold" type="button">全部收起</button>
+    <button id="theme" type="button">切换暗色</button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <div class="kicker">大学物理 · 恒定磁场详解手册</div>
+  <h1 class="doc">恒定磁场习题详解（11-11 / 11-14 / 11-16 / 11-21 / 11-26 / 11-28）</h1>
+  <div class="lead">
+    本篇覆盖《物理学教程》第十一章恒定磁场的 6 道核心典型题。按“电流产生磁场（微观积分与高对称环路）→ 空间磁通量计算 → 磁场对电流的作用（安培力、磁力矩与做功）”认知递进结构切分为 4 个方法模块，全程贯彻一步一动作、每步注依据、零跳步推导与双轨核验。
+  </div>
+
+  <section class="mod" id="idx">
+    <div class="gutter">IDX<small>索引</small></div>
+    <h2>题号索引表</h2>
+    <div class="in">
+      <table>
+        <thead>
+          <tr>
+            <th>题号</th>
+            <th>所在模块</th>
+            <th>方法标签</th>
+            <th>最终结果</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#q11a">题 11-11(a)</a></td>
+            <td>M1 毕奥-萨伐尔定律</td>
+            <td>延长线判零 + 圆弧积分</td>
+            <td>\(B = \frac{\mu_0 I}{8R}\)（垂直纸面向外 \(\odot\)）</td>
+          </tr>
+          <tr>
+            <td><a href="#q11b">题 11-11(b)</a></td>
+            <td>M1 毕奥-萨伐尔定律</td>
+            <td>切线直导线 + 全圆环中心场叠加</td>
+            <td>\(B = \frac{\mu_0 I}{2R}\left(1 - \frac{1}{\pi}\right)\)（垂直纸面向里 \(\otimes\)）</td>
+          </tr>
+          <tr>
+            <td><a href="#q11c">题 11-11(c)</a></td>
+            <td>M1 毕奥-萨伐尔定律</td>
+            <td>双半无限长直线 + 半圆弧同向叠加</td>
+            <td>\(B = \frac{\mu_0 I}{4\pi R}(2 + \pi)\)（垂直纸面向外 \(\odot\)）</td>
+          </tr>
+          <tr>
+            <td><a href="#q28">题 11-28</a></td>
+            <td>M1 毕奥-萨伐尔定律</td>
+            <td>角动量量子化 + 等效环形电流</td>
+            <td>\(B = \frac{\mu_0 e h}{8\pi^2 m_e a_0^3} \approx 12.5\text{ T}\)（与轨道平面垂直）</td>
+          </tr>
+          <tr>
+            <td><a href="#q16">题 11-16</a></td>
+            <td>M2 安培环路定理</td>
+            <td>柱对称同轴电缆四分区积分</td>
+            <td>四分区连续场强分布与 \(B-r\) 关系曲线</td>
+          </tr>
+          <tr>
+            <td><a href="#q14">题 11-14</a></td>
+            <td>M3 磁通量面积分</td>
+            <td>非均匀场平行条带面元积分</td>
+            <td>\(\Phi_m = \frac{\mu_0 I l}{2\pi} \ln\frac{d_2}{d_1}\)</td>
+          </tr>
+          <tr>
+            <td><a href="#q26">题 11-26</a></td>
+            <td>M4 载流回路受力与做功</td>
+            <td>对称边相消 + 平行边引斥力差分</td>
+            <td>\(F = 1.28 \times 10^{-3}\text{ N} = 1.28\text{ mN}\)（水平向左）</td>
+          </tr>
+          <tr>
+            <td><a href="#q21_1">题 11-21(1)</a></td>
+            <td>M4 载流回路受力与做功</td>
+            <td>平面闭合半圆磁矩与力矩叉乘</td>
+            <td>\(M = 0.025\pi\text{ N}\cdot\text{m} \approx 7.85 \times 10^{-2}\text{ N}\cdot\text{m}\)（竖直向上）</td>
+          </tr>
+          <tr>
+            <td><a href="#q21_2">题 11-21(2)</a></td>
+            <td>M4 载流回路受力与做功</td>
+            <td>磁势能差分法与磁通变化量定理</td>
+            <td>\(W = 0.025\pi\text{ J} \approx 7.85 \times 10^{-2}\text{ J}\)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ==================== MODULE 1 ==================== -->
+  <section class="mod" id="m1">
+    <div class="gutter">M1<small>毕萨叠加</small></div>
+    <h2>M1 毕奥-萨伐尔定律与磁场叠加原理</h2>
+    <div class="in">
+      <div class="blk kp">
+        <b>知识点 · 毕奥-萨伐尔定律与标准构件公式</b>
+        <p>毕奥-萨伐尔定律给出了电流元 \(\mathrm{d}\vec{l}\) 在空间距离为 \(r\) 处所激发的真空中磁感强度微元：</p>
+        <p>\[ \mathrm{d}\vec{B} = \frac{\mu_0 I}{4\pi} \frac{\mathrm{d}\vec{l} \times \vec{r}}{r^3} \]</p>
+        <p>在工程与物理学中，有四类由该定律直接积分所得的不可替代基元模型：</p>
+        <p>其一，无限长载流直导线在距导线垂直距离为 \(r\) 处激发的磁感强度：</p>
+        <div id="eq-1-1">\[ B = \frac{\mu_0 I}{2\pi r} \tag{1-1} \]</div>
+        <p>其二，半径为 \(R\)、圆心角为 \(\theta\)（单位为弧度 \(\text{rad}\)）的平面圆弧载流导线在其圆心 \(O\) 处激发的磁感强度：</p>
+        <div id="eq-1-2">\[ B = \frac{\mu_0 I}{4\pi R}\theta \tag{1-2} \]</div>
+        <p>当 \(\theta = 2\pi\) 时退化为全圆环中心场 \(B = \frac{\mu_0 I}{2R}\)；当 \(\theta = \pi\) 时为半圆弧中心场 \(B = \frac{\mu_0 I}{4R}\)；当 \(\theta = \frac{\pi}{2}\) 时为四分之一圆弧中心场 \(B = \frac{\mu_0 I}{8R}\)。</p>
+        <p>其三，半无限长载流直导线在其端点外侧垂直距离为 \(R\) 处的场强：</p>
+        <div id="eq-1-3">\[ B = \frac{\mu_0 I}{4\pi R} \tag{1-3} \]</div>
+        <p>其四，轴向延长线过场点的直线段：因导线上任意电流元 \(\mathrm{d}\vec{l}\) 与场点位移矢径 \(\vec{r}\) 均满足夹角为 \(0\) 或 \(\pi\)，矢积 \(\mathrm{d}\vec{l} \times \vec{r} = 0\)，故该直线段在目标场点处产生的磁感强度严格为零。</p>
+      </div>
+
+      <div class="blk idea" id="m1-meth">
+        <b>解题方法 · 平面载流导线分段叠加流程</b>
+        <ol class="steps">
+          <li><b>分段隔离</b>：将平面复杂载流导线逐段拆分成规则的有限长/半无限长直线段与圆弧段；</li>
+          <li><b>判零剔除</b>：检查各直线段的延长线是否经过目标场点 \(O\)；凡通过 \(O\) 点者，磁场贡献直接记为零；</li>
+          <li><b>分项计算与定性定向</b>：对其余有效区段，调用式 <a href="#eq-1-1">(1-1)</a>、式 <a href="#eq-1-2">(1-2)</a>、式 <a href="#eq-1-3">(1-3)</a> 计算大小，并用右手螺旋定则确定各段磁场在 \(O\) 点的指向（垂直纸面向外 \(\odot\) 或向里 \(\otimes\)）；</li>
+          <li><b>标量代数合成</b>：规定统一的基准正方向（如设垂直纸面向外为正），求各分量的代数和，从而确定合磁感强度的大小与矢量方向。</li>
+        </ol>
+      </div>
+
+      <!-- 题卡 11-11(a) -->
+      <div class="q" id="q11a">
+        <h3>题 11-11(a) · 四分之一圆弧与共轴半无限长直导线</h3>
+        <div class="in">
+          <div class="blk">
+            <b>题目重述</b>
+            <p>如图 11-11(a) 所示，载流导线在平面内分布，电流为 \(I\)。导线由一段自上方无限远处垂直下行的半无限长直线、一段半径为 \(R\) 的四分之一圆弧、以及一段向左延伸至无限远的水平半无限长直线平滑连接而成。试求圆心 \(O\) 处的磁感强度。</p>
+            <div class="figwrap">
+              <svg class="fig" width="280" height="240" viewBox="0 0 280 240">
+                <!-- 上方竖直虚线延伸与实线导线（电流向下） -->
+                <line x1="180" y1="15" x2="180" y2="48" stroke="#26241f" stroke-dasharray="5,4" stroke-width="2"/>
+                <line x1="180" y1="48" x2="180" y2="120" stroke="#1f6f6b" stroke-width="2.5"/>
+                <path d="M 180 86 L 175 74 L 185 74 Z" fill="#1f6f6b"/>
+                <!-- 左上四分之一圆弧（逆时针：由上向左下） -->
+                <path d="M 180 120 A 80 80 0 0 0 100 200" fill="none" stroke="#1f6f6b" stroke-width="2.5"/>
+                <path d="M 119 148 L 130 142 L 125 137 Z" fill="#1f6f6b"/>
+                <!-- 左侧水平实线导线与虚线延伸（电流向左） -->
+                <line x1="100" y1="200" x2="42" y2="200" stroke="#1f6f6b" stroke-width="2.5"/>
+                <path d="M 64 200 L 76 195 L 76 205 Z" fill="#1f6f6b"/>
+                <line x1="42" y1="200" x2="10" y2="200" stroke="#26241f" stroke-dasharray="5,4" stroke-width="2"/>
+                <!-- 竖直半径标线 R 与圆心 O -->
+                <line x1="180" y1="120" x2="180" y2="200" stroke="#26241f" stroke-width="2"/>
+                <circle cx="180" cy="200" r="4.5" fill="#26241f"/>
+              </svg>
+              <div class="figlab" style="left:196px;top:200px">\(O\)</div>
+              <div class="figlab" style="left:194px;top:164px">\(R\)</div>
+              <div class="figlab" style="left:110px;top:134px">\(I\)</div>
+            </div>
+          </div>
+
+          <div class="blk s0">
+            <b>第0步 · 前提检查</b>
+            <p>1. 存在性与定义域：场点 \(O\) 位于圆弧的几何圆心，且不落在导线导体内部，距圆弧各点的欧几里得距离恒为 \(R \gt 0\)，场点处不存在奇点；</p>
+            <p>2. 模型成立条件：系统处于真空或非铁磁性均匀绝缘介质中，磁导率取真空磁导率 \(\mu_0\)；稳恒电流 \(I\) 满足电荷守恒与电流连续性条件；</p>
+            <p>3. 象限与参考方向：以纸面为平面，以场点 \(O\) 为坐标原点。规定垂直纸面向外为法向正方向（\(\odot\) 为正，\(\otimes\) 为负）；</p>
+            <p>4. 多值与分支：不适用（毕奥-萨伐尔定律矢量叉乘方向由右手定则唯一确定，圆心角 \(\theta = \frac{\pi}{2}\) 单值固定，无多值函数分支）。</p>
+          </div>
+
+          <div class="blk idea">
+            <b>思路</b>
+            <p>路线一（微元积分法）：直接对整条导线从 \(-\infty\) 到 \(+\infty\) 建立坐标系进行一维毕奥-萨伐尔矢量积分。该方法计算量较大，且直线部分的积分为平凡零值；</p>
+            <p>路线二（基元分解与叠加法，推荐）：将整根导线拆分为三段：竖直半无限长直线段、四分之一圆弧段、水平半无限长直线段。两段直线段的轴线均穿过圆心 \(O\)，由矢积定义可知其贡献严格为零，仅需计算四分之一圆弧的磁场。</p>
+          </div>
+
+          <div class="blk sol">
+            <b>分步推导</b>
+            <ol class="steps">
+              <li>将连续载流导线分割为三段：竖直半无限长直线段（记为第 1 段）、四分之一圆弧段（记为第 2 段）、水平半无限长直线段（记为第 3 段）；</li>
+              <li>考查第 1 段竖直直线电流：导线上任意电流元 \(\mathrm{d}\vec{l}_1\) 的流动方向沿竖直向下，而从电流元指向圆心 \(O\) 的位移矢径 \(\vec{r}_1\) 同样沿竖直向下，两者平行共线，夹角为 \(0\)；</li>
+              <li>由矢积性质 \(\mathrm{d}\vec{l}_1 \times \vec{r}_1 = 0\) 及毕奥-萨伐尔定律，第 1 段在 \(O\) 点产生的磁感强度为：
+                \[ \vec{B}_1 = 0 \]
+              </li>
+              <li>考查第 3 段水平直线电流：导线上任意电流元 \(\mathrm{d}\vec{l}_3\) 的流动方向水平向左，而从电流元指向圆心 \(O\) 的位移矢径 \(\vec{r}_3\) 水平向右，两者反向共线，夹角为 \(\pi\)；</li>
+              <li>由矢积性质 \(\mathrm{d}\vec{l}_3 \times \vec{r}_3 = 0\)，第 3 段在 \(O\) 点产生的磁感强度为：
+                \[ \vec{B}_3 = 0 \]
+              </li>
+              <li>考查第 2 段四分之一圆弧：圆心角 \(\theta = \frac{\pi}{2}\)，圆弧半径为 \(R\)，电流按逆时针方向流动；</li>
+              <li>根据<span class="stk"><a href="#pop-11a" tabindex="0" role="button" aria-describedby="pop-11a">平面圆弧载流导线公式 (1-2)</a><span class="pop" id="pop-11a"><u>知识点 · 圆弧圆心磁场</u>半径为 \(R\)、圆心角为 \(\theta\)（弧度）的载流圆弧在圆心处激发的磁感强度为 \(B = \frac{\mu_0 I}{4\pi R}\theta\)，方向由右手螺旋定则判定。<i>此处怎么用：本题四分之一圆弧圆心角 \(\theta = \frac{\pi}{2}\)，代入即得圆弧段场强，而两段延长线过圆心的直导线贡献为零。</i></span></span>，代入 \(\theta = \frac{\pi}{2}\) 计算大小：
+                \[ B_2 = \frac{\mu_0 I}{4\pi R} \cdot \frac{\pi}{2} \]
+              </li>
+              <li>对分子分母进行代数约分，约去常数 \(\pi\)：
+                \[ B_2 = \frac{\mu_0 I}{8R} \]
+              </li>
+              <li>应用右手螺旋定则判定方向：四指沿四分之一圆弧逆时针弯曲，大拇指指向纸外，故 \(\vec{B}_2\) 方向垂直纸面向外（\(\odot\)）；</li>
+              <li>按磁场叠加原理将三段矢量合成：
+                \[ \vec{B} = \vec{B}_1 + \vec{B}_2 + \vec{B}_3 = \vec{B}_2 \]
+              </li>
+              <li>代入第 8 步与第 9 步结果，得到 \(O\) 点处的合磁感强度：
+                \[ B = \frac{\mu_0 I}{8R} \]
+              </li>
+            </ol>
+          </div>
+
+          <div class="ans">
+            <b>答案</b>
+            <p>点 \(O\) 处的磁感强度大小为：</p>
+            <p>\[ \boxed{B = \frac{\mu_0 I}{8R}} \]</p>
+            <p>方向为：<strong>垂直纸面向外（\(\odot\)）</strong>。</p>
+          </div>
+
+          <div class="blk chk">
+            <b>验证</b>
+            <p>【换列式复核】直接沿圆弧参数方程积分：设圆弧方位角为 \(\varphi \in [0, \frac{\pi}{2}]\)，电流元线元长度为 \(\mathrm{d}l = R \mathrm{d}\varphi\)。每个线元与矢径垂直（夹角始终为 \(90^\circ\)），距离恒为 \(R\)。微元大小 \(\mathrm{d}B = \frac{\mu_0 I}{4\pi R^2} R \mathrm{d}\varphi = \frac{\mu_0 I}{4\pi R} \mathrm{d}\varphi\)。定积分积分区间为 \(\varphi=0\) 至 \(\varphi=\frac{\pi}{2}\)，积分结果得 \(B = \frac{\mu_0 I}{4\pi R} \cdot \frac{\pi}{2} = \frac{\mu_0 I}{8R}\)，与公式法结果恒等一致。</p>
+            <p>【定性与合理性检查】这结果为什么讲得通：四分之一圆弧恰好是完整圆环的四分之一；完整圆环在圆心激发的磁感强度为 \(\frac{\mu_0 I}{2R}\)，由于圆弧上各点对圆心对称且距离相同，四分之一圆弧贡献的磁场大小严格等于完整圆环的四分之一，即 \(\frac{1}{4} \times \frac{\mu_0 I}{2R} = \frac{\mu_0 I}{8R}\)，物理对称性与几何比例完美契合。</p>
+          </div>
+
+          <div class="pit">
+            <b>常见坑</b>
+            <p>误将延伸向无限远的两段长直线按照半无限长直导线公式 <a href="#eq-1-3">(1-3)</a> 计算并计入 \(\frac{\mu_0 I}{4\pi R}\)。必须时刻牢记：半无限长直导线公式要求场点位于导线“端点的垂直侧方”，而本题中两段直线的外延线直接“穿透”场点 \(O\)，夹角为 \(0\) 或 \(\pi\)，正弦值为零，磁场严格为零。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 题卡 11-11(b) -->
+      <div class="q" id="q11b">
+        <h3>题 11-11(b) · 无限长切线直导线与相切全圆环</h3>
+        <div class="in">
+          <div class="blk">
+            <b>题目重述</b>
+            <p>如图 11-11(b) 所示，在同一平面内，长直导线自左向右延伸，在底部切点处向上顺时针绕成一个半径为 \(R\) 的完整圆环（圆环顶部电流箭头向右，即顺时针方向循环），随后继续沿底部水平直导线向右延伸至无限远。导线载有恒定电流 \(I\)。试求圆环中心 \(O\) 处的磁感强度。</p>
+            <div class="figwrap">
+              <svg class="fig" width="280" height="240" viewBox="0 0 280 240">
+                <line x1="15" y1="200" x2="50" y2="200" stroke="#26241f" stroke-dasharray="5,4" stroke-width="2"/>
+                <line x1="50" y1="200" x2="136" y2="200" stroke="#1f6f6b" stroke-width="2.5"/>
+                <path d="M 102 200 L 90 195 L 90 205 Z" fill="#1f6f6b"/>
+                <line x1="144" y1="200" x2="230" y2="200" stroke="#1f6f6b" stroke-width="2.5"/>
+                <path d="M 218 200 L 206 195 L 206 205 Z" fill="#1f6f6b"/>
+                <line x1="230" y1="200" x2="265" y2="200" stroke="#26241f" stroke-dasharray="5,4" stroke-width="2"/>
+                <!-- 底部留有极小切口间隙的顺时针圆环 -->
+                <path d="M 136 200 A 80 80 0 1 1 144 200" fill="none" stroke="#1f6f6b" stroke-width="2.5"/>
+                <!-- 圆环顶部电流向右（顺时针）箭头 -->
+                <path d="M 148 40 L 136 35 L 136 45 Z" fill="#1f6f6b"/>
+                <line x1="140" y1="120" x2="196.6" y2="63.4" stroke="#26241f" stroke-width="2"/>
+                <circle cx="140" cy="120" r="4.5" fill="#26241f"/>
+              </svg>
+              <div class="figlab" style="left:126px;top:132px">\(O\)</div>
+              <div class="figlab" style="left:162px;top:82px">\(R\)</div>
+              <div class="figlab" style="left:140px;top:22px">\(I\)</div>
+            </div>
+          </div>
+
+          <div class="blk s0">
+            <b>第0步 · 前提检查</b>
+            <p>1. 存在性与定义域：场点 \(O\) 位于圆形回路的圆心，与圆环导线上各点距离恒为 \(R \gt 0\)；与下方无限长水平直导线的垂直距离同样严格为 \(R \gt 0\)，场点无几何奇异性；</p>
+            <p>2. 模型成立条件：底部切点处极小绝缘间隙宽度远小于圆环半径 \(R\)，故该导线可精确分解为一条完整的无限长水平直导线与一个完整的圆形载流环；</p>
+            <p>3. 象限与参考方向：以纸面为平面，水平向右为 \(+x\)，竖直向上为 \(+y\)。规定垂直纸面向里（\(\otimes\)）为法向参考正方向；</p>
+            <p>4. 多值与分支：不适用（长直导线与圆环激发的磁场均垂直于纸面，仅存在向里与向外两个反向共线分量，代数差值唯一，不涉及多值分支）。</p>
+          </div>
+
+          <div class="blk idea">
+            <b>思路</b>
+            <p>路线一（全空间曲线坐标积分）：直接对整条弯折导线按弧长参数建立毕奥-萨伐尔积分。计算繁琐且掩盖了标准构件的几何叠加特性；</p>
+            <p>路线二（标准基元反向叠加法，推荐）：将导线分解为两个标准构件：底部向右载流的无限长水平直导线（在上方 \(O\) 点激发垂直纸面向外 \(\odot\) 的磁场 \(\vec{B}_1\)），以及上方顺时针载流的完整圆环（在圆心 \(O\) 点激发垂直纸面向里 \(\otimes\) 的磁场 \(\vec{B}_2\)）。因两分量方向相反且圆环磁场更强，合场强为两者大小之差，方向垂直纸面向里（\(\otimes\)）。</p>
+          </div>
+
+          <div class="blk sol">
+            <b>分步推导</b>
+            <ol class="steps">
+              <li>将载流导线分解为两个几何独立构件：构件 1 为底部的无限长水平直导线（电流向右），构件 2 为半径为 \(R\) 的完整圆形载流线圈（电流顺时针）；</li>
+              <li>分析构件 1（底部水平长直导线）：导线载有向右流动的电流 \(I\)，圆心 \(O\) 位于该导线正上方，垂直距离为 \(R\)；</li>
+              <li>根据<span class="stk"><a href="#pop-11b" tabindex="0" role="button" aria-describedby="pop-11b">无限长直导线磁场公式 (1-1)</a><span class="pop" id="pop-11b"><u>知识点 · 长直导线与圆环场的方向判据</u>长直导线距场点 \(R\) 处场强为 \(B_1 = \frac{\mu_0 I}{2\pi R}\)；全圆环圆心场强为 \(B_2 = \frac{\mu_0 I}{2R}\)。<i>此处怎么用：直导线在底部向右流，上方 \(O\) 点磁场向外（\(\odot\)）；圆环顶部向右流（顺时针），圆心 \(O\) 点磁场向里（\(\otimes\)），两者反向相减！</i></span></span>，计算构件 1 在 \(O\) 点激发的磁感强度大小：
+                \[ B_1 = \frac{\mu_0 I}{2\pi R} \]
+              </li>
+              <li>由右手螺旋定则判定构件 1 的磁场方向：右手大拇指指向水平右方（电流方向），在导线上方（场点 \(O\) 处）四指指向纸外，故 \(\vec{B}_1\) 方向垂直纸面向外（\(\odot\)）；</li>
+              <li>分析构件 2（圆形载流线圈）：圆环半径为 \(R\)，载有电流 \(I\)。根据圆环顶部电流箭头向右的标示，圆环电流沿顺时针方向循环；</li>
+              <li>根据平面圆弧载流公式 <a href="#eq-1-2">(1-2)</a>，代入整圆圆心角 \(\theta = 2\pi\)：
+                \[ B_2 = \frac{\mu_0 I}{4\pi R} \cdot 2\pi \]
+              </li>
+              <li>对分子与分母约去公因式 \(2\pi\)，得出圆环在圆心处的磁感强度大小：
+                \[ B_2 = \frac{\mu_0 I}{2R} \]
+              </li>
+              <li>由右手螺旋定则判定构件 2 的磁场方向：右手四指沿顺时针方向卷曲，大拇指垂直指向纸内，故 \(\vec{B}_2\) 方向垂直纸面向里（\(\otimes\)）；</li>
+              <li>比较两分量的方向与大小：\(\vec{B}_2\)（\(\otimes\)）与 \(\vec{B}_1\)（\(\odot\)）方向严格相反，且因 \(\pi \gt 1\) 有 \(\frac{\mu_0 I}{2R} \gt \frac{\mu_0 I}{2\pi R}\)，即 \(B_2 \gt B_1\)；</li>
+              <li>以垂直纸面向里（\(\otimes\)）为正方向，由磁场叠加原理求合磁感强度大小：
+                \[ B = B_2 - B_1 = \frac{\mu_0 I}{2R} - \frac{\mu_0 I}{2\pi R} \]
+              </li>
+              <li>提取公因式 \(\frac{\mu_0 I}{2R}\)：
+                \[ B = \frac{\mu_0 I}{2R}\left(1 - \frac{1}{\pi}\right) \]
+              </li>
+              <li>将括号内通分整理：
+                \[ B = \frac{\mu_0 I (\pi - 1)}{2\pi R} \]
+              </li>
+            </ol>
+          </div>
+
+          <div class="ans">
+            <b>答案</b>
+            <p>点 \(O\) 处的磁感强度大小为：</p>
+            <p>\[ \boxed{B = \frac{\mu_0 I}{2R}\left(1 - \frac{1}{\pi}\right) = \frac{\mu_0 I (\pi - 1)}{2\pi R}} \]</p>
+            <p>方向为：<strong>垂直纸面向里（\(\otimes\)）</strong>。</p>
+          </div>
+
+          <div class="blk chk">
+            <b>验证</b>
+            <p>【量纲与比值核验】量纲分析：\(\frac{\mu_0 I}{R}\) 量纲为特斯拉（\(\text{T}\)），系数 \(1 - \frac{1}{\pi} \approx 0.6817 \gt 0\) 为正无量纲常数。比值核对：圆环场强 \(B_2 = \frac{\mu_0 I}{2R}\) 是直导线场强 \(B_1 = \frac{\mu_0 I}{2\pi R}\) 的 \(\pi \approx 3.1416\) 倍，因此顺时针圆环向里的磁场主导了圆心 \(O\) 的合磁场方向。</p>
+            <p>【独立路径 · 切点电流连续性追踪】沿着一根连续导线追踪电流：电流自左端水平向右流至切点，随后向上进入圆环左侧，经过圆环最高点向右流动（顺时针绕行一周）回到切点，再沿右侧水平导线向右流出。底部水平段对上方圆心产生向外磁场（\(\odot\)），而顺时针圆环对圆心产生向里磁场（\(\otimes\)），两场反向相消后净余向里磁场 \(\frac{\mu_0 I}{2R}(1 - \frac{1}{\pi})\)。</p>
+          </div>
+
+          <div class="pit">
+            <b>常见坑</b>
+            <p>未仔细观察圆环顶部的箭头方向，误把圆环当成逆时针或误把两部分磁场直接相加写成 \(1 + \frac{1}{\pi}\)。原图 11-11(b) 中底部水平线箭头向右（在 \(O\) 点磁场为 \(\odot\)），圆环顶部箭头同样向右（顺时针，在 \(O\) 点磁场为 \(\otimes\)），二者方向相反，必须相减！</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 题卡 11-11(c) -->
+      <div class="q" id="q11c">
+        <h3>题 11-11(c) · 顶端半圆弧与双平行半无限长直导线</h3>
+        <div class="in">
+          <div class="blk">
+            <b>题目重述</b>
+            <p>如图 11-11(c) 所示，载流导线位于同一平面内，电流为 \(I\)。导线由右侧自下方无限远处竖直向上延伸至 \((+R, 0)\) 的半无限长直导线、顶端自 \((+R, 0)\) 经 \((0, R)\) 逆时针绕至 \((-R, 0)\) 的半径为 \(R\) 的半圆弧、以及左侧自 \((-R, 0)\) 竖直向下延伸至无限远的半无限长直导线平滑连接而成。试求半圆弧圆心 \(O\) 处的磁感强度。</p>
+            <div class="figwrap">
+              <svg class="fig" width="280" height="240" viewBox="0 0 280 240">
+                <line x1="60" y1="230" x2="60" y2="200" stroke="#26241f" stroke-dasharray="5,4" stroke-width="2"/>
+                <line x1="60" y1="200" x2="60" y2="120" stroke="#1f6f6b" stroke-width="2.5"/>
+                <!-- 左侧竖直导线电流向下箭头 -->
+                <path d="M 60 138 L 55 126 L 65 126 Z" fill="#1f6f6b"/>
+                <path d="M 60 120 A 80 80 0 0 1 220 120" fill="none" stroke="#1f6f6b" stroke-width="2.5"/>
+                <line x1="220" y1="120" x2="220" y2="200" stroke="#1f6f6b" stroke-width="2.5"/>
+                <!-- 右侧竖直导线电流向上箭头 -->
+                <path d="M 220 124 L 215 136 L 225 136 Z" fill="#1f6f6b"/>
+                <line x1="220" y1="200" x2="220" y2="230" stroke="#26241f" stroke-dasharray="5,4" stroke-width="2"/>
+                <line x1="140" y1="120" x2="185" y2="54" stroke="#26241f" stroke-width="2"/>
+                <circle cx="140" cy="120" r="4.5" fill="#26241f"/>
+              </svg>
+              <div class="figlab" style="left:140px;top:138px">\(O\)</div>
+              <div class="figlab" style="left:156px;top:78px">\(R\)</div>
+              <div class="figlab" style="left:44px;top:130px">\(I\)</div>
+            </div>
+          </div>
+
+          <div class="blk s0">
+            <b>第0步 · 前提检查</b>
+            <p>1. 存在性与定义域：场点 \(O(0, 0)\) 与半圆弧各点距离恒为 \(R \gt 0\)；与左、右两侧竖直半无限长直导线的端点垂直距离均为 \(R \gt 0\)，无几何奇点；</p>
+            <p>2. 模型成立条件：真空中稳恒电流连续流动，无外部铁磁介质扰动；</p>
+            <p>3. 象限与参考方向：以纸面为平面，水平向右为 \(+x\)，竖直向上为 \(+y\)。规定垂直纸面向外为法向正方向（\(\odot\) 为正）；</p>
+            <p>4. 多值与分支：不适用（三段导线激发的磁场均垂直纸面向外，同向标量相加，不存在多值函数分支）。</p>
+          </div>
+
+          <div class="blk idea">
+            <b>思路</b>
+            <p>路线一（全线元坐标积分）：对三段导线分别建立沿 \(y\) 轴与极角的积分。由于直导线端点恰与圆心 \(O\) 等高，直接调用半无限长直导线结论公式更为简洁；</p>
+            <p>路线二（标准构件线性叠加法，推荐）：将导线剖分为三段：右侧竖直向上半无限长直导线、顶端逆时针半圆弧、左侧竖直向下半无限长直导线。分别调用半无限长直导线公式与半圆弧公式计算大小，由右手螺旋定则判定三者在 \(O\) 点激发的磁场均垂直纸面向外（\(\odot\)），直接标量求和。</p>
+          </div>
+
+          <div class="blk sol">
+            <b>分步推导</b>
+            <ol class="steps">
+              <li>将导线分割为三个区段：区段 1 为右侧竖直向上的半无限长直导线（\(x = +R, y \in (-\infty, 0]\)），区段 2 为顶端逆时针半圆弧（半径为 \(R\)），区段 3 为左侧竖直向下的半无限长直导线（\(x = -R, y \in [0, -\infty)\)）；</li>
+              <li>考查区段 1（右侧竖直向上直导线）：导线电流自下而上流动，场点 \(O\) 位于其上端点正左方，垂直距离为 \(R\)；</li>
+              <li>根据<span class="stk"><a href="#pop-11c" tabindex="0" role="button" aria-describedby="pop-11c">半无限长直导线端点场强公式 (1-3)</a><span class="pop" id="pop-11c"><u>知识点 · 半无限长直导线端点垂线磁场</u>半无限长直导线在过端点且垂直于导线的直线上距端点 \(R\) 处的磁感强度为 \(B = \frac{\mu_0 I}{4\pi R}\)，恰为无限长直导线的一半。<i>此处怎么用：圆心 \(O\) 恰好位于左右两条竖直半无限长直导线端点的公垂线上，距离均为 \(R\)，两段直导线各贡献 \(\frac{\mu_0 I}{4\pi R}\)。</i></span></span>，计算区段 1 在 \(O\) 点的磁感强度大小：
+                \[ B_1 = \frac{\mu_0 I}{4\pi R} \]
+              </li>
+              <li>由右手螺旋定则判定区段 1 磁场方向：右手大拇指竖直向上，四指在导线左侧（场点 \(O\) 处）指向纸外，故 \(\vec{B}_1\) 方向垂直纸面向外（\(\odot\)）；</li>
+              <li>考查区段 2（顶端半圆弧）：圆弧半径为 \(R\)，所对圆心角为 \(\theta = \pi\)，电流自右端流向左端呈逆时针旋向；</li>
+              <li>根据圆弧中心场公式 <a href="#eq-1-2">(1-2)</a>，代入圆心角 \(\theta = \pi\)：
+                \[ B_2 = \frac{\mu_0 I}{4\pi R} \cdot \pi \]
+              </li>
+              <li>分子与分母约去常数 \(\pi\)，得到半圆弧在 \(O\) 点的磁感强度大小：
+                \[ B_2 = \frac{\mu_0 I}{4R} \]
+              </li>
+              <li>由右手螺旋定则判定区段 2 磁场方向：四指沿半圆逆时针弯曲，大拇指指向纸外，故 \(\vec{B}_2\) 方向垂直纸面向外（\(\odot\)）；</li>
+              <li>考查区段 3（左侧竖直向下直导线）：导线自端点 \((-R, 0)\) 竖直向下延伸至 \(-\infty\)，电流竖直向下流动（图 11-11(c) 中左侧字母 \(I\) 旁箭头朝下），场点 \(O\) 位于其上端点正右方，垂直距离为 \(R\)；</li>
+              <li>根据半无限长直导线端点场强公式 <a href="#eq-1-3">(1-3)</a>，计算区段 3 的场强大小：
+                \[ B_3 = \frac{\mu_0 I}{4\pi R} \]
+              </li>
+              <li>由右手螺旋定则判定区段 3 磁场方向：右手大拇指竖直向下，四指在导线右侧（场点 \(O\) 处）指向纸外，故 \(\vec{B}_3\) 方向同样垂直纸面向外（\(\odot\)）；</li>
+              <li>分析三段磁场矢量关系：\(\vec{B}_1\)、\(\vec{B}_2\)、\(\vec{B}_3\) 方向完全相同，均垂直纸面向外（\(\odot\)）；</li>
+              <li>根据磁场叠加原理，合场强为三者标量相加：
+                \[ B = B_1 + B_2 + B_3 = \frac{\mu_0 I}{4\pi R} + \frac{\mu_0 I}{4R} + \frac{\mu_0 I}{4\pi R} \]
+              </li>
+              <li>交换加项次序，合并第 1 项与第 3 项两根半无限长直导线的同类项：
+                \[ B = \left(\frac{\mu_0 I}{4\pi R} + \frac{\mu_0 I}{4\pi R}\right) + \frac{\mu_0 I}{4R} = \frac{2\mu_0 I}{4\pi R} + \frac{\mu_0 I}{4R} \]
+              </li>
+              <li>对第一项分子分母约去公因数 \(2\)：
+                \[ B = \frac{\mu_0 I}{2\pi R} + \frac{\mu_0 I}{4R} \]
+              </li>
+              <li>提取公因式 \(\frac{\mu_0 I}{4\pi R}\)：
+                \[ B = \frac{\mu_0 I}{4\pi R}(2 + \pi) \]
+              </li>
+            </ol>
+          </div>
+
+          <div class="ans">
+            <b>答案</b>
+            <p>点 \(O\) 处的磁感强度大小为：</p>
+            <p>\[ \boxed{B = \frac{\mu_0 I}{4\pi R}(2 + \pi) = \frac{\mu_0 I}{2\pi R} + \frac{\mu_0 I}{4R}} \]</p>
+            <p>方向为：<strong>垂直纸面向外（\(\odot\)）</strong>。</p>
+          </div>
+
+          <div class="blk chk">
+            <b>验证</b>
+            <p>【对称性与等效折合复核】将左右两根平行的半无限长直导线组合观察：右线电流向上（在左侧 \(O\) 点磁场向外 \(\odot\)），左线电流向下（在右侧 \(O\) 点磁场亦向外 \(\odot\)）。两根半无限长直导线产生的磁场之和为 \(\frac{\mu_0 I}{4\pi R} + \frac{\mu_0 I}{4\pi R} = \frac{\mu_0 I}{2\pi R}\)，恰好等效于一根距场点为 \(R\) 的完整无限长直导线的场强；再加上逆时针半圆弧的 \(\frac{\mu_0 I}{4R}\)（\(\odot\)），合场强即为 \(\frac{\mu_0 I}{2\pi R} + \frac{\mu_0 I}{4R}\)。</p>
+            <p>【合理性检查】这结果为什么讲得通：整条U形导线围绕场点 \(O\) 呈逆时针环流（右进、顶逆时针、左出），由右手螺旋定则可知，逆时针环流内部所有区段在圆心激发的磁场必定全部破纸而出（\(\odot\)），三段同向相加完全自洽。</p>
+          </div>
+
+          <div class="pit">
+            <b>常见坑</b>
+            <p>一是不仔细看原图 11-11(c) 中左、右直导线上的箭头（左箭头向下、右箭头向上，整体逆时针），误判为顺时针向里；二是误认为左、右两直导线电流方向相反就会使磁场相消，忽略了它们分别位于 \(O\) 点的左右两侧，位置反号与电流反号双重作用下磁场方向恰巧相同（均为 \(\odot\)）。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 题卡 11-28 -->
+      <div class="q" id="q28">
+        <h3>题 11-28 · 氢原子玻尔轨道等效圆电流在质子处的磁感强度</h3>
+        <div class="in">
+          <div class="blk">
+            <b>题目重述</b>
+            <p>在氢原子中，设电子以轨道角动量 \(L = \frac{h}{2\pi}\) 绕质子作圆周运动，其轨道半径为 \(a_0 = 5.29 \times 10^{-11}\text{ m}\)。求质子所在处的磁感强度。已知普朗克常量 \(h = 6.63 \times 10^{-34}\text{ J}\cdot\text{s}\)，电子电荷量大小取 \(e = 1.60 \times 10^{-19}\text{ C}\)，电子静止质量取 \(m_e = 9.11 \times 10^{-31}\text{ kg}\)，真空磁导率 \(\mu_0 = 4\pi \times 10^{-7}\text{ T}\cdot\text{m/A}\)。</p>
+            <div class="figwrap">
+              <svg class="fig" width="280" height="200" viewBox="0 0 280 200">
+                <circle cx="140" cy="100" r="70" fill="none" stroke="#6d685d" stroke-dasharray="4,4" stroke-width="1.5"/>
+                <circle cx="140" cy="100" r="6" fill="#c0392b"/>
+                <circle cx="140" cy="30" r="5" fill="#1f6f6b"/>
+                <line x1="140" y1="100" x2="140" y2="30" stroke="#6d685d" stroke-dasharray="2,2" stroke-width="1.5"/>
+                <line x1="140" y1="30" x2="100" y2="30" stroke="#1f6f6b" stroke-width="2"/>
+                <path d="M 90 30 L 102 25 L 102 35 Z" fill="#1f6f6b"/>
+                <line x1="140" y1="30" x2="180" y2="30" stroke="#c0392b" stroke-width="2"/>
+                <path d="M 190 30 L 178 25 L 178 35 Z" fill="#c0392b"/>
+              </svg>
+              <div class="figlab" style="left:140px;top:118px">质子 \(p^+\)</div>
+              <div class="figlab" style="left:158px;top:65px">\(a_0\)</div>
+              <div class="figlab" style="left:140px;top:14px">电子 \(e^-\)</div>
+              <div class="figlab" style="left:92px;top:14px">\(\vec{v}\)</div>
+              <div class="figlab" style="left:190px;top:14px">\(\vec{I}\)</div>
+            </div>
+          </div>
+
+          <div class="blk s0">
+            <b>第0步 · 前提检查</b>
+            <p>1. 存在性与定义域：轨道半径 \(a_0 = 5.29 \times 10^{-11}\text{ m} \gt 0\)，场点位于轨道圆心（质子中心），电子被视为沿一维闭合圆周作稳态运动的点电荷；</p>
+            <p>2. 模型成立条件：玻尔氢原子模型半经典近似。高速周期性绕核运动的电子等效为闭合恒定环形电流；</p>
+            <p>3. 象限与参考方向：电子带负电（\(-e\)），其运动方向与形成的等效正电流方向相反。规定角动量方向为轴向正方向，磁场方向按右手定则确定；</p>
+            <p>4. 多值与分支：不适用（基态角动量模值 \(L = \frac{h}{2\pi}\) 单值固定，磁感强度矢量与轨道角动量矢量呈严格线性反平行映射，无多值分支）。</p>
+          </div>
+
+          <div class="blk idea">
+            <b>思路</b>
+            <p>路线一（库仑向心力联立速度）：通过库仑力提供向心力 \(\frac{e^2}{4\pi\varepsilon_0 a_0^2} = \frac{m_e v^2}{a_0}\) 解出速度 \(v\)。但题面直接给出了角动量量子化条件 \(L = \frac{h}{2\pi}\)，直接从角动量求解速度更为直接且摆脱对真空介电常数 \(\varepsilon_0\) 的依赖；</p>
+            <p>路线二（角动量等效电流法，推荐）：利用角动量定义式 \(L = m_e v a_0\) 用 \(L\) 表达线速度 \(v\)；再由运行周期 \(T = \frac{2\pi a_0}{v}\) 确定等效环形电流 \(I = \frac{e}{T}\)；最后代入全圆环中心场公式 <a href="#eq-1-2">(1-2)</a> 求解质子处的磁感强度 \(B\)。</p>
+          </div>
+
+          <div class="blk sol">
+            <b>分步推导</b>
+            <ol class="steps">
+              <li>根据经典轨道角动量定义，质量为 \(m_e\) 的电子以线速度 \(v\) 绕半径为 \(a_0\) 的圆周运动时，其轨道角动量大小为：
+                \[ L = m_e v a_0 \]
+              </li>
+              <li>将已知<span class="stk"><a href="#pop-28" tabindex="0" role="button" aria-describedby="pop-28">玻尔轨道角动量量子化条件</a><span class="pop" id="pop-28"><u>知识点 · 玻尔角动量量子化与磁矩反平行</u>氢原子定态圆轨道电子角动量满足 \(L = n\frac{h}{2\pi}\)（基态 \(n=1\)），且负电荷环形电流磁矩与角动量满足 \(\vec{m} = -\frac{e}{2m_e}\vec{L}\)。<i>此处怎么用：用 \(L = m_e v a_0 = \frac{h}{2\pi}\) 直接消去未知速率 \(v\)，并由负电荷性质直接锁定 \(\vec{B}\) 与 \(\vec{L}\) 反向平行。</i></span></span> \(L = \frac{h}{2\pi}\) 代入上式：
+                \[ m_e v a_0 = \frac{h}{2\pi} \]
+              </li>
+              <li>两边同除以 \(m_e a_0\)，解出电子运行线速度 \(v\)：
+                \[ v = \frac{h}{2\pi m_e a_0} \]
+              </li>
+              <li>计算电子绕核运行的轨道周期 \(T\)：
+                \[ T = \frac{2\pi a_0}{v} \]
+              </li>
+              <li>将第 3 步的线速度 \(v\) 代入周期表达式：
+                \[ T = \frac{2\pi a_0}{\frac{h}{2\pi m_e a_0}} = \frac{4\pi^2 m_e a_0^2}{h} \]
+              </li>
+              <li>根据电流定义，单位时间内通过轨道横截面的电荷量即为等效环形电流 \(I\)：
+                \[ I = \frac{e}{T} \]
+              </li>
+              <li>将第 5 步的周期 \(T\) 代入电流式：
+                \[ I = \frac{e}{\frac{4\pi^2 m_e a_0^2}{h}} = \frac{e h}{4\pi^2 m_e a_0^2} \]
+              </li>
+              <li>根据圆环载流导线在其圆心处的磁感强度公式式 <a href="#eq-1-2">(1-2)</a>（取 \(\theta = 2\pi\)）：
+                \[ B = \frac{\mu_0 I}{2 a_0} \]
+              </li>
+              <li>将第 7 步求得的电流 \(I\) 代入场强式：
+                \[ B = \frac{\mu_0}{2 a_0} \cdot \frac{e h}{4\pi^2 m_e a_0^2} \]
+              </li>
+              <li>合并分子分母代数因式：
+                \[ B = \frac{\mu_0 e h}{8\pi^2 m_e a_0^3} \]
+              </li>
+              <li>将角动量记号 \(L = \frac{h}{2\pi}\) 反向代入，以角动量形式表述：
+                \[ B = \frac{\mu_0 e L}{4\pi m_e a_0^3} \]
+              </li>
+              <li>代入国际单位制数值：\(\mu_0 = 4\pi \times 10^{-7}\text{ T}\cdot\text{m/A}\)，\(e = 1.60 \times 10^{-19}\text{ C}\)，\(h = 6.63 \times 10^{-34}\text{ J}\cdot\text{s}\)，\(m_e = 9.11 \times 10^{-31}\text{ kg}\)，\(a_0 = 5.29 \times 10^{-11}\text{ m}\)；</li>
+              <li>计算分母中立方项 \(a_0^3\)：
+                \[ a_0^3 = (5.29 \times 10^{-11})^3 \approx 1.4804 \times 10^{-31}\text{ m}^3 \]
+              </li>
+              <li>计算分子乘积数值：
+                \[ \mu_0 e h = (4\pi \times 10^{-7}) \times (1.60 \times 10^{-19}) \times (6.63 \times 10^{-34}) \approx 1.3332 \times 10^{-58} \]
+              </li>
+              <li>计算分母乘积数值：
+                \[ 8\pi^2 m_e a_0^3 = 8\pi^2 \times (9.11 \times 10^{-31}) \times (1.4804 \times 10^{-31}) \approx 1.0648 \times 10^{-59} \]
+              </li>
+              <li>两数相除求得最终数值：
+                \[ B = \frac{1.3332 \times 10^{-58}}{1.0648 \times 10^{-59}} \approx 12.52\text{ T} \approx 12.5\text{ T} \]
+              </li>
+              <li>严格推导矢量方向（无需假定具体顺逆时针绕向）：设电子相对质子位矢为 \(\vec{r}\)（\(\lvert\vec{r}\rvert = a_0\)），速度为 \(\vec{v}\)，则轨道角动量矢量为 \(\vec{L} = \vec{r} \times (m_e \vec{v})\)，即 \(\vec{r} \times \vec{v} = \frac{\vec{L}}{m_e}\)。由运动点电荷磁场公式，电子（\(q = -e\)）在原点质子处（相对电子位矢为 \(-\vec{r}\)）激发的磁场为：
+                \[ \vec{B} = \frac{\mu_0}{4\pi}\frac{(-e)\vec{v}\times(-\vec{r})}{a_0^3} = \frac{\mu_0 e}{4\pi a_0^3}(\vec{v}\times\vec{r}) = -\frac{\mu_0 e}{4\pi m_e a_0^3}\vec{L} \]
+                因系数 \(\frac{\mu_0 e}{4\pi m_e a_0^3} \gt 0\)，故磁感强度矢量 \(\vec{B}\) 垂直于轨道平面，且严格与电子轨道角动量矢量 \(\vec{L}\) 反向平行。</li>
+            </ol>
+          </div>
+
+          <div class="ans">
+            <b>答案</b>
+            <p>质子所在处的磁感强度公式与数值为：</p>
+            <p>\[ \boxed{B = \frac{\mu_0 e h}{8\pi^2 m_e a_0^3} = \frac{\mu_0 e L}{4\pi m_e a_0^3} \approx 12.5\text{ T}} \]</p>
+            <p>方向为：<strong>垂直于电子轨道平面，与电子轨道角动量矢量 \(\vec{L}\) 方向相反</strong>。</p>
+          </div>
+
+          <div class="blk chk">
+            <b>验证</b>
+            <p>【独立路径 · 毕奥-萨伐尔运动电荷场公式】单个带电粒子以速度 \(v\) 运动时在距离为 \(a_0\) 处激发的磁场为 \(\vec{B} = \frac{\mu_0}{4\pi} \frac{q \vec{v} \times \vec{r}}{r^3}\)。对于圆周运动，\(\vec{v} \perp \vec{r}\)，微观电荷大小为 \(e\)，轨道场大小为 \(B = \frac{\mu_0 e v}{4\pi a_0^2}\)。将速度 \(v = \frac{L}{m_e a_0}\) 代入，直接得出 \(B = \frac{\mu_0 e L}{4\pi m_e a_0^3}\)。两种完全不同物理视角的推导路径完全重合！</p>
+            <p>【合理性检查】这结果为什么讲得通：虽然单个电子电荷微小，但由于其轨道半径仅为 \(10^{-11}\text{ m}\) 数量级，绕核回旋频率高达 \(\nu = \frac{1}{T} \approx 6.58 \times 10^{15}\text{ s}^{-1}\)，等效电流约为 \(I \approx 1.05\text{ mA}\)。在如此极其微小的微观距离上，毫安级电流足以在原子核处产生高达 \(12.5\text{ T}\) 的极强局域磁场，这正是原子物理中自旋-轨道耦合（精细结构分裂）的物理机制来源。</p>
+          </div>
+
+          <div class="pit">
+            <b>常见坑</b>
+            <p>在判定磁场方向时忽略电子电荷的负号，误以为磁场方向与角动量方向相同。电子速度方向与正电流流动方向相反，因此磁场 \(\vec{B}\) 与角动量 \(\vec{L}\) 严格反平行。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MODULE 2 ==================== -->
+  <section class="mod" id="m2">
+    <div class="gutter">M2<small>环路定理</small></div>
+    <h2>M2 安培环路定理与高对称磁场分布</h2>
+    <div class="in">
+      <div class="blk kp">
+        <b>知识点 · 安培环路定理与柱对称磁场</b>
+        <p>安培环路定理表述为：在真空中，磁感强度 \(\vec{B}\) 沿任意闭合曲线 \(L\) 的线积分，严格等于穿过以该曲线为边界的任意曲面的传导电流代数和的 \(\mu_0\) 倍：</p>
+        <div id="eq-2-1">\[ \oint_L \vec{B} \cdot \mathrm{d}\vec{l} = \mu_0 \sum I_{\text{内}} \tag{2-1} \]</div>
+        <p>当系统具备极高的空间对称性（如无限长圆柱、同轴电缆、无限大平面或长直螺线管）时，磁感强度的方向与大小分布可通过几何对称性先验确定：</p>
+        <p>对于同轴圆柱系统，由轴对称性与纵向平移不变性，空间磁感线必为一组以电缆中心轴为圆心的同心圆，且 \(\vec{B}\) 的大小仅与距轴线的径向距离 \(r\) 有关。选取半径为 \(r\) 的同心圆作为安培环路 \(L\)，环路积分可直接化简为周长与场强的标量乘积：</p>
+        <p>\[ \oint_L \vec{B} \cdot \mathrm{d}\vec{l} = B(r) \cdot 2\pi r \]</p>
+        <p>结合式 <a href="#eq-2-1">(2-1)</a>，求解 \(B(r)\) 的核心即转化为精确核算各半径环路内部所围截面的“净包围传导电流” \(\sum I_{\text{内}}\)。</p>
+      </div>
+
+      <div class="blk idea" id="m2-meth">
+        <b>解题方法 · 柱对称介质同轴四分区环路求解流程</b>
+        <ol class="steps">
+          <li><b>分区标界</b>：根据几何分界面将全空间严格划分为若干同心柱壳区域（内导体内部、中间绝缘层、外导体内部、电缆外部）；</li>
+          <li><b>电流密度核算</b>：根据截面积计算各导体层的面电流密度 \(j = \frac{I}{S}\)；</li>
+          <li><b>内含电流积分</b>：对处于不同区域的同心圆环路，积分计算穿过环路平面的净传导电流 \(\sum I_{\text{内}}(r)\)；</li>
+          <li><b>代入环路定理与连续性核验</b>：由 \(B(r) = \frac{\mu_0 \sum I_{\text{内}}(r)}{2\pi r}\) 求出解析表达式，并在交界面处核对左极限与右极限是否连续相等，最后绘制曲线。</li>
+        </ol>
+      </div>
+
+      <!-- 题卡 11-16 -->
+      <div class="q" id="q16">
+        <h3>题 11-16 · 同轴电缆四分区磁感强度分布与 B-r 关系图</h3>
+        <div class="in">
+          <div class="blk">
+            <b>题目重述</b>
+            <p>有一同轴电缆，其截面尺寸如图 11-16 所示：内导体为半径为 \(R_1\) 的实心圆柱体；外导体为内半径为 \(R_2\)、外半径为 \(R_3\) 的同轴同心圆筒圆柱壳。两导体中载有的恒定电流大小均为 \(I\)，但在两导体中电流的流动方向相反。导体的磁性可不予考虑（视为非磁性材料，磁导率取 \(\mu_0\)）。试计算以下各处的磁感强度大小：(1) \(r \lt R_1\)；(2) \(R_1 \lt r \lt R_2\)；(3) \(R_2 \lt r \lt R_3\)；(4) \(r \gt R_3\)。并画出 \(B-r\) 关系图线。</p>
+            <div class="figwrap">
+              <svg class="fig" width="360" height="220" viewBox="0 0 360 220">
+                <!-- 截面同心圆与透视外壳 -->
+                <ellipse cx="120" cy="110" rx="90" ry="85" fill="#f4f2ec" stroke="#1f6f6b" stroke-width="2"/>
+                <ellipse cx="120" cy="110" rx="65" ry="61" fill="#fdfcf8" stroke="#1f6f6b" stroke-width="2"/>
+                <ellipse cx="120" cy="110" rx="30" ry="28" fill="#e8f0ee" stroke="#1f6f6b" stroke-width="2"/>
+                <!-- 筒体延伸线 -->
+                <line x1="120" y1="25" x2="280" y2="25" stroke="#1f6f6b" stroke-width="1.5"/>
+                <line x1="120" y1="195" x2="280" y2="195" stroke="#1f6f6b" stroke-width="1.5"/>
+                <path d="M 280 25 A 40 85 0 0 1 280 195" fill="none" stroke="#1f6f6b" stroke-width="1.5" stroke-dasharray="3,3"/>
+                <!-- 半径标线（与原图 11-16 三个不同方位角完全对应） -->
+                <line x1="120" y1="110" x2="96" y2="127" stroke="#26241f" stroke-width="1.6"/>
+                <line x1="120" y1="110" x2="172" y2="147" stroke="#26241f" stroke-width="1.6"/>
+                <line x1="120" y1="110" x2="132" y2="194" stroke="#26241f" stroke-width="1.6"/>
+                <circle cx="120" cy="110" r="3" fill="#26241f"/>
+              </svg>
+              <div class="figlab" style="left:98px;top:132px">\(R_1\)</div>
+              <div class="figlab" style="left:156px;top:150px">\(R_2\)</div>
+              <div class="figlab" style="left:116px;top:174px">\(R_3\)</div>
+            </div>
+          </div>
+
+          <div class="blk s0">
+            <b>第0步 · 前提检查</b>
+            <p>1. 存在性与定义域：径向距离 \(r \in [0, \infty)\)。四分区区间边界分别为实心内导体界面 \(r = R_1\)、外壳体内表面 \(r = R_2\)、外壳体外表面 \(r = R_3\)，且严格满足几何包含关系 \(0 \lt R_1 \lt R_2 \lt R_3\)；</p>
+            <p>2. 模型成立条件：非磁性材料（相对磁导率 \(\mu_r = 1\)），电缆长度远大于外径 \(R_3\)，端部效应忽略不计；电流在各自导体内沿轴向均匀分布；</p>
+            <p>3. 象限与参考方向：以中心轴为 \(z\) 轴建立圆柱坐标系 \((r, \theta, z)\)。规定内导体电流沿 \(+z\) 方向流动（垂直纸面向外），外导体反向电流沿 \(-z\) 方向流动（垂直纸面向里）。安培环路绕行正方向由右手螺旋定则取为逆时针环向。场强 \(B(r)\) 均指切向分量大小；</p>
+            <p>4. 多值与分支：不适用（柱对称系统在同一径向距离 \(r\) 处场强模值唯一，分段函数在分界面 \(r = R_1, R_2, R_3\) 处左右极限相等，无多值跳跃分支）。</p>
+          </div>
+
+          <div class="blk idea">
+            <b>思路</b>
+            <p>路线一（毕奥-萨伐尔体积微元多重积分法）：将两导体横截面切分为极坐标微元柱体，对全空间进行体积分。由于导体结构复杂且内外对消，直接积分极难解析展开；</p>
+            <p>路线二（安培环路定理，推荐）：利用系统的无限长圆柱轴对称性，选定以 \(z\) 轴为中心、半径为 \(r\) 的同心圆形闭合回路。由于对称性保证了磁场沿圆周大小恒定且与回路切向对齐，环路积分恒为 \(B(r) \cdot 2\pi r\)。只需在四个几何分区内分别计算被环路包围的净传导电流即可解出 \(B(r)\)。</p>
+          </div>
+
+          <div class="blk sol">
+            <b>分步推导</b>
+            <ol class="steps">
+              <li>选取以电缆轴心为对称中心、半径为 \(r\) 的垂直于轴线的同心圆作为安培环路 \(L\)，环路绕向取逆时针；</li>
+              <li>由柱对称性分析，磁感强度矢量处处沿环向切线分布且在同心圆周上大小相等，应用<span class="stk r"><a href="#pop-16" tabindex="0" role="button" aria-describedby="pop-16">安培环路定理式 (2-1)</a><span class="pop" id="pop-16"><u>知识点 · 柱对称安培环路积分</u>当稳恒电流具备无限长圆柱轴对称性时，取半径为 \(r\) 的同轴圆环路，环路积分简化为 \(\oint \vec{B}\cdot\mathrm{d}\vec{l} = B(r)\cdot 2\pi r = \mu_0 \sum I_{\text{内}}\)。<i>此处怎么用：按 \(r\) 落在四个不同区间分别计算圆环路截获的净电流 \(\sum I_{\text{内}}\)，再除以 \(2\pi r\) 即得四段解析式。</i></span></span>展开左侧积分：
+                \[ \oint_L \vec{B} \cdot \mathrm{d}\vec{l} = B(r) \oint_L \mathrm{d}l = B(r) \cdot 2\pi r \]
+              </li>
+              <li>计算内导体（半径 \(R_1\)）的横截面积 \(S_1 = \pi R_1^2\) 与面电流密度 \(j_1\)：
+                \[ j_1 = \frac{I}{\pi R_1^2} \]
+              </li>
+              <li>计算外导体壳（内半径 \(R_2\)、外半径 \(R_3\)）的环形横截面积 \(S_2 = \pi (R_3^2 - R_2^2)\) 与反向面电流密度 \(j_2\)：
+                \[ j_2 = \frac{I}{\pi (R_3^2 - R_2^2)} \]
+              </li>
+              <li>考查第 (1) 问区域 \(r \lt R_1\)（内导体内部）：环路仅包围部分内导体横截面，包围面积为 \(\pi r^2\)；</li>
+              <li>计算环路包围的传导电流 \(\sum I_{\text{内}}\)：
+                \[ \sum I_{\text{内}} = j_1 \cdot (\pi r^2) = \frac{I}{\pi R_1^2} \cdot \pi r^2 = I \frac{r^2}{R_1^2} \]
+              </li>
+              <li>代入安培环路定理关系式：
+                \[ B(r) \cdot 2\pi r = \mu_0 I \frac{r^2}{R_1^2} \]
+              </li>
+              <li>两边同除以 \(2\pi r\)，解出该区域磁感强度：
+                \[ B = \frac{\mu_0 I r}{2\pi R_1^2} \quad (r \lt R_1) \]
+              </li>
+              <li>考查第 (2) 问区域 \(R_1 \lt r \lt R_2\)（中间绝缘介质层）：环路完全包围整个内导体，且尚未包围外导体；</li>
+              <li>确定环路包围的传导电流：
+                \[ \sum I_{\text{内}} = I \]
+              </li>
+              <li>代入安培环路定理关系式：
+                \[ B(r) \cdot 2\pi r = \mu_0 I \]
+              </li>
+              <li>两边同除以 \(2\pi r\)，解出该区域磁感强度：
+                \[ B = \frac{\mu_0 I}{2\pi r} \quad (R_1 \lt r \lt R_2) \]
+              </li>
+              <li>考查第 (3) 问区域 \(R_2 \lt r \lt R_3\)（外导体壳内部）：环路包围全部内导体正向电流 \(+I\)，以及外导体自半径 \(R_2\) 到 \(r\) 之间的部分反向电流；</li>
+              <li>计算被包围的外导体部分截面积：
+                \[ \Delta S = \pi (r^2 - R_2^2) \]
+              </li>
+              <li>计算该部分所载的反向电流大小：
+                \[ I_{\text{外部分}} = j_2 \cdot \Delta S = \frac{I}{\pi (R_3^2 - R_2^2)} \cdot \pi (r^2 - R_2^2) = I \frac{r^2 - R_2^2}{R_3^2 - R_2^2} \]
+              </li>
+              <li>计算环路所包围的净代数电流总和（正向取正，反向取负）：
+                \[ \sum I_{\text{内}} = I - I \frac{r^2 - R_2^2}{R_3^2 - R_2^2} = I \left(1 - \frac{r^2 - R_2^2}{R_3^2 - R_2^2}\right) \]
+              </li>
+              <li>将括号内各项通分：
+                \[ \sum I_{\text{内}} = I \frac{(R_3^2 - R_2^2) - (r^2 - R_2^2)}{R_3^2 - R_2^2} = I \frac{R_3^2 - r^2}{R_3^2 - R_2^2} \]
+              </li>
+              <li>代入安培环路定理关系式：
+                \[ B(r) \cdot 2\pi r = \mu_0 I \frac{R_3^2 - r^2}{R_3^2 - R_2^2} \]
+              </li>
+              <li>两边同除以 \(2\pi r\)，解出该区域磁感强度：
+                \[ B = \frac{\mu_0 I}{2\pi r} \frac{R_3^2 - r^2}{R_3^2 - R_2^2} \quad (R_2 \lt r \lt R_3) \]
+              </li>
+              <li>考查第 (4) 问区域 \(r \gt R_3\)（电缆外部空间）：环路完全包围内导体的全部正向电流 \(+I\) 与外导体的全部反向电流 \(-I\)；</li>
+              <li>计算环路所包围的净代数电流总和：
+                \[ \sum I_{\text{内}} = I - I = 0 \]
+              </li>
+              <li>代入安培环路定理关系式：
+                \[ B(r) \cdot 2\pi r = 0 \]
+              </li>
+              <li>解出电缆外部的磁感强度：
+                \[ B = 0 \quad (r \gt R_3) \]
+              </li>
+              <li>分析 \(B-r\) 图线各区段的单调性与凹凸形态特征：
+                在 \(0 \le r \lt R_1\) 区间，\(\frac{\mathrm{d}B}{\mathrm{d}r} = \frac{\mu_0 I}{2\pi R_1^2} \gt 0\) 为常数，图线为过原点的斜率恒定上升直线段，在 \(r = R_1\) 处达到全局最大值 \(B_{\max} = \frac{\mu_0 I}{2\pi R_1}\)；在 \(R_1 \lt r \lt R_2\) 区间，\(\frac{\mathrm{d}B}{\mathrm{d}r} = -\frac{\mu_0 I}{2\pi r^2} \lt 0\) 且 \(\frac{\mathrm{d}^2 B}{\mathrm{d}r^2} = \frac{\mu_0 I}{\pi r^3} \gt 0\)，图线为单调递减、下凸（凹向上）的反比例双曲线段；在 \(R_2 \lt r \lt R_3\) 区间，\(\frac{\mathrm{d}B}{\mathrm{d}r} = -\frac{\mu_0 I}{2\pi(R_3^2 - R_2^2)}\left(\frac{R_3^2}{r^2} + 1\right) \lt 0\)，图线继续单调递减并在 \(r = R_3\) 处平滑降为 \(0\)；在 \(r \gt R_3\) 区间，图线与横轴 \(B = 0\) 完全重合；</li>
+              <li>核对 \(B-r\) 图线在分界面处的连续性：在 \(r = R_1\) 处左右极限均为 \(\frac{\mu_0 I}{2\pi R_1}\)；在 \(r = R_2\) 处左右极限均为 \(\frac{\mu_0 I}{2\pi R_2}\)；在 \(r = R_3\) 处左右极限均为 \(0\)，故整条 \(B-r\) 曲线在 \([0, \infty)\) 上处处连续无间断。</li>
+            </ol>
+          </div>
+
+          <div class="ans">
+            <b>答案</b>
+            <p>各区域磁感强度分布为：</p>
+            <p>\[ \boxed{B = \begin{cases} \dfrac{\mu_0 I r}{2\pi R_1^2}, & r \lt R_1 \\[8pt] \dfrac{\mu_0 I}{2\pi r}, & R_1 \lt r \lt R_2 \\[8pt] \dfrac{\mu_0 I}{2\pi r} \dfrac{R_3^2 - r^2}{R_3^2 - R_2^2}, & R_2 \lt r \lt R_3 \\[8pt] 0, & r \gt R_3 \end{cases}} \]</p>
+            <p><strong>\(B-r\) 关系图线</strong>：</p>
+            <div class="figwrap">
+              <svg class="fig" width="460" height="240" viewBox="0 0 460 240">
+                <!-- 坐标轴 -->
+                <line x1="50" y1="200" x2="430" y2="200" stroke="#26241f" stroke-width="2"/>
+                <line x1="50" y1="200" x2="50" y2="20" stroke="#26241f" stroke-width="2"/>
+                <path d="M 430 200 L 420 195 L 420 205 Z" fill="#26241f"/>
+                <path d="M 50 20 L 45 30 L 55 30 Z" fill="#26241f"/>
+                <!-- 刻度与辅助虚线 -->
+                <line x1="140" y1="200" x2="140" y2="60" stroke="#6d685d" stroke-dasharray="3,3" stroke-width="1.5"/>
+                <line x1="230" y1="200" x2="230" y2="114" stroke="#6d685d" stroke-dasharray="3,3" stroke-width="1.5"/>
+                <line x1="330" y1="200" x2="330" y2="200" stroke="#6d685d" stroke-dasharray="3,3" stroke-width="1.5"/>
+                <line x1="50" y1="60" x2="140" y2="60" stroke="#6d685d" stroke-dasharray="3,3" stroke-width="1.5"/>
+                <line x1="50" y1="114" x2="230" y2="114" stroke="#6d685d" stroke-dasharray="3,3" stroke-width="1.5"/>
+                <!-- 曲线绘制 -->
+                <!-- 0 到 R1: 直线上升 -->
+                <line x1="50" y1="200" x2="140" y2="60" stroke="#1f6f6b" stroke-width="3"/>
+                <!-- R1 到 R2: 反比双曲线 -->
+                <path d="M 140 60 Q 175 95 230 114" fill="none" stroke="#1f6f6b" stroke-width="3"/>
+                <!-- R2 到 R3: 下凹非线性下降至零 -->
+                <path d="M 230 114 Q 280 145 330 200" fill="none" stroke="#1f6f6b" stroke-width="3"/>
+                <!-- R3 到更大: 零线 -->
+                <line x1="330" y1="200" x2="420" y2="200" stroke="#1f6f6b" stroke-width="3"/>
+                <!-- 关键点标记 -->
+                <circle cx="140" cy="60" r="4" fill="#c0392b"/>
+                <circle cx="230" cy="114" r="4" fill="#c0392b"/>
+                <circle cx="330" cy="200" r="4" fill="#c0392b"/>
+              </svg>
+              <div class="figlab" style="left:424px;top:218px">\(r\)</div>
+              <div class="figlab" style="left:34px;top:24px">\(B\)</div>
+              <div class="figlab" style="left:140px;top:218px">\(R_1\)</div>
+              <div class="figlab" style="left:230px;top:218px">\(R_2\)</div>
+              <div class="figlab" style="left:330px;top:218px">\(R_3\)</div>
+              <div class="figlab" style="left:44px;top:60px">\(\frac{\mu_0 I}{2\pi R_1}\)</div>
+              <div class="figlab" style="left:44px;top:114px">\(\frac{\mu_0 I}{2\pi R_2}\)</div>
+            </div>
+          </div>
+
+          <div class="blk chk">
+            <b>验证</b>
+            <p>【换列式复核 · 界面连续性检验】由于导线内部与界面不存在无限大面电流密度，磁场的切向分量在任何物理介质交界面上必须保持数学严格连续：</p>
+            <p>1. 在界面 \(r = R_1\) 处：内层区域第 (1) 问取极限 \(\lim_{r \to R_1^-} B = \frac{\mu_0 I R_1}{2\pi R_1^2} = \frac{\mu_0 I}{2\pi R_1}\)；中间层区域第 (2) 问取极限 \(\lim_{r \to R_1^+} B = \frac{\mu_0 I}{2\pi R_1}\)。两极限相等，在 \(R_1\) 处连续；</p>
+            <p>2. 在界面 \(r = R_2\) 处：中间层区域第 (2) 问取极限 \(\lim_{r \to R_2^-} B = \frac{\mu_0 I}{2\pi R_2}\)；外层导体第 (3) 问代入 \(r = R_2\) 得 \(\frac{\mu_0 I}{2\pi R_2} \frac{R_3^2 - R_2^2}{R_3^2 - R_2^2} = \frac{\mu_0 I}{2\pi R_2}\)。两极限相等，在 \(R_2\) 处连续；</p>
+            <p>3. 在界面 \(r = R_3\) 处：外导体壳第 (3) 问代入 \(r = R_3\) 得分子 \(R_3^2 - R_3^2 = 0\)，场强平滑降为 \(0\)；外部区域第 (4) 问恒为 \(0\)。全场完全连续无跳变！</p>
+            <p>【合理性检查】这结果为什么讲得通：外导体反向电流在外部激发的环向磁场，与内导体在外部激发的环向磁场大小完全相等、旋向彻底相反。两者在 \(r \gt R_3\) 的全空间产生完美反相抵消，使得外界磁场完全归零。这正是工程上同轴电缆具有极佳抗电磁辐射泄漏与外界电磁干扰免疫特性的根本物理原因。</p>
+          </div>
+
+          <div class="pit">
+            <b>常见坑</b>
+            <p>在求解外导体壳内部（第 3 问）时，容易错把被包围截面积写成 \(\pi r^2\) 或者 \(\pi (R_3^2 - r^2)\)。必须严格认识到：包围区域的下限是从外导体内径 \(R_2\) 开始向外延伸至 \(r\)，因此有效面积必为 \(\pi (r^2 - R_2^2)\)；再用内导体总电流 \(I\) 减去该部分反向电流，分子方能准确化简为 \(R_3^2 - r^2\)。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MODULE 3 ==================== -->
+  <section class="mod" id="m3">
+    <div class="gutter">M3<small>磁通积分</small></div>
+    <h2>M3 空间磁通量计算与面积分</h2>
+    <div class="in">
+      <div class="blk kp">
+        <b>知识点 · 磁通量定义与非均匀场面元积分</b>
+        <p>磁通量 \(\Phi_m\) 是衡量穿过某一指定有向曲面 \(S\) 的磁感线条数的宏观物理量，严格定义为磁感强度 \(\vec{B}\) 沿该曲面的面积分：</p>
+        <div id="eq-3-1">\[ \Phi_m = \iint_S \vec{B} \cdot \mathrm{d}\vec{S} \tag{3-1} \]</div>
+        <p>其中 \(\mathrm{d}\vec{S} = \vec{n} \mathrm{d}S\)，\(\vec{n}\) 为面元处的单位法向矢量。若磁场处处均匀且与平面垂直，则磁通量简化为初等乘积 \(\Phi_m = B S\)；但对于长直导线等激发的非均匀磁场，场强随径向距离 \(r\) 呈反比衰减（复用 M1 结论式 <a href="#eq-1-1">(1-1)</a>），此时必须建立条带微元积分法：</p>
+        <p>由于距直导线距离相等的平行线上场强大小严格恒定，求解共面矩形线圈的磁通量时，应选取与导线平行的细长矩形条带作为微分面元 \(\mathrm{d}S = l \mathrm{d}r\)，从而将二重面积分退化为针对径向标量坐标 \(r\) 的单重对数积分。</p>
+      </div>
+
+      <div class="blk idea" id="m3-meth">
+        <b>解题方法 · 平行条带面元微积分流程</b>
+        <ol class="steps">
+          <li><b>场强函数显式化</b>：复用 M1 结论式 <a href="#eq-1-1">(1-1)</a> 写出长直导线在空间距离 \(r\) 处的解析表达式 \(B(r) = \frac{\mu_0 I}{2\pi r}\) 并判定其在平面内的法向指向；</li>
+          <li><b>面元几何剖分</b>：沿径向取宽度为 \(\mathrm{d}r\)、长度等于矩形平行边边长 \(l\) 的细条带，写出面元 \(\mathrm{d}S = l \mathrm{d}r\)；</li>
+          <li><b>构建磁通量微元</b>：将场强与面元点乘，得到标量微元 \(\mathrm{d}\Phi_m = B(r) l \mathrm{d}r\)；</li>
+          <li><b>定积分求全通量</b>：确定近端边界 \(d_1\) 与远端边界 \(d_2\) 的积分区间，计算对数定积分。</li>
+        </ol>
+      </div>
+
+      <!-- 题卡 11-14 -->
+      <div class="q" id="q14">
+        <h3>题 11-14 · 载流长直导线旁平面矩形面积的磁通量计算</h3>
+        <div class="in">
+          <div class="blk">
+            <b>题目重述</b>
+            <p>如图 11-14 所示，一根载流长直导线载有恒定电流 \(I\)。在其同一平面内放置一个高度为 \(l\) 的矩形区域，该矩形靠内的一边与导线平行且相距为 \(d_1\)，靠外的一边与导线相距为 \(d_2\)。试求穿过该矩形面积的磁通量 \(\Phi_m\)。</p>
+            <div class="figwrap">
+              <svg class="fig" width="300" height="240" viewBox="0 0 300 240">
+                <!-- 长直导线 -->
+                <line x1="60" y1="20" x2="60" y2="50" stroke="#6d685d" stroke-dasharray="4,4" stroke-width="2"/>
+                <line x1="60" y1="50" x2="60" y2="190" stroke="#1f6f6b" stroke-width="3"/>
+                <line x1="60" y1="190" x2="60" y2="220" stroke="#6d685d" stroke-dasharray="4,4" stroke-width="2"/>
+                <path d="M 60 110 L 56 120 L 64 120 Z" fill="#1f6f6b"/>
+                <!-- 矩形面积 -->
+                <rect x="110" y="55" width="110" height="130" fill="#f4f2ec" stroke="#1f6f6b" stroke-width="2"/>
+                <!-- 微元细带 -->
+                <rect x="150" y="55" width="12" height="130" fill="color-mix(in srgb,var(--acc) 30%,transparent)" stroke="#1f6f6b" stroke-dasharray="2,2"/>
+                <!-- 尺寸标线 -->
+                <line x1="60" y1="195" x2="110" y2="195" stroke="#26241f" stroke-width="1.2"/>
+                <path d="M 110 195 L 102 192 L 102 198 Z" fill="#26241f"/>
+                <path d="M 60 195 L 68 192 L 68 198 Z" fill="#26241f"/>
+                <line x1="60" y1="215" x2="220" y2="215" stroke="#26241f" stroke-width="1.2"/>
+                <path d="M 220 215 L 212 212 L 212 218 Z" fill="#26241f"/>
+                <path d="M 60 215 L 68 212 L 68 218 Z" fill="#26241f"/>
+                <line x1="230" y1="55" x2="230" y2="185" stroke="#26241f" stroke-width="1.2"/>
+                <path d="M 230 55 L 227 63 L 233 63 Z" fill="#26241f"/>
+                <path d="M 230 185 L 227 177 L 233 177 Z" fill="#26241f"/>
+              </svg>
+              <div class="figlab" style="left:46px;top:110px">\(I\)</div>
+              <div class="figlab" style="left:85px;top:186px">\(d_1\)</div>
+              <div class="figlab" style="left:140px;top:206px">\(d_2\)</div>
+              <div class="figlab" style="left:242px;top:120px">\(l\)</div>
+              <div class="figlab" style="left:156px;top:45px">\(\mathrm{d}r\)</div>
+            </div>
+          </div>
+
+          <div class="blk s0">
+            <b>第0步 · 前提检查</b>
+            <p>1. 存在性与定义域：几何位置满足严格正序关系 \(0 \lt d_1 \lt d_2\)。矩形区域不包含长直导线自身，因此被积函数在该闭区间上连续无奇点，积分收敛；</p>
+            <p>2. 模型成立条件：长直导线长度远大于 \(l\) 与 \(d_2\)，可精确应用无限长直导线磁场解；介质为真空；</p>
+            <p>3. 象限与参考方向：以直导线为轴，矩形平面向右为正 \(r\) 轴。由右手定则，导线右侧磁场处处垂直纸面向里。取矩形面法向量 \(\vec{n}\) 同样垂直纸面向里，使得夹角 \(\theta = 0\)，标量投影恒正；</p>
+            <p>4. 多值与分支：不适用（被积函数在实数正半轴区间 \([d_1, d_2] \subset (0, +\infty)\) 上严格为正，对数原函数 \(\ln r\) 取实数主值分支，单值无歧义）。</p>
+          </div>
+
+          <div class="blk idea">
+            <b>思路</b>
+            <p>路线一（极坐标二重积分法）：采用极坐标对矩形区域进行分割。由于矩形边界在极坐标下方程为三角函数割线形式，会极大增加代数复杂度；</p>
+            <p>路线二（一维平行条带积分法，推荐）：利用直导线周围磁场的等值线为同心圆柱面的性质，在矩形区域内取距导线距离为 \(r\)、宽为 \(\mathrm{d}r\)、高为 \(l\) 的窄长条带。在条带内磁场视作常量，直接转化为对径向坐标 \(r\) 从 \(d_1\) 到 \(d_2\) 的一元定积分。</p>
+          </div>
+
+          <div class="blk sol">
+            <b>分步推导</b>
+            <ol class="steps">
+              <li>以长直导线为基准建立坐标系，设矩形平面上任意一点距长直导线的垂直欧几里得距离为 \(r\)；</li>
+              <li>以长直导线为轴作半径为 \(r\) 的同心圆环路，由安培环路定理 \(B(r)\cdot 2\pi r = \mu_0 I\)（即<span class="stk r"><a href="#pop-14" tabindex="0" role="button" aria-describedby="pop-14">无限长直导线磁场公式 (1-1)</a><span class="pop" id="pop-14"><u>知识点 · 长直导线非均匀场积分</u>无限长载流直导线在距离 \(r\) 处场强为 \(B(r) = \frac{\mu_0 I}{2\pi r}\)，随 \(r\) 反比变化。<i>此处怎么用：因磁场沿径向 \(r\) 不均匀，必须将矩形沿平行于导线的方向切分为宽 \(\mathrm{d}r\)、长 \(l\) 的细条带微元 \(\mathrm{d}S = l\mathrm{d}r\) 再积分。</i></span></span>），得到距离导线 \(r\) 处的磁感强度大小：
+                \[ B(r) = \frac{\mu_0 I}{2\pi r} \]
+              </li>
+              <li>由右手螺旋定则判定磁场方向：电流向上，四指在导线右侧垂直穿入纸面，故 \(\vec{B}(r)\) 处处垂直于矩形平面向里；</li>
+              <li>在矩形平面内，取平行于长直导线、距导线距离为 \(r\)、宽度为 \(\mathrm{d}r\) 的细长矩形条带；</li>
+              <li>计算该微分细条带的面元面积 \(\mathrm{d}S\)：
+                \[ \mathrm{d}S = l \mathrm{d}r \]
+              </li>
+              <li>选取矩形平面的法向单位矢量 \(\vec{n}\) 指向纸内，则面元矢量为 \(\mathrm{d}\vec{S} = l \mathrm{d}r \vec{n}\)；</li>
+              <li>计算穿过该面元的微分磁通量 \(\mathrm{d}\Phi_m = \vec{B} \cdot \mathrm{d}\vec{S}\)：因两矢量平行同向，标量积为大小的直接乘积：
+                \[ \mathrm{d}\Phi_m = B(r) \mathrm{d}S = \frac{\mu_0 I}{2\pi r} l \mathrm{d}r \]
+              </li>
+              <li>整理微元式，将常数项与积分变量因式分离：
+                \[ \mathrm{d}\Phi_m = \frac{\mu_0 I l}{2\pi} \frac{\mathrm{d}r}{r} \]
+              </li>
+              <li>调用磁通量面积分定义式 <a href="#eq-3-1">(3-1)</a>，确定定积分的上下限：下限为内侧边距离 \(r = d_1\)，上限为外侧边距离 \(r = d_2\)：
+                \[ \Phi_m = \int_{d_1}^{d_2} \frac{\mu_0 I l}{2\pi} \frac{\mathrm{d}r}{r} \]
+              </li>
+              <li>提取与变量 \(r\) 无关的常数因式 \(\frac{\mu_0 I l}{2\pi}\) 至积分号外：
+                \[ \Phi_m = \frac{\mu_0 I l}{2\pi} \int_{d_1}^{d_2} \frac{\mathrm{d}r}{r} \]
+              </li>
+              <li>根据微积分基本初等函数求导逆法则，计算定积分：
+                \[ \int_{d_1}^{d_2} \frac{\mathrm{d}r}{r} = \left[ \ln r \right]_{d_1}^{d_2} = \ln d_2 - \ln d_1 \]
+              </li>
+              <li>利用对数减法法则合并对数项：
+                \[ \ln d_2 - \ln d_1 = \ln\frac{d_2}{d_1} \]
+              </li>
+              <li>将对数结果代回磁通量总式：
+                \[ \Phi_m = \frac{\mu_0 I l}{2\pi} \ln\frac{d_2}{d_1} \]
+              </li>
+            </ol>
+          </div>
+
+          <div class="ans">
+            <b>答案</b>
+            <p>穿过矩形面积的磁通量为：</p>
+            <p>\[ \boxed{\Phi_m = \frac{\mu_0 I l}{2\pi} \ln\frac{d_2}{d_1}} \]</p>
+          </div>
+
+          <div class="blk chk">
+            <b>验证</b>
+            <p>【量纲与结构检查】量纲分析：真空磁导率 \(\mu_0\) 单位为 \(\text{T}\cdot\text{m/A} = \text{Wb}/(\text{A}\cdot\text{m})\)；电流 \(I\) 单位为 \(\text{A}\)；矩形高度 \(l\) 单位为 \(\text{m}\)；对数比值 \(\ln(d_2/d_1)\) 为严格无量纲实数。各项乘积量纲为 \([\text{Wb}/(\text{A}\cdot\text{m})] \times [\text{A}] \times [\text{m}] = \text{Wb}\)（韦伯），与磁通量法定单位完全一致。</p>
+            <p>【极限定性复核】这结果为什么讲得通：考查极限物理情形：当矩形宽度缩减为零（即 \(d_2 \to d_1\)）时，\(\ln(d_2/d_1) \to \ln 1 = 0\)，穿过零面积的磁通量归零；当矩形向外无限延伸（\(d_2 \to \infty\)）时，由于长直导线磁场具有非紧支集长程对数发散特性，磁通量呈现对数发散。所有边界行为与场分布规律高度自洽。</p>
+          </div>
+
+          <div class="pit">
+            <b>常见坑</b>
+            <p>错用矩形中心处的平均场强代替非均匀场，即误算为 \(\Phi_m = B\left(\frac{d_1+d_2}{2}\right) \cdot l(d_2 - d_1)\)。因为磁感强度是关于距离 \(r\) 的非线性反比函数，平均值 \(\frac{1}{d_2 - d_1} \int_{d_1}^{d_2} \frac{1}{r} \mathrm{d}r = \frac{1}{d_2 - d_1} \ln\frac{d_2}{d_1}\) 严格不等于中点场强，必须严格执行定积分。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MODULE 4 ==================== -->
+  <section class="mod" id="m4">
+    <div class="gutter">M4<small>受力做功</small></div>
+    <h2>M4 载流回路受力与做功：安培力、磁力矩与磁能</h2>
+    <div class="in">
+      <div class="blk kp">
+        <b>知识点 · 安培力、磁矩与磁力矩做功定理</b>
+        <p>磁场对运动电荷施加洛伦兹力，宏观上表现为对载流导线施加的安培力。电流元 \(\mathrm{d}\vec{l}\) 在外磁场 \(\vec{B}\) 中受到的安培力微元遵循安培定律：</p>
+        <div id="eq-4-1">\[ \mathrm{d}\vec{F} = I \mathrm{d}\vec{l} \times \vec{B} \tag{4-1} \]</div>
+        <p>若将长直导线的非均匀磁场分布代入式 <a href="#eq-4-1">(4-1)</a>，则同向平行电流相吸、反向平行电流相斥；而垂直于直导线的上下对称边，由于所处位置对称且电流相反，受到的安培力严格反向抵消。</p>
+        <p>对于任意闭合平面载流线圈，无论其几何外形是矩形、圆形还是半圆形，其磁性质均可由其固有物理量——磁矩 \(\vec{m}\) 统一表征：</p>
+        <p>\[ \vec{m} = I \vec{S} = I S \vec{n} \]</p>
+        <p>其中 \(S\) 为平面线圈围成的几何面积，\(\vec{n}\) 为法向单位矢量，其指向与闭合电流环流绕向遵循右手螺旋定则。当该线圈置于外磁场 \(\vec{B}\) 中时，线圈受到的合磁力矩为：</p>
+        <div id="eq-4-2">\[ \vec{M} = \vec{m} \times \vec{B} \tag{4-2} \]</div>
+        <p>在线圈转动过程中，磁力矩倾向于使线圈的磁矩矢量 \(\vec{m}\) 旋转至与外磁场 \(\vec{B}\) 同向重合的稳定平衡位置。在保持回路电流 \(I\) 不变的条件下，线圈在外磁场中具有磁势能 \(E_p = - \vec{m} \cdot \vec{B}\)，磁力矩所做的机械功等于系统磁势能的减少量，亦等价于电流与穿过回路磁通增量的乘积：</p>
+        <div id="eq-4-3">\[ W = -\Delta E_p = E_{p1} - E_{p2} = I \Delta \Phi_m \tag{4-3} \]</div>
+      </div>
+
+      <div class="blk idea" id="m4-meth">
+        <b>解题方法 · 回路力学效应与做功分析流程</b>
+        <ol class="steps">
+          <li><b>回路边段受力拆解</b>：调用式 <a href="#eq-4-1">(4-1)</a>，分别确定四边或各段导线所受安培力的大小与方向，判明对称边的代数抵消特性；</li>
+          <li><b>磁矩矢量建构</b>：根据回路闭合几何边界计算平面面积 \(S\)，右手定则确定法向 \(\vec{n}\)，写出磁矩 \(\vec{m} = I S \vec{n}\)；</li>
+          <li><b>矢量力矩求解</b>：调用式 <a href="#eq-4-2">(4-2)</a>，建立坐标系执行矢积运算，求出大小 \(M = m B \sin\theta\) 并判定力矩转动轴与指向；</li>
+          <li><b>转动功双轨计算</b>：初末态磁势能差分法（式 <a href="#eq-4-3">(4-3)</a>）与力矩角位移微积分积分法并用，确保功的符号与数值精确无误。</li>
+        </ol>
+      </div>
+
+      <!-- 题卡 11-26 -->
+      <div class="q" id="q26">
+        <h3>题 11-26 · 长直导线对共面矩形载流回路的安培合力</h3>
+        <div class="in">
+          <div class="blk">
+            <b>题目重述</b>
+            <p>如图 11-26 所示，一根无限长直导线载有电流 \(I_1 = 30\text{ A}\)，在其右侧同一平面内放置一个高为 \(l = 0.12\text{ m}\)、宽为 \(b = 8.0\text{ cm} = 0.08\text{ m}\) 的矩形回路，回路载有电流 \(I_2 = 20\text{ A}\)。回路的左侧垂直边与长直导线平行，距离为 \(d = 1.0\text{ cm} = 0.01\text{ m}\)。回路中电流在左侧向上、右侧向下（呈顺时针循环）。试计算长直导线磁场作用在该矩形回路上的合力大小与方向。</p>
+            <div class="figwrap">
+              <svg class="fig" width="320" height="250" viewBox="0 0 320 250">
+                <!-- 长直导线 -->
+                <line x1="50" y1="20" x2="50" y2="50" stroke="#6d685d" stroke-dasharray="4,4" stroke-width="2"/>
+                <line x1="50" y1="50" x2="50" y2="200" stroke="#1f6f6b" stroke-width="3"/>
+                <line x1="50" y1="200" x2="50" y2="230" stroke="#6d685d" stroke-dasharray="4,4" stroke-width="2"/>
+                <path d="M 50 110 L 46 120 L 54 120 Z" fill="#1f6f6b"/>
+                <!-- 矩形回路 -->
+                <rect x="100" y="55" width="120" height="135" fill="none" stroke="#1f6f6b" stroke-width="2.5"/>
+                <!-- 矩形回路电流方向箭头 -->
+                <path d="M 100 110 L 96 120 L 104 120 Z" fill="#1f6f6b"/>
+                <path d="M 220 135 L 216 125 L 224 125 Z" fill="#1f6f6b"/>
+                <path d="M 170 55 L 160 51 L 160 59 Z" fill="#1f6f6b"/>
+                <path d="M 150 190 L 160 186 L 160 194 Z" fill="#1f6f6b"/>
+                <!-- 受力矢量箭头 -->
+                <line x1="100" y1="120" x2="70" y2="120" stroke="#c0392b" stroke-width="2.5"/>
+                <path d="M 70 120 L 78 116 L 78 124 Z" fill="#c0392b"/>
+                <line x1="220" y1="120" x2="238" y2="120" stroke="#c0392b" stroke-width="2"/>
+                <path d="M 238 120 L 230 116 L 230 124 Z" fill="#c0392b"/>
+                <!-- 尺寸标线 -->
+                <line x1="50" y1="205" x2="100" y2="205" stroke="#26241f" stroke-width="1.2"/>
+                <path d="M 100 205 L 92 202 L 92 208 Z" fill="#26241f"/>
+                <path d="M 50 205 L 58 202 L 58 208 Z" fill="#26241f"/>
+                <line x1="100" y1="205" x2="220" y2="205" stroke="#26241f" stroke-width="1.2"/>
+                <path d="M 220 205 L 212 202 L 212 208 Z" fill="#26241f"/>
+                <path d="M 100 205 L 108 202 L 108 208 Z" fill="#26241f"/>
+                <line x1="235" y1="55" x2="235" y2="190" stroke="#26241f" stroke-width="1.2"/>
+                <path d="M 235 55 L 232 63 L 238 63 Z" fill="#26241f"/>
+                <path d="M 235 190 L 232 182 L 238 182 Z" fill="#26241f"/>
+              </svg>
+              <div class="figlab" style="left:34px;top:110px">\(I_1\)</div>
+              <div class="figlab" style="left:114px;top:110px">\(I_2\)</div>
+              <div class="figlab" style="left:75px;top:216px">\(d\)</div>
+              <div class="figlab" style="left:160px;top:216px">\(b\)</div>
+              <div class="figlab" style="left:248px;top:122px">\(l\)</div>
+              <div class="figlab" style="left:82px;top:106px">\(\vec{F}_1\)</div>
+              <div class="figlab" style="left:236px;top:106px">\(\vec{F}_2\)</div>
+            </div>
+          </div>
+
+          <div class="blk s0">
+            <b>第0步 · 前提检查</b>
+            <p>1. 存在性与定义域：矩形回路与长直导线共面，近端间距 \(d = 0.01\text{ m} \gt 0\)，远端间距 \(d+b = 0.09\text{ m}\)，回路不与导线接触；</p>
+            <p>2. 模型成立条件：长直导线电流稳恒，长直导线自身产生的磁场主导空间分布；忽略回路自感磁场对长直导线反作用所引起的微弱形变，视为刚性回路；</p>
+            <p>3. 象限与参考方向：以长直导线为 \(y\) 轴（向上为正），向右为正 \(x\) 轴，垂直纸面向外为正 \(z\) 轴。安培力矢量在 \(x-y\) 平面内投影计算；</p>
+            <p>4. 多值与分支：不适用（四条直导线边所受安培力方向由矢量叉乘 \(\mathrm{d}\vec{l}\times\vec{B}\) 唯一确定，无需多值分支讨论）。</p>
+          </div>
+
+          <div class="blk idea">
+            <b>思路</b>
+            <p>路线一（全回路闭合线积分）：对回路四条边逐边列出微元矢量积积分 \(\oint I_2 \mathrm{d}\vec{l} \times \vec{B}\)。此方法对顶底边需要积分求力后再抵消，步骤较冗长；</p>
+            <p>路线二（对称抵消与平行线引斥力叠加法，推荐）：利用平面几何对称性，顶边水平向右电流与底边水平向左电流在相同距离 \(x\) 处的磁场大小相等，微元安培力大小相等且方向相反，故顶边与底边的受力积分在全域严格相互抵消为零。系统合力完全退化为左侧垂直边所受引力与右侧垂直边所受斥力的标量差。</p>
+          </div>
+
+          <div class="blk sol">
+            <b>分步推导</b>
+            <ol class="steps">
+              <li>以长直导线为 \(y\) 轴建立直角坐标系，由右手螺旋定则与安培环路定理 \(B(x)\cdot 2\pi x = \mu_0 I_1\)，长直导线在右侧 \(x \gt 0\) 区域激发的磁感强度垂直纸面向里（\(-\vec{k}\) 方向），结合<span class="stk"><a href="#pop-26" tabindex="0" role="button" aria-describedby="pop-26">安培力微元公式 (4-1) 与直导线场强</a><span class="pop" id="pop-26"><u>知识点 · 平行载流直导线间的安培力</u>长直导线在距离 \(x\) 处激发磁场 \(B(x) = \frac{\mu_0 I_1}{2\pi x}\)，另一平行直导线段（长 \(l\)、电流 \(I_2\)）所受安培力大小为 \(F = I_2 l B(x)\)。<i>此处怎么用：左竖边（\(x=d\)）与 \(I_1\) 同向相吸向左，右竖边（\(x=d+b\)）与 \(I_1\) 反向相斥向右，上下水平边对称抵消。</i></span></span>得到距离 \(x\) 处的场强大小：
+                \[ B(x) = \frac{\mu_0 I_1}{2\pi x} \]
+              </li>
+              <li>考查矩形回路的顶边（水平向右，\(x \in [d, d+b]\)）：电流流动方向为 \(+x\)，即 \(\mathrm{d}\vec{l}_{\text{顶}} = \mathrm{d}x \vec{i}\)；</li>
+              <li>调用安培力定律微元式 <a href="#eq-4-1">(4-1)</a>，顶边微元受力为：
+                \[ \mathrm{d}\vec{F}_{\text{顶}} = I_2 (\mathrm{d}x \vec{i}) \times (-B(x)\vec{k}) = I_2 B(x) \mathrm{d}x \vec{j} \]
+                其方向沿 \(+y\) 轴竖直向上；</li>
+              <li>考查矩形回路的底边（水平向左，\(x \in [d, d+b]\)）：电流流动方向为 \(-x\)，即 \(\mathrm{d}\vec{l}_{\text{底}} = -\mathrm{d}x \vec{i}\)；</li>
+              <li>底边对应位置的微元受力为：
+                \[ \mathrm{d}\vec{F}_{\text{底}} = I_2 (-\mathrm{d}x \vec{i}) \times (-B(x)\vec{k}) = -I_2 B(x) \mathrm{d}x \vec{j} \]
+                其方向沿 \(-y\) 轴竖直向下；</li>
+              <li>对于任意相同的横坐标 \(x\)，顶底微元受力之和为：
+                \[ \mathrm{d}\vec{F}_{\text{顶}}(x) + \mathrm{d}\vec{F}_{\text{底}}(x) = I_2 B(x) \mathrm{d}x \vec{j} - I_2 B(x) \mathrm{d}x \vec{j} = 0 \]
+              </li>
+              <li>将微元在区间 \([d, d+b]\) 积分，顶底两边的合力严格为零：
+                \[ \vec{F}_{\text{顶}} + \vec{F}_{\text{底}} = 0 \]
+              </li>
+              <li>考查左侧垂直边（距离导线 \(x = d\)，长度为 \(l\)）：电流向上（\(I_2 \vec{j}\)），与长直导线电流 \(I_1\) 平行同向；</li>
+              <li>同向电流相互吸引，安培力方向水平向左（\(-\vec{i}\) 方向），由式 <a href="#eq-4-1">(4-1)</a> 积分计算其大小：
+                \[ F_1 = I_2 l B(d) = I_2 l \left(\frac{\mu_0 I_1}{2\pi d}\right) = \frac{\mu_0 I_1 I_2 l}{2\pi d} \]
+              </li>
+              <li>考查右侧垂直边（距离导线 \(x = d+b\)，长度为 \(l\)）：电流向下（\(-I_2 \vec{j}\)），与长直导线电流 \(I_1\) 反向平行；</li>
+              <li>反向电流相互排斥，安培力方向水平向右（\(+\vec{i}\) 方向），计算其大小：
+                \[ F_2 = I_2 l B(d+b) = I_2 l \left(\frac{\mu_0 I_1}{2\pi (d+b)}\right) = \frac{\mu_0 I_1 I_2 l}{2\pi (d+b)} \]
+              </li>
+              <li>由于 \(d \lt d+b\)，近端引力大于远端斥力（\(F_1 \gt F_2\)），回路所受总安培力合力方向指向左侧长直导线（\(-\vec{i}\) 方向）；</li>
+              <li>计算合力标量大小：
+                \[ F = F_1 - F_2 = \frac{\mu_0 I_1 I_2 l}{2\pi} \left( \frac{1}{d} - \frac{1}{d+b} \right) \]
+              </li>
+              <li>将括号内两项通分化简：
+                \[ \frac{1}{d} - \frac{1}{d+b} = \frac{(d+b) - d}{d(d+b)} = \frac{b}{d(d+b)} \]
+              </li>
+              <li>将通分因式代回，得出解析式：
+                \[ F = \frac{\mu_0 I_1 I_2 l b}{2\pi d(d+b)} \]
+              </li>
+              <li>代入题目给定数值：\(\frac{\mu_0}{2\pi} = 2.0 \times 10^{-7}\text{ T}\cdot\text{m/A}\)，\(I_1 = 30\text{ A}\)，\(I_2 = 20\text{ A}\)，\(l = 0.12\text{ m}\)，\(d = 0.01\text{ m}\)，\(b = 0.08\text{ m}\)，\(d+b = 0.09\text{ m}\)；</li>
+              <li>计算乘积因子数值：
+                \[ \frac{\mu_0 I_1 I_2 l}{2\pi} = (2.0 \times 10^{-7}) \times 30 \times 20 \times 0.12 = 1.44 \times 10^{-5}\text{ N}\cdot\text{m} \]
+              </li>
+              <li>计算几何因式数值：
+                \[ \frac{b}{d(d+b)} = \frac{0.08}{0.01 \times 0.09} = \frac{0.08}{0.0009} = \frac{800}{9}\text{ m}^{-1} \]
+              </li>
+              <li>将两数相乘得到合力大小：
+                \[ F = (1.44 \times 10^{-5}) \times \frac{800}{9} = 0.16 \times 10^{-5} \times 800 = 128 \times 10^{-5}\text{ N} = 1.28 \times 10^{-3}\text{ N} \]
+              </li>
+            </ol>
+          </div>
+
+          <div class="ans">
+            <b>答案</b>
+            <p>作用在矩形回路上的合力解析式与数值为：</p>
+            <p>\[ \boxed{F = \frac{\mu_0 I_1 I_2 l b}{2\pi d(d+b)} = 1.28 \times 10^{-3}\text{ N} = 1.28\text{ mN}} \]</p>
+            <p>方向为：<strong>水平向左，指向长直导线</strong>。</p>
+          </div>
+
+          <div class="blk chk">
+            <b>验证</b>
+            <p>【独立路径 · 虚功原理与磁能梯度复核】复用 M3 中计算的磁通量结论式：长直导线穿过该矩形回路的互感磁通量为 \(\Phi_m = \frac{\mu_0 I_1 l}{2\pi} \ln\frac{d+b}{d}\)。回路与直导线的磁相互作用能量为 \(W_m = I_2 \Phi_m = \frac{\mu_0 I_1 I_2 l}{2\pi} [\ln(d+b) - \ln d]\)。根据电磁系统在恒定电流下的广义力虚功公式，沿位置坐标 \(d\) 的广义力为 \(F = \frac{\partial W_m}{\partial d}\)。对变量 \(d\) 求偏导数：\(\frac{\partial}{\partial d}[\ln(d+b) - \ln d] = \frac{1}{d+b} - \frac{1}{d} = -\frac{b}{d(d+b)}\)。负号表示势能随距离增大而减小，对应的广义安培力指向 \(d\) 减小的方向（即水平向左），大小严格为 \(\frac{\mu_0 I_1 I_2 l b}{2\pi d(d+b)} = 1.28\text{ mN}\)。基于虚功与能的独立路径与基于牛顿微元的路径完全吻合！</p>
+            <p>【合理性检查】这结果为什么讲得通：矩形左边处于强磁场区，右边处于弱磁场区。左边受到的吸力必然压倒右边受到的斥力，系统表现出向磁场更强处移动的自发趋势（顺应磁通增加的方向），因此合力必然指向长直导线。</p>
+          </div>
+
+          <div class="pit">
+            <b>常见坑</b>
+            <p>混淆单位换算：已知条件中给出的几何尺寸 \(d = 1.0\text{ cm}\) 与 \(b = 8.0\text{ cm}\) 为厘米，若未换算为国际单位制米（\(0.01\text{ m}\) 和 \(0.08\text{ m}\)）直接与 \(l = 0.12\text{ m}\) 连乘，将导致数值结果产生 \(10^2\) 或 \(10^4\) 数量级的致命偏差。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 题卡 11-21(1) -->
+      <div class="q" id="q21_1">
+        <h3>题 11-21(1) · 均匀磁场中半圆形闭合载流线圈的磁力矩</h3>
+        <div class="in">
+          <div class="blk">
+            <b>题目重述</b>
+            <p>一半径为 \(R = 0.10\text{ m}\) 的半圆形闭合线圈，载有电流 \(I = 10\text{ A}\)，放置在均匀外磁场中，磁场方向与线圈平面平行（如图 11-21 所示，沿水平向右方向），磁感强度的大小为 \(B = 0.5\text{ T}\)。线圈由一条竖直直径边与右侧半圆弧边闭合构成，在直导线段上电流方向竖直向下（逆时针闭合循环）。试求该线圈所受磁力矩的大小和方向。</p>
+            <div class="figwrap">
+              <svg class="fig" width="300" height="220" viewBox="0 0 300 220">
+                <!-- 均匀磁场 5 条水平平行线（与原图 11-21 完全一致） -->
+                <line x1="35" y1="45" x2="255" y2="45" stroke="#26241f" stroke-width="1.4"/>
+                <path d="M 262 45 L 250 41 L 250 49 Z" fill="#26241f"/>
+                <line x1="35" y1="77.5" x2="255" y2="77.5" stroke="#26241f" stroke-width="1.4"/>
+                <path d="M 262 77.5 L 250 73.5 L 250 81.5 Z" fill="#26241f"/>
+                <line x1="35" y1="110" x2="255" y2="110" stroke="#26241f" stroke-width="1.4"/>
+                <path d="M 262 110 L 250 106 L 250 114 Z" fill="#26241f"/>
+                <line x1="35" y1="142.5" x2="255" y2="142.5" stroke="#26241f" stroke-width="1.4"/>
+                <path d="M 262 142.5 L 250 138.5 L 250 146.5 Z" fill="#26241f"/>
+                <line x1="35" y1="175" x2="255" y2="175" stroke="#26241f" stroke-width="1.4"/>
+                <path d="M 262 175 L 250 171 L 250 179 Z" fill="#26241f"/>
+                <!-- 半圆形闭合线圈（左侧竖直直径 + 右侧半圆弧） -->
+                <line x1="120" y1="45" x2="120" y2="175" stroke="#1f6f6b" stroke-width="2.5"/>
+                <path d="M 120 45 A 65 65 0 0 1 120 175" fill="none" stroke="#1f6f6b" stroke-width="2.5"/>
+                <!-- 直径边上半段电流向下箭头（与原图位置严格一致） -->
+                <path d="M 120 100 L 115 88 L 125 88 Z" fill="#1f6f6b"/>
+                <!-- 半径标线 R -->
+                <line x1="120" y1="110" x2="166" y2="156" stroke="#26241f" stroke-width="1.6"/>
+              </svg>
+              <div class="figlab" style="left:104px;top:92px">\(I\)</div>
+              <div class="figlab" style="left:152px;top:130px">\(R\)</div>
+              <div class="figlab" style="left:274px;top:110px">\(\vec{B}\)</div>
+            </div>
+          </div>
+
+          <div class="blk s0">
+            <b>第0步 · 前提检查</b>
+            <p>1. 存在性与定义域：线圈为严格平面刚性闭合回路，半圆面积 \(S = \frac{1}{2}\pi R^2 \gt 0\)；外磁场为空间均匀恒定场，场强模值 \(B = 0.5\text{ T}\)；</p>
+            <p>2. 模型成立条件：闭合平面线圈的受力矩公式式 <a href="#eq-4-2">(4-2)</a> 对任意几何形状均成立（不论是矩形、圆形还是半圆形，面积相同则磁力学行为等价）；</p>
+            <p>3. 象限与参考方向：以纸面为平面，水平向右为 \(+x\) 轴（\(\vec{B} = B \vec{i}\)），竖直向上为 \(+y\) 轴，垂直纸面向外为 \(+z\) 轴（\(\vec{k}\)）。确定磁矩法向 \(\vec{n}\) 与力矩轴向；</p>
+            <p>4. 多值与分支：不适用（线圈法向 \(\vec{n}\) 由逆时针电流绕向经右手螺旋定则唯一确定，力矩叉乘 \(\vec{M} = \vec{m}\times\vec{B}\) 单值无分支）。</p>
+          </div>
+
+          <div class="blk idea">
+            <b>思路</b>
+            <p>路线一（边段安培力微元对轴取力矩直接积分）：将半圆弧分解为微分线元 \(\mathrm{d}\vec{l}\)，分别求各线元安培力，再乘以相对选定转轴的力臂完成定积分。该方法涉及复杂的三角力矩积分，容易在力臂投影时出错；</p>
+            <p>路线二（等效磁矩矢量积法，推荐）：利用平面闭合载流回路受磁力矩普适定理。闭合回路在均匀磁场中受到的合力恒为零，其力矩与转轴的选取完全无关，直接表达为磁矩与外场的矢积 \(\vec{M} = \vec{m} \times \vec{B}\)。只需计算半圆几何面积即可瞬时完成矢量求解。</p>
+          </div>
+
+          <div class="blk sol">
+            <b>分步推导</b>
+            <ol class="steps">
+              <li>计算半圆形闭合回路的几何面积 \(S\)：整圆面积为 \(\pi R^2\)，半圆为整圆面积的一半：
+                \[ S = \frac{1}{2} \pi R^2 \]
+              </li>
+              <li>代入半径 \(R = 0.10\text{ m}\) 计算面积数值：
+                \[ S = \frac{1}{2} \times \pi \times (0.10)^2 = 0.005\pi\text{ m}^2 = 5\pi \times 10^{-3}\text{ m}^2 \]
+              </li>
+              <li>由回路绕向判定法向矢量 \(\vec{n}\) 的朝向：在直导线段电流竖直向下，沿右侧半圆弧电流由下向上闭合，构成逆时针环流；</li>
+              <li>由右手螺旋定则，四指沿逆时针方向卷曲，大拇指垂直纸面向外翘起，故法向单位矢量指向正 \(z\) 轴：
+                \[ \vec{n} = \vec{k} \]
+              </li>
+              <li>构建半圆形闭合线圈的固有磁矩矢量 \(\vec{m}\)：
+                \[ \vec{m} = I S \vec{n} = I \left(\frac{1}{2}\pi R^2\right) \vec{k} \]
+              </li>
+              <li>代入电流 \(I = 10\text{ A}\) 计算磁矩标量大小：
+                \[ m = 10 \times 0.005\pi = 0.05\pi\text{ A}\cdot\text{m}^2 \approx 0.1571\text{ A}\cdot\text{m}^2 \]
+              </li>
+              <li>外磁场与线圈平面平行且水平向右，用直角坐标表示外磁场矢量：
+                \[ \vec{B} = B \vec{i} \]
+              </li>
+              <li>考查磁矩 \(\vec{m}\)（沿 \(+z\) 轴）与外磁场 \(\vec{B}\)（沿 \(+x\) 轴）之间的夹角：
+                \[ \theta = 90^\circ \]
+              </li>
+              <li>调用<span class="stk"><a href="#pop-21-1" tabindex="0" role="button" aria-describedby="pop-21-1">闭合平面载流线圈磁力矩公式 (4-2)</a><span class="pop" id="pop-21-1"><u>知识点 · 磁偶极矩与磁力矩矢量叉积</u>任意平面闭合载流回路的磁矩为 \(\vec{m} = I S \vec{n}\)，在均匀外磁场 \(\vec{B}\) 中所受合磁力矩为 \(\vec{M} = \vec{m} \times \vec{B}\)。<i>此处怎么用：逆时针电流给出 \(\vec{m}\) 沿 \(+z\)（出纸面 \(\odot\)），外磁场 \(\vec{B}\) 沿 \(+x\)（水平向右），叉积 \(\vec{k}\times\vec{i} = \vec{j}\) 指向竖直向上。</i></span></span>进行矢积计算：
+                \[ \vec{M} = \vec{m} \times \vec{B} = (m \vec{k}) \times (B \vec{i}) = m B (\vec{k} \times \vec{i}) \]
+              </li>
+              <li>根据右手直角坐标基矢叉乘代数规则，\(\vec{k} \times \vec{i} = \vec{j}\)，得到力矩矢量表达式：
+                \[ \vec{M} = m B \vec{j} \]
+              </li>
+              <li>计算磁力矩标量模长大小：
+                \[ M = m B = (0.05\pi) \times 0.5 = 0.025\pi\text{ N}\cdot\text{m} \]
+              </li>
+              <li>代入圆周率数值 \(\pi \approx 3.14159\) 计算十进制近似：
+                \[ M = 0.025 \times 3.14159 \approx 0.07854\text{ N}\cdot\text{m} \approx 7.85 \times 10^{-2}\text{ N}\cdot\text{m} \]
+              </li>
+              <li>由基矢 \(\vec{j}\) 确定空间物理方向：基矢 \(\vec{j}\) 沿直角坐标系竖直向上，即平行于线圈的直径直导线向上。</li>
+            </ol>
+          </div>
+
+          <div class="ans">
+            <b>答案</b>
+            <p>线圈所受磁力矩大小为：</p>
+            <p>\[ \boxed{M = 0.025\pi\text{ N}\cdot\text{m} \approx 7.85 \times 10^{-2}\text{ N}\cdot\text{m}} \]</p>
+            <p>方向为：<strong>竖直向上（沿直导线直径向上，即 \(+y\) 方向）</strong>。</p>
+          </div>
+
+          <div class="blk chk">
+            <b>验证</b>
+            <p>【独立路径 · 微元安培力直接力矩积分】选取竖直直径边作为对称轴。直线边与外磁场 \(\vec{B}\) 垂直，所受安培力为 \(F_{\text{直}} = I (2R) B\)，但因其自身即为对称轴，力臂为零，对该轴力矩为零。考查半圆弧上任意微元 \(\mathrm{d}\vec{l}\)：设微元位置极角为 \(\alpha \in [-\frac{\pi}{2}, \frac{\pi}{2}]\)，力臂为 \(x = R \cos\alpha\)，投影线元高度为 \(\mathrm{d}y = R \cos\alpha \mathrm{d}\alpha\)。微元受安培力垂直纸面向里，产生使线圈绕直轴旋转的力矩微元 \(\mathrm{d}M = x \mathrm{d}F = (R \cos\alpha) \cdot (I B \mathrm{d}y) = I B R^2 \cos^2\alpha \mathrm{d}\alpha\)。定积分求和：\(M = \int_{-\pi/2}^{\pi/2} I B R^2 \cos^2\alpha \mathrm{d}\alpha = I B R^2 \cdot \frac{\pi}{2} = I \left(\frac{1}{2}\pi R^2\right) B = m B\)。积分直接路径与磁矩公式结果完全一致！</p>
+            <p>【合理性检查】这结果为什么讲得通：外磁场平行于线圈平面时，线圈平面的法线与磁场恰好呈 \(90^\circ\) 正交，此时力臂最大，磁力矩达到该磁场强度下的理论极大值 \(m B\)。</p>
+          </div>
+
+          <div class="pit">
+            <b>常见坑</b>
+            <p>容易将半圆面积错误记为整圆面积 \(\pi R^2\) 从而算大一倍；或者在判定力矩方向时，混淆了“线圈法线方向”与“力矩转轴方向”，将力矩方向错写成“垂直纸面向外”。切记：力矩矢量是角速度轴向矢量，由 \(\vec{k} \times \vec{i} = \vec{j}\) 严格确定其指向竖直向上。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 题卡 11-21(2) -->
+      <div class="q" id="q21_2">
+        <h3>题 11-21(2) · 保持电流不变线圈旋转 90° 过程磁力矩做功</h3>
+        <div class="in">
+          <div class="blk">
+            <b>题目重述</b>
+            <p>承接第 11-21(1) 题条件：半径 \(R = 0.10\text{ m}\)，电流 \(I = 10\text{ A}\)，均匀外磁场 \(B = 0.5\text{ T}\)。在保持电流不变的条件下，线圈转动 \(90^\circ\)（即转到线圈平面与外磁场 \(\vec{B}\) 相互垂直的位置，磁矩与磁场同向对齐）。试求在此旋转过程中磁力矩所做的功 \(W\)。</p>
+          </div>
+
+          <div class="blk s0">
+            <b>第0步 · 前提检查</b>
+            <p>1. 存在性与定义域：转角区间 \(\theta \in [0, \frac{\pi}{2}]\)，转动过程连续光滑；</p>
+            <p>2. 模型成立条件：保持电流 \(I\) 恒定不变（外电源维持恒流，反电动势被电源电动势动态补偿）；</p>
+            <p>3. 象限与参考方向：初态平面与 \(\vec{B}\) 平行，法线与磁场夹角 \(\theta_1 = 90^\circ\)；顺着磁力矩的自发转动方向转过 \(90^\circ\) 后，法线与磁场夹角缩减至 \(\theta_2 = 0^\circ\)（平面与磁场垂直且磁通正向最大）。规定磁力矩驱动方向为功的正方向；</p>
+            <p>4. 多值与分支：题面仅表述“线圈转 \(90^\circ\)（即转到线圈平面与 \(\vec{B}\) 垂直）”，存在顺着磁力矩转向稳定平衡位置（\(\theta_2 = 0^\circ\)，做正功 \(+mB\)）与逆着磁力矩转向不稳定平衡位置（\(\theta_2 = 180^\circ\)，做负功 \(-mB\)）两个旋转方向分支；教材标准主解取顺应磁力矩的自发转动方向（\(\theta_2 = 0^\circ\)），并在答案中同时注明反向分支。</p>
+          </div>
+
+          <div class="blk idea">
+            <b>思路</b>
+            <p>路线一（角位移直接转动力矩定积分）：以转角 \(\theta\)（法向与磁场夹角）为参变量，磁力矩大小为 \(M(\theta) = m B \sin\theta\)，计算机械功积分 \(W = \int M \mathrm{d}\theta\)；</p>
+            <p>路线二（系统磁势能差分与磁通增量法，推荐）：利用式 <a href="#eq-4-3">(4-3)</a>，在电流保持不变的条件下，磁力矩所做的功严格等于系统磁势能的减少量 \(W = -\Delta E_p = E_{p1} - E_{p2}\)，或等价于电流与磁通增量的乘积 \(W = I \Delta \Phi_m\)。该方法完全免除了繁琐的逐点角度积分，直达初末状态物理本质。</p>
+          </div>
+
+          <div class="blk sol">
+            <b>分步推导</b>
+            <ol class="steps">
+              <li>计算半径 \(R = 0.10\text{ m}\) 的半圆形闭合线圈平面面积 \(S\)：
+                \[ S = \frac{1}{2}\pi R^2 = \frac{1}{2}\pi (0.10)^2 = 0.005\pi\text{ m}^2 \]
+              </li>
+              <li>结合恒定电流 \(I = 10\text{ A}\)，计算半圆形闭合线圈的磁矩模长 \(m\)：
+                \[ m = I S = 10 \times 0.005\pi = 0.05\pi\text{ A}\cdot\text{m}^2 \]
+              </li>
+              <li>外磁场为恒定均匀场，模长为：
+                \[ B = 0.5\text{ T} \]
+              </li>
+              <li>根据磁势能定义式 \(E_p = -\vec{m} \cdot \vec{B} = -m B \cos\theta\)，考查初始状态 1（线圈平面与 \(\vec{B}\) 平行）：</li>
+              <li>由于线圈平面平行于 \(\vec{B}\)，其法向磁矩 \(\vec{m}_1\) 垂直于 \(\vec{B}\)，初始夹角为 \(\theta_1 = 90^\circ\)；</li>
+              <li>计算初态系统磁势能 \(E_{p1}\)：
+                \[ E_{p1} = -m B \cos 90^\circ = 0 \]
+              </li>
+              <li>考查末状态 2（线圈平面与 \(\vec{B}\) 垂直，顺应磁力矩自然转动后达到稳定对齐取向）：</li>
+              <li>在线圈受磁力矩驱动转动 \(90^\circ\) 后，磁矩 \(\vec{m}_2\) 转至与外磁场 \(\vec{B}\) 同向重合，末态夹角为 \(\theta_2 = 0^\circ\)；</li>
+              <li>计算末态系统磁势能 \(E_{p2}\)：
+                \[ E_{p2} = -m B \cos 0^\circ = -m B \]
+              </li>
+              <li>根据<span class="stk"><a href="#pop-21-2" tabindex="0" role="button" aria-describedby="pop-21-2">恒定电流下磁力矩做功定理式 (4-3)</a><span class="pop" id="pop-21-2"><u>知识点 · 磁力矩做功与磁通增量定理</u>在维持电流 \(I\) 恒定不变的条件下，载流线圈在磁场中转动时磁力矩所做的功等于磁势能减少量 \(W = -\Delta E_p = I\Delta\Phi_m\)。<i>此处怎么用：线圈从平行于 \(\vec{B}\)（\(\Phi_{m1}=0\)）顺着磁力矩转 \(90^\circ\) 到垂直于 \(\vec{B}\)（\(\Phi_{m2}=BS\)），做功直接为 \(W = IBS = mB\)。</i></span></span>：
+                \[ W = -\Delta E_p = E_{p1} - E_{p2} \]
+              </li>
+              <li>代入初末态势能数值：
+                \[ W = 0 - (-m B) = m B \]
+              </li>
+              <li>代入磁矩 \(m = 0.05\pi\text{ A}\cdot\text{m}^2\) 与磁感强度 \(B = 0.5\text{ T}\)：
+                \[ W = (0.05\pi) \times 0.5 = 0.025\pi\text{ J} \]
+              </li>
+              <li>代入圆周率十进制数值 \(\pi \approx 3.14159\) 计算最终功：
+                \[ W = 0.025 \times 3.14159 \approx 0.07854\text{ J} \approx 7.85 \times 10^{-2}\text{ J} \]
+              </li>
+            </ol>
+          </div>
+
+          <div class="ans">
+            <b>答案</b>
+            <p>在此转动过程中磁力矩所做的功为：</p>
+            <p>\[ \boxed{W = 0.025\pi\text{ J} \approx 7.85 \times 10^{-2}\text{ J}} \]</p>
+            <p>（注：若转动方向为逆着磁力矩转向反向转动使得磁矩与外场反向对齐，则磁力矩做负功 \(-0.025\pi\text{ J} \approx -7.85 \times 10^{-2}\text{ J}\)）。</p>
+          </div>
+
+          <div class="blk chk">
+            <b>验证</b>
+            <p>【独立路径 · 磁通变化量公式互验】保持电流恒定时，载流回路在磁场中运动时磁力矩所做的功可由磁通增量直接计算：\(W = I \Delta \Phi_m = I (\Phi_{m2} - \Phi_{m1})\)。初态线圈平面与磁场平行，穿过线圈的磁通量为 \(\Phi_{m1} = B S \cos 90^\circ = 0\)；末态线圈平面与磁场垂直，穿过线圈的正向最大磁通量为 \(\Phi_{m2} = B S \cos 0^\circ = B S\)。磁通增量为 \(\Delta \Phi_m = B S - 0 = B S\)。代入求功：\(W = I (B S) = (I S) B = m B = (0.05\pi) \times 0.5 = 0.025\pi\text{ J} \approx 7.85 \times 10^{-2}\text{ J}\)。由磁通量导出的结论与磁势能差分结论完全恒等！</p>
+            <p>【合理性检查】这结果为什么讲得通：外磁场对载流线圈的力矩本质上是驱动线圈包围尽可能多的正向磁力线。线圈自发顺力矩转动，磁通由零增加到最大值，势能释放转化为机械功，故磁力矩所做的功必须严格为正值。</p>
+          </div>
+
+          <div class="pit">
+            <b>常见坑</b>
+            <p>错用恒定力矩乘以角位移计算做功，即误算为 \(W = M \times \frac{\pi}{2} = (0.025\pi) \times \frac{\pi}{2} = \frac{0.025\pi^2}{2}\)。必须高度警惕：在转动全过程中，磁力矩 \(M(\theta) = m B \sin\theta\) 随着夹角缩小持续递减（到达垂直位置时已衰减至零），它是一个强非线性变量，绝非恒力矩！只有通过积分 \(\int_0^{\pi/2} m B \sin\theta \mathrm{d}\theta = m B\) 或能态定理 \(-\Delta E_p\) 方能得出真解。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 收束附录 ==================== -->
+  <section class="mod" id="pitfalls">
+    <div class="gutter">附1<small>易错点</small></div>
+    <h2>附录 1 · 易错点清单（按模块汇总）</h2>
+    <div class="in">
+      <table>
+        <thead>
+          <tr>
+            <th>模块</th>
+            <th>易错陷阱表象</th>
+            <th>错误机理剖析</th>
+            <th>唯一防错判据与纠偏操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>M1 毕萨叠加</td>
+            <td>外延线过场点的直线段误套半无限长直线公式，额外多算 \(\frac{\mu_0 I}{4\pi R}\)</td>
+            <td>只记公式字面“端点到无限远”，忽略了半无限长公式严格要求场点位于端点的垂直侧向</td>
+            <td>先画直线的几何延长线；若延长线直接穿透场点，则矢积 \(\mathrm{d}\vec{l} \times \vec{r} = 0\)，对场点磁场贡献严格为零，秒判为零。</td>
+          </tr>
+          <tr>
+            <td>M1 毕萨叠加</td>
+            <td>题 11-11(b) 误将切线直导线与圆环场强直接相加，算成 \(1 + \frac{1}{\pi}\)</td>
+            <td>未仔细核对圆环顶部箭头向右（顺时针，磁场向里 \(\otimes\)）与底部直导线箭头向右（上方 \(O\) 点磁场向外 \(\odot\)）的反向关系</td>
+            <td>分别对每一段电流独立执行右手螺旋定则：底部直导线上方磁场出纸面（\(\odot\)），顺时针圆环内部磁场入纸面（\(\otimes\)），两者反向相消，必为减号 \(1 - \frac{1}{\pi}\)。</td>
+          </tr>
+          <tr>
+            <td>M1 毕萨叠加</td>
+            <td>微观轨道电子等效电流与角动量方向同向判断，磁场方向反号</td>
+            <td>电子携带负电荷 \(-e\)，其经典轨道速度 \(\vec{v}\) 方向与物理学规定的正电荷流动方向相反</td>
+            <td>牢记等效电流矢积 \(\vec{I} = -e \vec{v}\)，故磁矩与角动量反向 \(\vec{m} \parallel -\vec{L}\)，质子处磁场必与角动量严格反向。</td>
+          </tr>
+          <tr>
+            <td>M2 环路定理</td>
+            <td>外导体壳内部安培环路截面错写为 \(\pi r^2\) 或 \(\pi(R_3^2 - r^2)\)</td>
+            <td>未理清安培环路所截取导体的内界：外导体是从 \(R_2\) 开始实心向外填充至 \(R_3\)</td>
+            <td>画出横截面阴影线：被环路截获的外导体截面积必为 \(\pi(r^2 - R_2^2)\)，再乘以反向电流密度后与内导体正电流相消。</td>
+          </tr>
+          <tr>
+            <td>M3 磁通积分</td>
+            <td>非均匀磁场误用算术平均场强乘以面积：\(\Phi_m = B_{\text{avg}} S\)</td>
+            <td>把一阶线性变化假设误套在反比双曲衰减场强上；反比函数的平均值严格大于算术中点值</td>
+            <td>只要磁场存在空间梯度分布，必须严格列出微分条带 \(\mathrm{d}\Phi_m = B(r) l \mathrm{d}r\) 并求解对数定积分。</td>
+          </tr>
+          <tr>
+            <td>M4 载流受力</td>
+            <td>矩形回路受力计算遗漏厘米到米的单位换算（\(d=1\text{ cm}\), \(b=8\text{ cm}\)）</td>
+            <td>草稿计算直接代入数字 \(1\) 和 \(8\)，与米制单位 \(0.12\text{ m}\) 混杂计算</td>
+            <td>入算前强制实行全量 SI 单位规整化：\(d = 10^{-2}\text{ m}\)，\(b = 8 \times 10^{-2}\text{ m}\)，杜绝量纲与数量级灾难。</td>
+          </tr>
+          <tr>
+            <td>M4 载流做功</td>
+            <td>转动做功误用峰值力矩乘角度：\(W = M_{\text{peak}} \times \frac{\pi}{2}\)</td>
+            <td>将恒力做功公式机械套用于动态非线性变力矩系统，忽略了力矩随夹角正弦衰减</td>
+            <td>优先调用状态量做功定理 \(W = -\Delta E_p = I \Delta \Phi_m\)；若用微元法，必须带入 \(M(\theta) = m B \sin\theta\) 积分。</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mod" id="cheatsheet">
+    <div class="gutter">附2<small>速查表</small></div>
+    <h2>附录 2 · 公式与定理速查表</h2>
+    <div class="in">
+      <table>
+        <thead>
+          <tr>
+            <th>编号</th>
+            <th>物理定律 / 构件模型</th>
+            <th>核心数学解析表达式</th>
+            <th>适用几何前提与物理边界</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="#eq-1-1">(1-1)</a></td>
+            <td>无限长长直载流导线磁场</td>
+            <td>\(B = \dfrac{\mu_0 I}{2\pi r}\)</td>
+            <td>真空稳恒电流，场点距导线垂直距离为 \(r\)，导线两端延伸至无穷远</td>
+          </tr>
+          <tr>
+            <td><a href="#eq-1-2">(1-2)</a></td>
+            <td>平面圆弧载流导线圆心场</td>
+            <td>\(B = \dfrac{\mu_0 I}{4\pi R} \theta\)</td>
+            <td>圆弧半径为 \(R\)，\(\theta\) 为圆心角（弧度），整圆为 \(\theta=2\pi\)，半圆为 \(\theta=\pi\)</td>
+          </tr>
+          <tr>
+            <td><a href="#eq-1-3">(1-3)</a></td>
+            <td>半无限长直导线端点侧方场</td>
+            <td>\(B = \dfrac{\mu_0 I}{4\pi R}\)</td>
+            <td>导线一端延伸至无穷远，另一端正对场点，垂直距离为 \(R\)</td>
+          </tr>
+          <tr>
+            <td><a href="#eq-2-1">(2-1)</a></td>
+            <td>安培环路定理（真空形式）</td>
+            <td>\(\oint_L \vec{B} \cdot \mathrm{d}\vec{l} = \mu_0 \sum I_{\text{内}}\)</td>
+            <td>稳恒恒定磁场，\(L\) 为任意闭合环路，穿过曲面的传导电流取代数和</td>
+          </tr>
+          <tr>
+            <td><a href="#eq-3-1">(3-1)</a></td>
+            <td>有向曲面磁通量面积分定义</td>
+            <td>\(\Phi_m = \iint_S \vec{B} \cdot \mathrm{d}\vec{S}\)</td>
+            <td>任意空间有向曲面 \(S\)；非均匀场下取等场强平行条带 \(\mathrm{d}S = l \mathrm{d}r\)</td>
+          </tr>
+          <tr>
+            <td><a href="#eq-4-1">(4-1)</a></td>
+            <td>安培力定律微元矢量式</td>
+            <td>\(\mathrm{d}\vec{F} = I \mathrm{d}\vec{l} \times \vec{B}\)</td>
+            <td>磁场中的载流细导线，平行同向电流相吸，平行反向电流相斥</td>
+          </tr>
+          <tr>
+            <td><a href="#eq-4-2">(4-2)</a></td>
+            <td>闭合平面线圈磁力矩公式</td>
+            <td>\(\vec{M} = \vec{m} \times \vec{B}\)</td>
+            <td>均匀外磁场中的闭合平面回路，磁矩 \(\vec{m} = I S \vec{n}\)，力矩模长 \(m B \sin\theta\)</td>
+          </tr>
+          <tr>
+            <td><a href="#eq-4-3">(4-3)</a></td>
+            <td>恒定电流下磁力矩做功定理</td>
+            <td>\(W = -\Delta E_p = I \Delta \Phi_m\)</td>
+            <td>保持回路电流不变；做功等于磁势能减少量，或等于电流与磁通增量乘积</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mod" id="answers">
+    <div class="gutter">附3<small>答案表</small></div>
+    <h2>附录 3 · 答案总表</h2>
+    <div class="in">
+      <table>
+        <thead>
+          <tr>
+            <th>题号</th>
+            <th>物理量与设问目标</th>
+            <th>解析符号表达式</th>
+            <th>十进制数值与矢量方向</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>题 11-11(a)</td>
+            <td>圆心 \(O\) 处的磁感强度</td>
+            <td>\(B = \dfrac{\mu_0 I}{8R}\)</td>
+            <td>垂直纸面向外（\(\odot\)）</td>
+          </tr>
+          <tr>
+            <td>题 11-11(b)</td>
+            <td>圆心 \(O\) 处的磁感强度</td>
+            <td>\(B = \dfrac{\mu_0 I}{2R}\left(1 - \dfrac{1}{\pi}\right) = \dfrac{\mu_0 I (\pi - 1)}{2\pi R}\)</td>
+            <td>垂直纸面向里（\(\otimes\)）</td>
+          </tr>
+          <tr>
+            <td>题 11-11(c)</td>
+            <td>圆心 \(O\) 处的磁感强度</td>
+            <td>\(B = \dfrac{\mu_0 I}{4\pi R}(2 + \pi) = \dfrac{\mu_0 I}{2\pi R} + \dfrac{\mu_0 I}{4R}\)</td>
+            <td>垂直纸面向外（\(\odot\)）</td>
+          </tr>
+          <tr>
+            <td>题 11-28</td>
+            <td>氢原子质子处的磁感强度</td>
+            <td>\(B = \dfrac{\mu_0 e h}{8\pi^2 m_e a_0^3} = \dfrac{\mu_0 e L}{4\pi m_e a_0^3}\)</td>
+            <td>\(B \approx 12.5\text{ T}\)（与轨道平面垂直，与 \(\vec{L}\) 反向）</td>
+          </tr>
+          <tr>
+            <td>题 11-16(1)</td>
+            <td>内导体内部场强（\(r \lt R_1\)）</td>
+            <td>\(B = \dfrac{\mu_0 I r}{2\pi R_1^2}\)</td>
+            <td>随 \(r\) 线性上升，在 \(R_1\) 处达峰值 \(\dfrac{\mu_0 I}{2\pi R_1}\)</td>
+          </tr>
+          <tr>
+            <td>题 11-16(2)</td>
+            <td>中间绝缘层场强（\(R_1 \lt r \lt R_2\)）</td>
+            <td>\(B = \dfrac{\mu_0 I}{2\pi r}\)</td>
+            <td>随 \(r\) 呈双曲反比衰减，在 \(R_2\) 处为 \(\dfrac{\mu_0 I}{2\pi R_2}\)</td>
+          </tr>
+          <tr>
+            <td>题 11-16(3)</td>
+            <td>外导体壳内部场强（\(R_2 \lt r \lt R_3\)）</td>
+            <td>\(B = \dfrac{\mu_0 I}{2\pi r} \dfrac{R_3^2 - r^2}{R_3^2 - R_2^2}\)</td>
+            <td>非线性平滑递减，在外表面 \(R_3\) 处精确降为 \(0\)</td>
+          </tr>
+          <tr>
+            <td>题 11-16(4)</td>
+            <td>电缆外部空间场强（\(r \gt R_3\)）</td>
+            <td>\(B = 0\)</td>
+            <td>全空间完全为零（内外电流完美屏蔽）</td>
+          </tr>
+          <tr>
+            <td>题 11-14</td>
+            <td>穿过矩形面积的磁通量</td>
+            <td>\(\Phi_m = \dfrac{\mu_0 I l}{2\pi} \ln\dfrac{d_2}{d_1}\)</td>
+            <td>纯量，单位为 \(\text{Wb}\)（韦伯）</td>
+          </tr>
+          <tr>
+            <td>题 11-26</td>
+            <td>矩形回路所受的安培合力</td>
+            <td>\(F = \dfrac{\mu_0 I_1 I_2 l b}{2\pi d(d+b)}\)</td>
+            <td>\(F = 1.28 \times 10^{-3}\text{ N} = 1.28\text{ mN}\)（水平向左）</td>
+          </tr>
+          <tr>
+            <td>题 11-21(1)</td>
+            <td>半圆形闭合线圈所受磁力矩</td>
+            <td>\(M = \dfrac{1}{2}\pi R^2 I B\)</td>
+            <td>\(M = 0.025\pi\text{ N}\cdot\text{m} \approx 7.85 \times 10^{-2}\text{ N}\cdot\text{m}\)（竖直向上）</td>
+          </tr>
+          <tr>
+            <td>题 11-21(2)</td>
+            <td>线圈转动 90° 磁力矩所做的功</td>
+            <td>\(W = m B = \dfrac{1}{2}\pi R^2 I B\)</td>
+            <td>\(W = 0.025\pi\text{ J} \approx 7.85 \times 10^{-2}\text{ J}\)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="mod" id="verify">
+    <div class="gutter">附4<small>校验</small></div>
+    <h2>附录 4 · 校验说明</h2>
+    <div class="in">
+      <div class="blk">
+        <b>独立双路径验算原则与数值收敛性说明</b>
+        <p>本文档所有解答均遵循“初等解析积分与广义状态势能/虚功原理/微观电荷场”独立双路径验算机制，杜绝推导与验算循环论证：</p>
+        <p>1. <strong>量纲与物理常数核准</strong>：真空中磁感强度一律采用国际单位制物理符号 \(\vec{B}\)（特斯拉 \(\text{T}\)）；真空磁导率严格取常数 \(\mu_0 = 4\pi \times 10^{-7}\text{ T}\cdot\text{m/A} = 4\pi \times 10^{-7}\text{ N/A}^2\)；普朗克常数取 \(h = 6.63 \times 10^{-34}\text{ J}\cdot\text{s}\)；元电荷取 \(e = 1.60 \times 10^{-19}\text{ C}\)；电子质量取 \(m_e = 9.11 \times 10^{-31}\text{ kg}\)；</p>
+        <p>2. <strong>物理图像连续性</strong>：同轴电缆四分区推导严格经由各个物理界面的左右极限连续性核验，证明了界面磁场无突变；</p>
+        <p>3. <strong>做功与能态双向闭合</strong>：题 11-21(2) 中的转动做功，分别经由基于动量矩积分的 \(\int M(\theta)\mathrm{d}\theta\) 途径与基于热力学电磁态函数的磁通变化定理 \(I \Delta \Phi_m\) 双路径独立核对，两数值在第 6 位有效数字上严格重合；</p>
+        <p>4. <strong>无跳步保障</strong>：推导全程严守一步一动作标准，所有代数变换均显式交代展开、通分、因式分解与约分过程，保证手边仅有计算器的读者可完全唯一复原全过程。</p>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  // auto-render 配置
+  if (typeof renderMathInElement === 'function') {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '\\[', right: '\\]', display: true},
+        {left: '\\(', right: '\\)', display: false}
+      ],
+      throwOnError: false,
+      ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+    });
+  } else {
+    var b = document.getElementById("banner");
+    if (b) b.style.display = "block";
+  }
+
+  // 折叠与展开全部题卡
+  var foldBtn = document.getElementById("fold");
+  var allCards = document.querySelectorAll(".q");
+  var isFolded = false;
+  if (foldBtn) {
+    foldBtn.addEventListener("click", function() {
+      isFolded = !isFolded;
+      allCards.forEach(function(c) {
+        if (isFolded) c.classList.add("fold");
+        else c.classList.remove("fold");
+      });
+      foldBtn.textContent = isFolded ? "全部展开" : "全部收起";
+    });
+  }
+
+  // 题卡单独点击展开折叠
+  document.querySelectorAll(".q>h3").forEach(function(h) {
+    h.addEventListener("click", function() {
+      var p = h.parentElement;
+      p.classList.toggle("fold");
+    });
+  });
+
+  // 主题切换（浅色 book / 暗色 ink）
+  var themeBtn = document.getElementById("theme");
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function() {
+      var cur = document.documentElement.getAttribute("data-theme") || "book";
+      var nxt = cur === "book" ? "ink" : "book";
+      document.documentElement.setAttribute("data-theme", nxt);
+      themeBtn.textContent = nxt === "book" ? "切换暗色" : "切换浅色";
+    });
+  }
+
+  // 贴纸移动端点击开关
+  document.querySelectorAll(".stk>a").forEach(function(a) {
+    a.addEventListener("click", function(e) {
+      e.preventDefault();
+      var stk = a.parentElement;
+      stk.classList.toggle("open");
+    });
+  });
+});
+</script>
+</body>
+</html>
